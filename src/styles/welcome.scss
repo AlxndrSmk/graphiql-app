@@ -1,0 +1,37 @@
+.main {
+
+  &__btns {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    align-self: flex-end;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+    list-style: none;
+
+    &-item {
+      position: relative;
+      border: 2px solid wheat;
+      border-radius: 30px;
+      padding: 30px 20px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+
+      &-link {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  }
+
+}
