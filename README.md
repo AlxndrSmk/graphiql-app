@@ -19,33 +19,33 @@ Deployment Link: TBD
 ## Technology Stack
 The project uses the following technologies:
 
-- **React:** A popular JavaScript library for building user interfaces. It enables the creation of dynamic and responsive web applications.
+- **Next.js:** React-based framework for building performant and SEO-friendly web applications.
 
-- **React Router:** A library for managing routing and navigation in React applications, making it easy to create single-page applications.
+- **React:** Popular JavaScript library for building user interfaces. It enables the creation of dynamic and responsive web applications.
 
-- **TypeScript:** A statically typed superset of JavaScript that helps catch errors early and improve code quality.
+- **Redux:** Predictable state container for JavaScript apps, enabling efficient state management and data flow across components.
 
-- **Jest:** A JavaScript testing framework used for unit testing React components and ensuring code reliability.
+- **TypeScript:** Statically typed superset of JavaScript that helps catch errors early and improve code quality.
 
-- **Material-UI:** A widely used UI framework that provides a set of customizable components and styles for creating beautiful and consistent user interfaces.
+- **Apollo Client:** State management library for GraphQL applications that simplifies data fetching, caching, and updating.
 
-- **Axios:** A promise-based HTTP client for making network requests and handling API communication.
+- **GraphQL:** Query language for APIs, allowing clients to specify the exact data they need, minimizing over-fetching and under-fetching.
 
-- **Formik:** A library for building forms in React applications with ease, simplifying form validation and management.
+- **Cypress:** End-to-end testing tool for modern web applications.
 
-- **Yup:** A JavaScript schema validation library often used with Formik to define and validate form schemas.
+- **React-hook-form:** Easy-to-use and performant React form management library based on hooks.
 
-- **Notistack:** A notification library for displaying messages and alerts in a user-friendly way.
+- **Yup:** JavaScript schema validation library often used with Formik to define and validate form schemas.
 
-- **Dayjs:** A minimalistic date and time library for parsing, formatting, and manipulating dates in JavaScript.
+- **Sass:** CSS preprocessor that extends CSS with features like nesting, mixins, and functions, making CSS more organized and maintainable.
 
-- **Slick Carousel:** A responsive carousel/slider library that enhances the presentation of images and content on your website.
+- **ESLint:** Tool for identifying and fixing problems in your JavaScript code, ensuring code consistency and best practices.
 
-- **ESLint:** A tool for identifying and fixing problems in your JavaScript code, ensuring code consistency and best practices.
+- **Prettier:** Opinionated code formatter that automatically formats your code to follow a consistent style.
 
-- **Prettier:** An opinionated code formatter that automatically formats your code to follow a consistent style.
+- **Lint-staged:** Tool that runs linters on files as they are staged for commit, ensuring code quality before code changes are merged into the codebase. 
 
-- **Husky:** A tool that helps enforce code quality and standards by running scripts (e.g., linting) before commits are made.
+- **Husky:** Tool that helps enforce code quality and standards by running scripts (e.g., linting) before commits are made.
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -56,7 +56,7 @@ This is an example of how you can run a project locally. Follow these simple ste
 
 1. Clone the repo
    ```sh
-   git clone git@github.com:yevheniiorhanistyi/eCommerce-Application.git
+   git clone https://github.com/AlxndrSmk/graphiql-app.git
    ```
 3. Install NPM packages
    ```sh
@@ -70,54 +70,55 @@ This is an example of how you can run a project locally. Follow these simple ste
 
 To run the application, use the following command:
 ```
-   npm start
+   npm run dev
 ```
 The application will be launched in development mode and can be accessed at [http://localhost:3000](http://localhost:3000).
 
 
 ### Code Formatting and Linting
 
-This project uses ESLint and Prettier for code formatting and linting. Husky is also configured to run pre-commit hooks to ensure code quality. Before committing changes, the pre-commit hooks will automatically format the code using Prettier and check for linting errors using ESLint.
+This project uses ESLint and Prettier for code formatting and linting. Husky is also configured to run pre-commit and pre-push hooks to ensure code quality.
 
 To format the code using Prettier manually, use the following command:
 ```
-   npm run prettier
+   npm run prettier-fix
 ```
 To run ESLint for TypeScript and JSX files, use the following command:
 ```
-   npm run lint
+   npm run lint:fix
 ```
 
 ### Testing
 
 To run tests, use the following command:
 ```
-   npm test
+   npm run test
+```
+To see test coverage, use the following command:
+```
+   npm run e2e:coverage
 ```
 
 ### Building the Project
 
 To create an optimized production build of the project, use the following command:
 ```
-   npm run build-prod
+   npm run build
 ```
 
 ## Preview
 
-Before running the preview, make sure you have a production build ready by running the `npm run build-dev` or  `npm run build-prod`  command.
-Ï
+Before running the preview, make sure you have a production build ready by running the `npm run build` command.
 To preview the build and see how the application works in production mode, use the following command:
 ```
-   npm run preview
+   npm run start
 ```
 
 ## Available Commands
 In the BUYIT application, there are also other commands available that can be useful
 
-- `npm run pretty:fix`: To automatically fix Prettier formatting for TypeScript, JSX, and JSON files.
-- `npm run lint:fix`: To automatically fix ESLint errors for TypeScript and JSX files.
-- `npm run build-dev`: To build the project without minification.
-- `npm run test:coverage`: To run tests with code coverage report.
+- `npm run lint`: To check Prettier formatting for TypeScript, JSX, and JSON files.
+- `npm run prettier`: To check ESLint errors for TypeScript and JSX files.
 
 <!-- CONTRIBUTORS -->
 ## Contributors
