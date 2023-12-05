@@ -9,14 +9,15 @@
     "prepare": "npx husky install",
     "lint": "next lint . --ext ts,tsx",
     "lint:fix": "next lint . --ext ts,tsx --fix",
-    "prettier:fix": "prettier . --write",
+    "prettier-fix": "prettier . --write",
     "prettier": "prettier . --check",
-    "cy:open": "cypress open --e2e --browser chrome",
+    "test": "cypress open --e2e --browser chrome",
     "cy:run-e2e": "cypress run --e2e",
     "e2e:coverage": "npx start-server-and-test dev http://localhost:3000 cy:run-e2e && npx nyc report --reporter=text-summary"
   },
   "dependencies": {
     "@apollo/client": "^3.8.8",
+    "@reduxjs/toolkit": "^2.0.1",
     "graphql": "^16.8.1",
     "next": "14.0.3",
     "react": "^18",
