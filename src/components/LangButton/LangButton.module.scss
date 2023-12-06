@@ -1,0 +1,33 @@
+.language_wrapper {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.language_button {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+  box-shadow: black 0 0 2px 4px;
+}
+
+.language_label {
+  font-size: 1.2em;
+  color: darkcyan;
+}
+
+@keyframes rotateButton {
+  from {transform: rotateX(0)}
+  50% {transform: rotateX(180deg)}
+  to {transform: rotateX(360deg)}
+}
+
+.language_button:active {
+  animation: rotateButton 100ms forwards ease-in-out;
+}

@@ -1,7 +1,11 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from "react";
 import styles from './Header.module.scss';
+import LangButton from "@/components/LangButton/LangButton";
+import { useRouter } from "next/router";
+import QueryType from "@/types/QueryType";
 
 function Header(): ReactNode {
+  const { push, query } = useRouter();
   const [stateHeader, setStateHeader] = useState<string>(styles.header);
 
   useEffect(() => {
@@ -14,8 +18,12 @@ function Header(): ReactNode {
 
   return (
     <header className={stateHeader}>
+      <span className={styles.header_link} onClick={redirectToWelcome}>To welcome page</span>
       <div className={styles.header_container}>
-        <span>Here will button</span>
+        <LangButton />
+        <div className={styles.header_buttons}>
+          <span>Sign Out</span>
+        </div>
       </div>
     </header>
   );
@@ -29,6 +37,12 @@ function Header(): ReactNode {
     } else {
       setStateHeader(styles.header);
     }
+  }
+
+  async function redirectToWelcome(): Promise<void> {
+    const lang = query.lang as unknown as QueryType;
+
+    await push(`.?lang=${lang}`);
   }
 }
 

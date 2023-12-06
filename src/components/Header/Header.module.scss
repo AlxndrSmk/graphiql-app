@@ -1,9 +1,11 @@
 @mixin headerStyle($widthParam) {
   display: flex;
+  box-sizing: border-box;
   width: $widthParam;
   height: 80px;
   margin: 0 auto;
-  justify-content: flex-end;
+  padding: 5px 15px;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -23,13 +25,13 @@
   position: sticky;
   top: 0;
   border-radius: 0 0 10px 10px;
-  background-color: coral;
+  background-color: #da9b83;
   animation: showHeader 500ms linear forwards;
 }
 
 .header {
   @include headerStyle(100%);
-  background-color: darkblue;
+  background-color: #8f8fda;
 }
 
 .header_sticky {
@@ -42,7 +44,31 @@
   width: 320px;
   height: 80px;
   margin-right: 20px;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  background-color: aqua;
+}
+
+.header_link {
+  font-size: 1.5em;
+  color: #018a8a;
+  cursor: pointer;
+}
+
+.header_link:hover {
+  color: #450dab;
+}
+
+.header_link:active {
+  color: #6b0470;
+}
+
+.header_buttons {
+  display: flex;
+  width: 150px;
+  height: 80px;
+  box-sizing: border-box;
+  padding: 5px;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
 }
