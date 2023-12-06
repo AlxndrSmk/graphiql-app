@@ -1,3 +1,5 @@
+import styles from './Button.module.scss';
+
 export const Button = ({
   text,
   onClick,
@@ -6,7 +8,7 @@ export const Button = ({
   onClick: () => void;
 }) => {
   return (
-    <button className="btn" onClick={onClick}>
+    <button className={styles.btn} onClick={onClick}>
       {text}
     </button>
   );

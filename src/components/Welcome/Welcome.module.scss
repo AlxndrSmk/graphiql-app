@@ -1,4 +1,10 @@
 .main {
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
 
   &__btns {
     display: flex;
@@ -15,7 +21,7 @@
     flex-wrap: wrap;
     list-style: none;
 
-    &-item {
+    &_item {
       position: relative;
       border: 2px solid wheat;
       border-radius: 30px;
@@ -26,7 +32,7 @@
       align-items: center;
       gap: 15px;
 
-      &-link {
+      &_link {
         position: absolute;
         top: 10px;
         right: 10px;

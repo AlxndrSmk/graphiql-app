@@ -1,9 +1,7 @@
 import Head from 'next/head';
 import { Inter } from 'next/font/google';
+import { Welcome } from '@/components/Welcome/Welcome';
 import styles from '@/styles/Home.module.css';
-import { team } from '@/utils/team';
-import Image from 'next/image';
-import { Button } from '@/components/Button/Button';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,37 +14,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className} main`}>
-        <div className="main__btns">
-          <Button text="Sigh In" onClick={() => console.log('Sign In')} />
-          <Button text="Sign Up" onClick={() => console.log('Sign Up')} />
-        </div>
-
-        <h1 className="main__title">Welcome to GraphiQL App</h1>
-        <div className="main__desc">
-          GraphiQL is a playground/IDE for graphQL requests App was made on{' '}
-          <a
-            href="https://rickandmortyapi.com/documentation/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Rick and Morty API.{' '}
-          </a>
-          This is the final task of the third stage of{' '}
-          <a href="https://rs.school/">RS School</a>
-        </div>
-        <ul className="main__list">
-          {team.map((el) => (
-            <li className="main__list-item" key={el.name}>
-              <a className="main__list-item-link" href={el.github}>
-                <Image src="/github.svg" alt="github" width="30" height="30" />
-              </a>
-              <Image src={el.img} alt={el.name} width="100" height="100" />
-              <p>{el.name}</p>
-              <p>{el.desc}</p>
-            </li>
-          ))}
-        </ul>
+      <main className={`${styles.main} ${inter.className}`}>
+        <Welcome />
       </main>
     </>
   );
