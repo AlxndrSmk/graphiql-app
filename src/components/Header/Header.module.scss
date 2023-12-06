@@ -1,0 +1,48 @@
+@mixin headerStyle($widthParam) {
+  display: flex;
+  width: $widthParam;
+  height: 80px;
+  margin: 0 auto;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@keyframes showHeader {
+  0% {
+    transform: translate(0, -80px);
+  }
+  50% {
+    transform: translate(0, -40px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@mixin headerPosition {
+  position: sticky;
+  top: 0;
+  border-radius: 0 0 10px 10px;
+  background-color: coral;
+  animation: showHeader 500ms linear forwards;
+}
+
+.header {
+  @include headerStyle(100%);
+  background-color: darkblue;
+}
+
+.header_sticky {
+  @include headerPosition;
+  @include headerStyle(90%);
+}
+
+.header_container {
+  display: flex;
+  width: 320px;
+  height: 80px;
+  margin-right: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+}
