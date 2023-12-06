@@ -1,9 +1,9 @@
-import { ReactNode, useContext, useEffect, useState } from "react";
-import LangContext from "@/types/LangContext";
-import LanguageContext from "@/context/langContext";
-import { useRouter } from "next/router";
-import checkQueryParams from "@/utils/checkQueryParams";
-import styles from "./LangButton.module.scss";
+import { ReactNode, useContext, useEffect, useState } from 'react';
+import LangContext from '@/types/LangContext';
+import LanguageContext from '@/context/langContext';
+import { useRouter } from 'next/router';
+import checkQueryParams from '@/utils/checkQueryParams';
+import styles from './LangButton.module.scss';
 
 function LangButton(): ReactNode {
   const context = useContext<LangContext>(LanguageContext);
@@ -11,7 +11,7 @@ function LangButton(): ReactNode {
   const lang: string | null = checkQueryParams(router);
   const [isClicked, setIsClicked] = useState(false);
 
-  useEffect( () => {
+  useEffect(() => {
     if (!lang) {
       router.replace('main?lang=en').then(() => context.setPageLang('en'));
     } else {
@@ -22,7 +22,9 @@ function LangButton(): ReactNode {
   return (
     <div className={styles.language_wrapper}>
       <button className={styles.language_button} onClick={onChangeLang}>
-        <span className={styles.language_label}>{context.getConstants().langButton}</span>
+        <span className={styles.language_label}>
+          {context.getConstants().langButton}
+        </span>
       </button>
     </div>
   );

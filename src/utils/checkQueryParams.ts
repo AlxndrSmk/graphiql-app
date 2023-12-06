@@ -1,5 +1,5 @@
-import { NextRouter } from "next/router";
-import QueryType from "@/types/QueryType";
+import { NextRouter } from 'next/router';
+import QueryType from '@/types/QueryType';
 
 function checkQueryParams(router: NextRouter): string | null {
   const query = router.query as QueryType;

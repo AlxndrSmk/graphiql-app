@@ -1,0 +1,46 @@
+.footer {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 5px 20px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer_authors {
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer_created {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer_logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer_names {
+  text-align: center;
+  font-size: 1em;
+  color: #8f8fda;
+  cursor: pointer;
+}
+
+.footer_text {
+  font-size: 2em;
+  color: darkcyan;
+}
+
+.footer_school {
+  cursor: pointer;
+}

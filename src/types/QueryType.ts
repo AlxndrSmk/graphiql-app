@@ -1,6 +1,6 @@
-import { ParsedUrlQuery } from "querystring";
+import { ParsedUrlQuery } from 'querystring';
 
-interface QueryType extends ParsedUrlQuery{
+interface QueryType extends ParsedUrlQuery {
   lang: string;
 }
 

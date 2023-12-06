@@ -1,4 +1,4 @@
-import LangConstants from "@/types/LangConstants";
+import LangConstants from '@/types/LangConstants';
 
 interface LangContext {
   en: LangConstants;

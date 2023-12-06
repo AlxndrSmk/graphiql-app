@@ -1,18 +1,20 @@
-import LangContext from "@/types/LangContext";
-import LangConstants from "@/types/LangConstants";
+import LangContext from '@/types/LangContext';
+import LangConstants from '@/types/LangConstants';
 
 const langContextInit: LangContext = {
   en: {
-    langButton: 'EN'
+    langButton: 'EN',
+    altLogo: 'RSSchool logo',
   },
   ru: {
-    langButton: 'RU'
+    langButton: 'RU',
+    altLogo: 'RSSchool лого',
   },
   pageLang: 'en',
-  setPageLang: function(lang: string): void {
+  setPageLang: function (lang: string): void {
     this.pageLang = lang;
   },
-  getConstants: function(): LangConstants {
+  getConstants: function (): LangConstants {
     switch (this.pageLang) {
       case 'ru':
         return this.ru;
@@ -21,7 +23,7 @@ const langContextInit: LangContext = {
       default:
         return this.en;
     }
-  }
+  },
 };
 
 export default langContextInit;

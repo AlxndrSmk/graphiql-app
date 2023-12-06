@@ -1,8 +1,8 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from 'react';
 import styles from './Header.module.scss';
-import LangButton from "@/components/LangButton/LangButton";
-import { useRouter } from "next/router";
-import QueryType from "@/types/QueryType";
+import LangButton from '@/components/LangButton/LangButton';
+import { useRouter } from 'next/router';
+import QueryType from '@/types/QueryType';
 
 function Header(): ReactNode {
   const { push, query } = useRouter();
@@ -18,7 +18,9 @@ function Header(): ReactNode {
 
   return (
     <header className={stateHeader}>
-      <span className={styles.header_link} onClick={redirectToWelcome}>To welcome page</span>
+      <span className={styles.header_link} onClick={redirectToWelcome}>
+        To welcome page
+      </span>
       <div className={styles.header_container}>
         <LangButton />
         <div className={styles.header_buttons}>

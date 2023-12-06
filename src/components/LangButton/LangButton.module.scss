@@ -23,9 +23,15 @@
 }
 
 @keyframes rotateButton {
-  from {transform: rotateX(0)}
-  50% {transform: rotateX(180deg)}
-  to {transform: rotateX(360deg)}
+  from {
+    transform: rotateX(0);
+  }
+  50% {
+    transform: rotateX(180deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
 }
 
 .language_button:active {
