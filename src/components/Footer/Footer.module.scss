@@ -7,6 +7,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 5px;
+  background: linear-gradient(180deg, #d5f1f1, #c7f3f3, #b3f3f3, #9cf3f3);
 }
 
 .footer_authors {
@@ -32,8 +33,16 @@
 .footer_names {
   text-align: center;
   font-size: 1em;
-  color: #8f8fda;
+  color: #0b0bea;
   cursor: pointer;
+}
+
+.footer_names:hover {
+  color: #4505b2;
+}
+
+.footer_names:active {
+  color: #176288;
 }
 
 .footer_text {
@@ -41,6 +50,26 @@
   color: darkcyan;
 }
 
+@keyframes shakeImg {
+  0% {transform: rotate(10deg)}
+  50% {transform: rotate(-10deg)}
+  100% {transform: rotate(0)}
+}
+
+@keyframes clickImg {
+  0% {transform: scale(1.2, 0.8)}
+  50% {transform: scale(0.8, 1.2)}
+  100% {transform: scale(1, 1)}
+}
+
 .footer_school {
   cursor: pointer;
+}
+
+.footer_school:hover {
+  animation: shakeImg 500ms ease-in-out forwards;
+}
+
+.footer_school:active {
+  animation: clickImg 250ms ease-in-out forwards;
 }
