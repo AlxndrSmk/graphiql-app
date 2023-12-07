@@ -1,17 +1,17 @@
-import styles from './Welcome.module.scss';
 import { team } from '@/utils/team';
 import Image from 'next/image';
-import { Button } from '../Button/Button';
+// import { Button } from '../Button/Button';
 import { en } from '@/locale/en';
 import { ru } from '@/locale/ru';
+import styles from './Welcome.module.scss';
 
-export const Welcome = () => {
+export const Welcome: React.FC = () => {
   const lang: 'ru' | 'en' = 'en';
 
   const curLang = lang === 'en' ? en : ru;
   return (
     <section className={styles.main}>
-      <div className={styles.main__btns}>
+      {/* <div className={styles.main__btns}>
         <Button
           text={curLang.welcome.signIn}
           onClick={() => console.log('Sign In')}
@@ -20,7 +20,7 @@ export const Welcome = () => {
           text={curLang.welcome.signUp}
           onClick={() => console.log('Sign Up')}
         />
-      </div>
+      </div> */}
 
       <h1 className={styles.main__title}>{curLang.welcome.title}</h1>
       <div className={styles.main__desc}>
