@@ -14,26 +14,38 @@
   align-items: center;
   border-radius: 50%;
   border: none;
-  box-shadow: black 0 0 2px 4px;
+  box-shadow: black 2px -3px 4px;
 }
 
 .language_label {
-  font-size: 1.2em;
-  color: darkcyan;
+  font-size: 1.4em;
+  font-weight: 800;
 }
 
 @keyframes rotateButton {
   from {
-    transform: rotateX(0);
+    transform: scale(1.2, 0.8);
   }
   50% {
-    transform: rotateX(180deg);
+    transform: scale(0.8, 1.2);
   }
   to {
-    transform: rotateX(360deg);
+    transform: scale(1, 1);
   }
 }
 
 .language_button:active {
   animation: rotateButton 100ms forwards ease-in-out;
+}
+
+.ru_bg {
+  color: #5c0979;
+  text-shadow: 0 0 3px #0bea95;
+  background: linear-gradient(180deg, #032172, #ffffff, #940202);
+}
+
+.en_bg {
+  color: #cbcb00;
+  text-shadow: 0 0 4px #3e0265;
+  background: linear-gradient(90deg, #ffffff, rgba(140, 0, 0, 0.9), #ffffff);
 }
