@@ -1,0 +1,63 @@
+@keyframes buttonAnimation {
+  0% {
+    transform: scale(1.2, 0.8);
+  }
+  50% {
+    transform: scale(0.8, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@mixin buttonBackground($bg) {
+  background: $bg;
+}
+
+@mixin buttonStyle($bg) {
+  flex: 0 0 70px;
+  display: flex;
+  width: 70px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  @include buttonBackground($bg);
+
+  &:active {
+    width: 68px;
+    height: 28px;
+  }
+}
+
+@mixin buttonShadow {
+  box-shadow: 2px -3px 5px #563203;
+  &:hover {
+    animation: buttonAnimation 200ms 50ms linear forwards;
+  }
+
+  &:active {
+    box-shadow: 1px -2px 2px #563203;
+  }
+}
+
+.sign_in {
+  @include buttonStyle(#0cc96d);
+  @include buttonShadow;
+}
+
+.sign_up {
+  @include buttonStyle(#0c64c9);
+  @include buttonShadow;
+}
+
+.to_main {
+  @include buttonStyle(#6cbd0a);
+  @include buttonShadow;
+}
+
+.auth_text {
+  font-size: 1em;
+  color: #2a023f;
+}

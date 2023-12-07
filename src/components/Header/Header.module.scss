@@ -64,11 +64,11 @@
 
 .header_buttons {
   display: flex;
-  width: 150px;
+  width: 180px;
   height: 80px;
   box-sizing: border-box;
   padding: 5px;
-  justify-content: space-evenly;
+  justify-content: stretch;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }

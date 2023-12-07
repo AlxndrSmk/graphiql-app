@@ -3,6 +3,7 @@ import styles from './Header.module.scss';
 import LangButton from '@/components/LangButton/LangButton';
 import { useRouter } from 'next/router';
 import QueryType from '@/types/QueryType';
+import AuthBlock from '@/components/AuthBlock/AuthBlock';
 
 function Header(): ReactNode {
   const { push, query } = useRouter();
@@ -24,7 +25,7 @@ function Header(): ReactNode {
       <div className={styles.header_container}>
         <LangButton />
         <div className={styles.header_buttons}>
-          <span>Sign Out</span>
+          <AuthBlock />
         </div>
       </div>
     </header>
