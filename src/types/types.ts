@@ -1,3 +1,8 @@
+export type TButton = {
+  text: string;
+  onClick: () => void;
+};
+
 import { UserCredential } from 'firebase/auth';
 
 export type UserData = {
