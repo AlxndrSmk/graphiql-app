@@ -1,0 +1,146 @@
+@import '../../styles/colors.scss';
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  justify-content: center;
+
+  &__block {
+    max-width: 470px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__wrapper {
+    margin-top: 110px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 130px;
+  }
+
+  &__img {
+    height: 99px;
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 52px;
+    color: #1e0e62;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  &__terms {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #15143966;
+  }
+
+  &__loading {
+    display: flex;
+    justify-content: center;
+    inset: 0px;
+    align-items: center;
+    position: absolute;
+    z-index: 100;
+  }
+
+  &__label {
+    margin-top: 26px;
+    color: #1e0e62;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-align: left;
+  }
+
+  &__controls {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 42px;
+
+    &_signin {
+      margin-top: 35px;
+      gap: 20px;
+    }
+  }
+
+  &__agree {
+    margin-bottom: 24px;
+  }
+
+  &__divider {
+    margin-top: 50px;
+
+    &_none {
+      display: none;
+    }
+  }
+
+  &__account {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+    color: #15143966;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+    color: #ffc75f;
+  }
+
+  &__error {
+    margin-left: 0.25rem;
+    margin-top: 0.25rem;
+    color: rgb(220 38 38);
+
+    &-block {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__item {
+    position: relative;
+
+    &-signup {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+  &__input {
+    border: 2px solid #ebeaed;
+    border-radius: 100px;
+    appearance: none;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 500;
+    color: #15143966;
+    outline: none;
+    padding: 12px 24px;
+    width: 100%;
+    -webkit-appearance: none;
+
+    &::placeholder {
+      color: #ebeaed;
+      font-weight: 400;
+    }
+  }
+}

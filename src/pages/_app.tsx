@@ -1,6 +1,16 @@
-import '@/styles/globals.css';
+import { AuthProvider } from '@/components/auth/AuthController';
 import type { AppProps } from 'next/app';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
-}
+import '@/styles/globals.scss';
+
+const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+  return (
+    <AuthProvider>
+      <>
+        <Component {...pageProps} />
+      </>
+    </AuthProvider>
+  );
+};
+
+export default App;
