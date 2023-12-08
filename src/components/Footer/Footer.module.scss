@@ -1,87 +1,60 @@
+@use "sass:map";
+@import 'Footer.mixins';
+@import 'Footer.colors';
+
 .footer {
-  display: flex;
+  @include divDisplay(spaced);
   width: 100%;
   height: 60px;
   box-sizing: border-box;
   padding: 5px 20px;
-  justify-content: space-between;
-  align-items: center;
   gap: 5px;
-  background: linear-gradient(180deg, #d5f1f1, #c7f3f3, #b3f3f3, #9cf3f3);
-}
+  background: map.get($footerColors, 'ft-background');
 
-.footer_authors {
-  display: flex;
-  width: 300px;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.footer_created {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer_logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer_names {
-  text-align: center;
-  font-size: 1em;
-  color: #0b0bea;
-  cursor: pointer;
-}
-
-.footer_names:hover {
-  color: #4505b2;
-}
-
-.footer_names:active {
-  color: #176288;
-}
-
-.footer_text {
-  font-size: 2em;
-  color: darkcyan;
-}
-
-@keyframes shakeImg {
-  0% {
-    transform: rotate(10deg);
+  &__authors {
+    @include divDisplay(spaced);
+    width: 300px;
+    gap: 10px;
   }
-  50% {
-    transform: rotate(-10deg);
-  }
-  100% {
-    transform: rotate(0);
-  }
-}
 
-@keyframes clickImg {
-  0% {
-    transform: scale(1.2, 0.8);
+  &__created {
+    @include divDisplay(centered);
   }
-  50% {
-    transform: scale(0.8, 1.2);
+
+  &__logo {
+    @include divDisplay(centered);
   }
-  100% {
-    transform: scale(1, 1);
+
+  &__names {
+    text-decoration: none;
+    text-align: center;
+    font-size: 1em;
+    color: map.get($footerColors, 'names');
+    cursor: pointer;
+
+    &:hover {
+      color: map.get($footerColors, 'names-hover');
+    }
+
+    &:active {
+      color: map.get($footerColors, 'names-active');
+    }
   }
-}
 
-.footer_school {
-  cursor: pointer;
-}
+  &__text {
+    font-size: 2em;
+    color: map.get($footerColors, 'created');
+  }
 
-.footer_school:hover {
-  animation: shakeImg 500ms ease-in-out forwards;
-}
+  &__school {
+    @include animating;
+    cursor: pointer;
+    &:hover {
+      animation: shakeImg 500ms ease-in-out forwards;
+    }
 
-.footer_school:active {
-  animation: clickImg 250ms ease-in-out forwards;
+    &:active {
+      animation: clickImg 250ms ease-in-out forwards;
+    }
+  }
 }

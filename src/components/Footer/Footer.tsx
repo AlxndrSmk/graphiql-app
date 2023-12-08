@@ -4,55 +4,52 @@ import logo from './../../../public/rsschool.svg';
 import LanguageContext from '@/context/langContext';
 import LangContext from '@/types/LangContext';
 import styles from './Footer.module.scss';
-import { useRouter } from 'next/router';
+
+type URLsForRedirect = {
+  pozdnyakoks: string;
+  alxndrsmk: string;
+  brbrov: string;
+  rsschool: string;
+};
+
+const urls: URLsForRedirect = {
+  pozdnyakoks: 'https://github.com/pozdnyakoks',
+  alxndrsmk: 'https://github.com/AlxndrSmk',
+  brbrov: 'https://github.com/BrBrov',
+  rsschool: 'https://rs.school/react/',
+};
 
 function Footer(): ReactNode {
   const context: LangContext = useContext<LangContext>(LanguageContext);
-  const { push } = useRouter();
   return (
     <footer className={styles.footer}>
-      <div className={styles.footer_authors}>
-        <span className={styles.footer_names} onClick={toGitOne}>
+      <div className={styles.footer__authors}>
+        <a className={styles.footer__names} href={urls.pozdnyakoks}>
           Oksana Pozdnyak
-        </span>
-        <span className={styles.footer_names} onClick={toGitTwo}>
+        </a>
+        <a className={styles.footer__names} href={urls.alxndrsmk}>
           Alexander Samak
-        </span>
-        <span className={styles.footer_names} onClick={toGitThree}>
+        </a>
+        <a className={styles.footer__names} href={urls.brbrov}>
           Henadzi Vasukovich
-        </span>
+        </a>
       </div>
-      <div className={styles.footer_created}>
-        <span className={styles.footer_text}>Created at 2023</span>
+      <div className={styles.footer__created}>
+        <span className={styles.footer__text}>{`${context.getConstants().textCreated} 2023`}</span>
       </div>
-      <div className={styles.footer_logo}>
+      <div className={styles.footer__logo}>
+        <a href={urls.rsschool}>
         <Image
-          className={styles.footer_school}
+          className={styles.footer__school}
           src={logo}
           alt={context.getConstants().altLogo}
           width={100}
           height={40}
-          onClick={toSchoolPage}
         />
+        </a>
       </div>
     </footer>
   );
-
-  async function toGitOne(): Promise<void> {
-    await push('https://github.com/pozdnyakoks');
-  }
-
-  async function toGitTwo(): Promise<void> {
-    await push('https://github.com/AlxndrSmk');
-  }
-
-  async function toGitThree(): Promise<void> {
-    await push('https://github.com/BrBrov');
-  }
-
-  async function toSchoolPage(): Promise<void> {
-    await push('https://rs.school/react/');
-  }
 }
 
 export default Footer;

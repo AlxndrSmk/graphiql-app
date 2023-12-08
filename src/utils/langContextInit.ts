@@ -5,10 +5,12 @@ const langContextInit: LangContext = {
   en: {
     langButton: 'EN',
     altLogo: 'RSSchool logo',
+    textCreated: 'Created at',
   },
   ru: {
     langButton: 'RU',
     altLogo: 'RSSchool лого',
+    textCreated: 'Дата создания',
   },
   pageLang: 'en',
   setPageLang: function (lang: string): void {
