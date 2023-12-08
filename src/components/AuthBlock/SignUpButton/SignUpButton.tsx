@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import styles from './../Buttons.module.scss';
+import styles from '../AuthButton/AuthButton.module.scss';
 function SignUpButton(): ReactNode {
   //TODO have to add logic!!!
   return (

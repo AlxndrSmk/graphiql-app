@@ -1,0 +1,32 @@
+@mixin headerStyle($widthParam, $background) {
+  display: flex;
+  box-sizing: border-box;
+  width: $widthParam;
+  height: 80px;
+  margin: 0 auto;
+  padding: 5px 15px;
+  justify-content: space-between;
+  align-items: center;
+  background: $background;
+}
+
+@mixin animateHeader {
+  @keyframes showHeader {
+    0% {
+      transform: translate(0, -80px);
+    }
+    50% {
+      transform: translate(0, -40px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+@mixin headerPosition {
+  position: sticky;
+  top: 0;
+  border-radius: 0 0 10px 10px;
+  animation: showHeader 500ms linear forwards;
+}

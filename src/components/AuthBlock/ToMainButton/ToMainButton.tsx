@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
-import styles from './../Buttons.module.scss';
+import styles from '../AuthButton/AuthButton.module.scss';
 function ToMainButton(): ReactNode {
   const { push, query } = useRouter();
   return (

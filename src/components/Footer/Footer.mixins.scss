@@ -24,14 +24,14 @@
   }
 }
 
-@mixin divDisplay($position ) {
+@mixin divDisplay($position) {
   display: flex;
-  @if($position == centered) {
-  justify-content: center;
-  align-items: center;
+  @if ($position == centered) {
+    justify-content: center;
+    align-items: center;
   }
-  @if($position == spaced) {
-  justify-content: space-between;
-  align-items: center;
+  @if ($position == spaced) {
+    justify-content: space-between;
+    align-items: center;
   }
 }

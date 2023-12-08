@@ -1,74 +1,48 @@
-@mixin headerStyle($widthParam) {
-  display: flex;
-  box-sizing: border-box;
-  width: $widthParam;
-  height: 80px;
-  margin: 0 auto;
-  padding: 5px 15px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-@keyframes showHeader {
-  0% {
-    transform: translate(0, -80px);
-  }
-  50% {
-    transform: translate(0, -40px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-@mixin headerPosition {
-  position: sticky;
-  top: 0;
-  border-radius: 0 0 10px 10px;
-  background-color: #da9b83;
-  animation: showHeader 500ms linear forwards;
-}
+@use 'sass:map';
+@import 'Header.colors';
+@import './Header.mixins';
 
 .header {
-  @include headerStyle(100%);
-  background-color: #8f8fda;
-}
+  &_ordinary {
+    @include headerStyle(100%, map.get($headerColors, ordinary));
+  }
 
-.header_sticky {
-  @include headerPosition;
-  @include headerStyle(90%);
-}
+  &_sticky {
+    @include headerPosition;
+    @include headerStyle(90%, map.get($headerColors, sticky));
+  }
 
-.header_container {
-  display: flex;
-  width: 320px;
-  height: 80px;
-  margin-right: 20px;
-  justify-content: space-evenly;
-  align-items: center;
-}
+  &__container {
+    display: flex;
+    width: 320px;
+    height: 80px;
+    margin-right: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+  }
 
-.header_link {
-  font-size: 1.5em;
-  color: #018a8a;
-  cursor: pointer;
-}
+  &__link {
+    font-size: 1.5em;
+    color: map.get($headerColors, link);
+    cursor: pointer;
 
-.header_link:hover {
-  color: #450dab;
-}
+    &:hover {
+      color: map.get($headerColors, link-name);
+    }
 
-.header_link:active {
-  color: #6b0470;
-}
+    &:active {
+      color: map.get($headerColors, link-active);
+    }
+  }
 
-.header_buttons {
-  display: flex;
-  width: 180px;
-  height: 80px;
-  box-sizing: border-box;
-  padding: 5px;
-  justify-content: stretch;
-  align-items: center;
-  gap: 5px;
+  &__buttons {
+    display: flex;
+    width: 180px;
+    height: 80px;
+    box-sizing: border-box;
+    padding: 5px;
+    justify-content: stretch;
+    align-items: center;
+    gap: 5px;
+  }
 }

@@ -35,17 +35,19 @@ function Footer(): ReactNode {
         </a>
       </div>
       <div className={styles.footer__created}>
-        <span className={styles.footer__text}>{`${context.getConstants().textCreated} 2023`}</span>
+        <span className={styles.footer__text}>{`${
+          context.getConstants().textCreated
+        } 2023`}</span>
       </div>
       <div className={styles.footer__logo}>
         <a href={urls.rsschool}>
-        <Image
-          className={styles.footer__school}
-          src={logo}
-          alt={context.getConstants().altLogo}
-          width={100}
-          height={40}
-        />
+          <Image
+            className={styles.footer__school}
+            src={logo}
+            alt={context.getConstants().altLogo}
+            width={100}
+            height={40}
+          />
         </a>
       </div>
     </footer>

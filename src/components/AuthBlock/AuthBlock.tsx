@@ -6,7 +6,7 @@ import styles from './AuthBlock.module.scss';
 function AuthBlock(): ReactNode {
   //TODO have to add logic!!!
   return (
-    <div className={styles.auth_block}>
+    <div className={styles.auth__block}>
       <SignInButton />
       <SignUpButton />
     </div>

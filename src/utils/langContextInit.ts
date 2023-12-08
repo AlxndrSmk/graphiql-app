@@ -6,11 +6,13 @@ const langContextInit: LangContext = {
     langButton: 'EN',
     altLogo: 'RSSchool logo',
     textCreated: 'Created at',
+    welcomePageLink: 'To welcome page',
   },
   ru: {
     langButton: 'RU',
     altLogo: 'RSSchool лого',
     textCreated: 'Дата создания',
+    welcomePageLink: 'На страницу приветствия',
   },
   pageLang: 'en',
   setPageLang: function (lang: string): void {

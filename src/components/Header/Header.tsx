@@ -1,13 +1,19 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import LangButton from '@/components/LangButton/LangButton';
 import { useRouter } from 'next/router';
 import QueryType from '@/types/QueryType';
 import AuthBlock from '@/components/AuthBlock/AuthBlock';
+import Link from 'next/link';
+import LanguageContext from '@/context/langContext';
+import LangContext from '@/types/LangContext';
 
 function Header(): ReactNode {
-  const { push, query } = useRouter();
-  const [stateHeader, setStateHeader] = useState<string>(styles.header);
+  const { query } = useRouter();
+  const context = useContext<LangContext>(LanguageContext);
+  const [stateHeader, setStateHeader] = useState<string>(
+    styles.header + ' ' + styles.header_ordinary
+  );
 
   useEffect(() => {
     window.addEventListener('scroll', onScrollEv);
@@ -19,12 +25,12 @@ function Header(): ReactNode {
 
   return (
     <header className={stateHeader}>
-      <span className={styles.header_link} onClick={redirectToWelcome}>
-        To welcome page
-      </span>
-      <div className={styles.header_container}>
+      <Link className={styles.header__link} href={redirectToWelcome()}>
+        {context.getConstants().welcomePageLink}
+      </Link>
+      <div className={styles.header__container}>
         <LangButton />
-        <div className={styles.header_buttons}>
+        <div className={styles.header__buttons}>
           <AuthBlock />
         </div>
       </div>
@@ -36,16 +42,16 @@ function Header(): ReactNode {
     const { scrollTop } = scrollingElement as Element;
 
     if (scrollTop > 80) {
-      setStateHeader(styles.header_sticky);
+      setStateHeader(styles.header + ' ' + styles.header_sticky);
     } else {
-      setStateHeader(styles.header);
+      setStateHeader(styles.header + ' ' + styles.header_ordinary);
     }
   }
 
-  async function redirectToWelcome(): Promise<void> {
+  function redirectToWelcome(): string {
     const lang = query.lang as unknown as QueryType;
 
-    await push(`.?lang=${lang}`);
+    return `.?lang=${lang}`;
   }
 }
 

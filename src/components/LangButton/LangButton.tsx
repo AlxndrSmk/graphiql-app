@@ -1,4 +1,4 @@
-import {ReactNode, useContext, useEffect, useReducer, useState} from 'react';
+import { ReactNode, useContext, useEffect, useReducer, useState } from 'react';
 import LangContext from '@/types/LangContext';
 import LanguageContext from '@/context/langContext';
 import { useRouter } from 'next/router';
@@ -10,15 +10,17 @@ function LangButton(): ReactNode {
   const router = useRouter();
   const lang: string | null = checkQueryParams(router);
   const [isClicked, setIsClicked] = useState(false);
-  const [btnStyle, setBtnStyle]
-    = useReducer( onAction, `${styles.language_button} ${styles.en_bg}`);
+  const [btnStyle, setBtnStyle] = useReducer(
+    onAction,
+    `${styles.language_button} ${styles.en_bg}`
+  );
 
   useEffect(() => {
     if (!lang) {
       router.replace('main?lang=en').then(() => context.setPageLang('en'));
     } else {
       context.setPageLang(lang);
-      setBtnStyle({type: lang});
+      setBtnStyle({ type: lang });
     }
   }, [lang]);
 
@@ -41,7 +43,7 @@ function LangButton(): ReactNode {
     }
   }
 
-  function onAction(_state: string, action: {type: string}): string {
+  function onAction(_state: string, action: { type: string }): string {
     switch (action.type) {
       case 'en':
         return `${styles.language_button} ${styles.en_bg}`;
