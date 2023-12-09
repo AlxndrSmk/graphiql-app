@@ -30,7 +30,7 @@ function Header(): ReactNode {
       </Link>
       <div className={styles.header__container}>
         <LangButton />
-        <div className={styles.header__buttons}>
+        <div className={styles['header__container-buttons']}>
           <AuthBlock />
         </div>
       </div>
