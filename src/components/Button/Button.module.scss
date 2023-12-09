@@ -1,6 +1,15 @@
+@import '../../styles/colors.scss';
+
 .btn {
+  transition: 0.3s ease;
+  cursor: pointer;
   background-color: transparent;
-  padding:  10px 20px;
-  font-size: 20px;
   border: 1px solid #fff;
+  font-size: 20px;
+  padding: 10px 20px;
+
+  &:hover {
+    background-color: $white-color;
+    color: $black-color;
+  }
 }

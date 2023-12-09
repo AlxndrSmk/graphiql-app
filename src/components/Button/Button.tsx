@@ -1,7 +1,7 @@
 import styles from './Button.module.scss';
-import { TButton } from '@/types/types';
+import { ButtonProps } from '@/types/types';
 
-export const Button: React.FC<TButton> = ({ text, onClick }) => {
+export const Button: React.FC<ButtonProps> = ({ text, onClick }) => {
   return (
     <button className={styles.btn} onClick={onClick}>
       {text}

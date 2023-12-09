@@ -6,5 +6,6 @@ export const en = {
     descRs: ' This is the final task of the third stage of',
     signIn: 'Sign In',
     signUp: 'Sign Up',
+    signOut: 'Sign Out',
   },
 };

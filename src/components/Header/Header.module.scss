@@ -1,0 +1,8 @@
+.header {
+  &__btns {
+    align-self: flex-end;
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+  }
+}
