@@ -7,12 +7,18 @@ const langContextInit: LangContext = {
     altLogo: 'RSSchool logo',
     textCreated: 'Created at',
     welcomePageLink: 'To welcome page',
+    signInBtn: 'Sign In',
+    signUpBtn: 'Sign Up',
+    toMainBtn: 'To main',
   },
   ru: {
     langButton: 'RU',
     altLogo: 'RSSchool лого',
     textCreated: 'Дата создания',
     welcomePageLink: 'На страницу приветствия',
+    signInBtn: 'Логин',
+    signUpBtn: 'Создать',
+    toMainBtn: 'На главную',
   },
   pageLang: 'en',
   setPageLang: function (lang: string): void {
