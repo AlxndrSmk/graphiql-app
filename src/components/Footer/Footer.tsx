@@ -24,25 +24,25 @@ function Footer(): ReactNode {
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__authors}>
-        <a className={styles.footer__names} href={urls.pozdnyakoks}>
+        <a className={styles['footer__authors-names']} href={urls.pozdnyakoks}>
           Oksana Pozdnyak
         </a>
-        <a className={styles.footer__names} href={urls.alxndrsmk}>
+        <a className={styles['footer__authors-names']} href={urls.alxndrsmk}>
           Alexander Samak
         </a>
-        <a className={styles.footer__names} href={urls.brbrov}>
+        <a className={styles['footer__authors-names']} href={urls.brbrov}>
           Henadzi Vasukovich
         </a>
       </div>
       <div className={styles.footer__created}>
-        <span className={styles.footer__text}>{`${
+        <span className={styles['footer__created-text']}>{`${
           context.getConstants().textCreated
         } 2023`}</span>
       </div>
       <div className={styles.footer__logo}>
         <a href={urls.rsschool}>
           <Image
-            className={styles.footer__school}
+            className={styles['footer__logo-school']}
             src={logo}
             alt={context.getConstants().altLogo}
             width={100}

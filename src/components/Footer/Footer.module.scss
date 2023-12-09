@@ -15,46 +15,46 @@
     @include divDisplay(spaced);
     width: 300px;
     gap: 10px;
+
+    &-names {
+      text-decoration: none;
+      text-align: center;
+      font-size: 1em;
+      color: map.get($footerColors, 'names');
+      cursor: pointer;
+
+      &:hover {
+        color: map.get($footerColors, 'names-hover');
+      }
+
+      &:active {
+        color: map.get($footerColors, 'names-active');
+      }
+    }
   }
 
   &__created {
     @include divDisplay(centered);
+
+    &-text {
+      font-size: 2em;
+      color: map.get($footerColors, 'created');
+    }
   }
 
   &__logo {
     @include divDisplay(centered);
-  }
 
-  &__names {
-    text-decoration: none;
-    text-align: center;
-    font-size: 1em;
-    color: map.get($footerColors, 'names');
-    cursor: pointer;
+    &-school {
+      @include animating;
+      cursor: pointer;
+      &:hover {
+        animation: shakeImg 500ms ease-in-out forwards;
+      }
 
-    &:hover {
-      color: map.get($footerColors, 'names-hover');
-    }
-
-    &:active {
-      color: map.get($footerColors, 'names-active');
-    }
-  }
-
-  &__text {
-    font-size: 2em;
-    color: map.get($footerColors, 'created');
-  }
-
-  &__school {
-    @include animating;
-    cursor: pointer;
-    &:hover {
-      animation: shakeImg 500ms ease-in-out forwards;
-    }
-
-    &:active {
-      animation: clickImg 250ms ease-in-out forwards;
+      &:active {
+        animation: clickImg 250ms ease-in-out forwards;
+      }
     }
   }
 }
