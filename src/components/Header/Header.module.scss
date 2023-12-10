@@ -3,6 +3,8 @@
 @import './Header.mixins';
 
 .header {
+  @include animateHeader;
+
   &_ordinary {
     @include headerStyle(100%, map.get($headerColors, ordinary));
   }
