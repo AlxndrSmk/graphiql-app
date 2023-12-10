@@ -1,0 +1,10 @@
+.jsonViewer {
+  padding: 20px;
+  width: 100%;
+  max-width: 35%;
+
+  &__textarea {
+    width: 100%;
+    height: 100%;
+  }
+}

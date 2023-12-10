@@ -1,7 +1,11 @@
+import s from './JsonViewer.module.scss';
+
 export const JsonViewer = () => {
   return (
-    <div className="json-viewer">
-      <textarea readOnly>hello world</textarea>
+    <div className={s.jsonViewer}>
+      <textarea className={s.jsonViewer__textarea} readOnly>
+        hello world
+      </textarea>
     </div>
   );
 };

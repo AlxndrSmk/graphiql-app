@@ -1,0 +1,20 @@
+.tabs {
+  &__btns {
+
+    button {
+    &:disabled {
+      color: yellow;
+    }
+  }
+  }
+
+  &__content {
+
+
+    &_input {
+      min-height: 200px;
+      width: 100%;
+    }
+
+  }
+}

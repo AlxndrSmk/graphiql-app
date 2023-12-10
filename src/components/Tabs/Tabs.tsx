@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-// import s from './Tabs.module.scss';
+import s from './Tabs.module.scss';
 
 export const Tabs = () => {
   const [currentTab, setCurrentTab] = useState('var');
@@ -15,7 +15,7 @@ export const Tabs = () => {
   }
   return (
     <>
-      <div>
+      <div className={s.tabs__btns}>
         <button disabled={isVar} onClick={handleTabClick}>
           Variables
         </button>
@@ -24,8 +24,9 @@ export const Tabs = () => {
         </button>
       </div>
 
-      <div>
+      <div className={s.tabs__content}>
         <input
+          className={s.tabs__content_input}
           ref={ref}
           onChange={(ev) =>
             isVar ? setVarValue(ev.target.value) : setHeadValue(ev.target.value)
