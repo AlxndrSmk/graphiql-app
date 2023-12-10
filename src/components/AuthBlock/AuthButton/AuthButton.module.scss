@@ -2,7 +2,7 @@
 @import './AuthButton.mixins';
 
 .sign_in {
-  @include buttonStyle(sign-ib);
+  @include buttonStyle(sign-in);
   &-text {
     font-size: 1em;
     color: map.get($buttonColors, 'btn-text');

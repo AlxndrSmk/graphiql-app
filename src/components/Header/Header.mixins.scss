@@ -1,5 +1,6 @@
 @mixin headerStyle($widthParam, $background) {
   display: flex;
+  z-index: 1;
   box-sizing: border-box;
   width: $widthParam;
   height: 80px;

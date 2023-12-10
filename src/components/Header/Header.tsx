@@ -2,14 +2,14 @@ import { ReactNode, useContext, useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import LangButton from '@/components/LangButton/LangButton';
 import { useRouter } from 'next/router';
-import QueryType from '@/types/QueryType';
 import AuthBlock from '@/components/AuthBlock/AuthBlock';
 import Link from 'next/link';
 import LanguageContext from '@/context/langContext';
 import LangContext from '@/types/LangContext';
+import checkQueryParams from '@/utils/checkQueryParams';
 
 function Header(): ReactNode {
-  const { query } = useRouter();
+  const router = useRouter();
   const context = useContext<LangContext>(LanguageContext);
   const [stateHeader, setStateHeader] = useState<string>(
     styles.header + ' ' + styles.header_ordinary
@@ -21,6 +21,17 @@ function Header(): ReactNode {
     return () => {
       window.removeEventListener('scroll', onScrollEv);
     };
+  }, []);
+
+  useEffect(() => {
+    const lang: string | null = checkQueryParams(router);
+    if (!lang) {
+      router
+        .replace(router.pathname + '?lang=en')
+        .then(() => context.setPageLang('en'));
+    } else {
+      context.setPageLang(lang ? lang : 'en');
+    }
   }, []);
 
   return (
@@ -49,7 +60,7 @@ function Header(): ReactNode {
   }
 
   function redirectToWelcome(): string {
-    const lang = query.lang as unknown as QueryType;
+    const lang = router.query.lang;
 
     return `.?lang=${lang}`;
   }

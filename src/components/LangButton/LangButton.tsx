@@ -2,13 +2,12 @@ import { ReactNode, useContext, useEffect, useReducer, useState } from 'react';
 import LangContext from '@/types/LangContext';
 import LanguageContext from '@/context/langContext';
 import { useRouter } from 'next/router';
-import checkQueryParams from '@/utils/checkQueryParams';
 import styles from './LangButton.module.scss';
 
 function LangButton(): ReactNode {
-  const context = useContext<LangContext>(LanguageContext);
   const router = useRouter();
-  const lang: string | null = checkQueryParams(router);
+  const context = useContext<LangContext>(LanguageContext);
+
   const [isClicked, setIsClicked] = useState(false);
   const [btnStyle, setBtnStyle] = useReducer(
     onAction,
@@ -16,13 +15,9 @@ function LangButton(): ReactNode {
   );
 
   useEffect(() => {
-    if (!lang) {
-      router.replace('main?lang=en').then(() => context.setPageLang('en'));
-    } else {
-      context.setPageLang(lang);
-      setBtnStyle({ type: lang });
-    }
-  }, [lang]);
+    const lang: string = context.pageLang;
+    setBtnStyle({ type: lang });
+  }, [context.pageLang]);
 
   return (
     <div className={styles.language_wrapper}>
@@ -38,7 +33,7 @@ function LangButton(): ReactNode {
     if (!isClicked) {
       setIsClicked(true);
       context.pageLang = context.pageLang === 'en' ? 'ru' : 'en';
-      await router.push(`./main?lang=${context.pageLang}`);
+      await router.replace(router.pathname + `?lang=${context.pageLang}`);
       setIsClicked(false);
     }
   }

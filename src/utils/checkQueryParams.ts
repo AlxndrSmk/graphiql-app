@@ -1,12 +1,13 @@
 import { NextRouter } from 'next/router';
-import QueryType from '@/types/QueryType';
 
 function checkQueryParams(router: NextRouter): string | null {
-  const query = router.query as QueryType;
+  const params: URL = new URL('https://url.com' + router.asPath);
 
-  if (!query.lang) return null;
+  const lang: string | null = params.searchParams.get('lang');
 
-  switch (query.lang) {
+  if (!lang) return null;
+
+  switch (lang) {
     case 'ru':
       return 'ru';
     case 'en':
