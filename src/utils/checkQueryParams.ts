@@ -1,6 +1,6 @@
 import { NextRouter } from 'next/router';
 
-function checkQueryParams(router: NextRouter): string | null {
+const checkQueryParams = (router: NextRouter): string | null => {
   const params: URL = new URL('https://url.com' + router.asPath);
 
   const lang: string | null = params.searchParams.get('lang');
@@ -15,6 +15,6 @@ function checkQueryParams(router: NextRouter): string | null {
     default:
       return null;
   }
-}
+};
 
 export default checkQueryParams;

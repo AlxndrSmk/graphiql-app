@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import logo from './../../../public/rsschool.svg';
 import LanguageContext from '@/context/langContext';
@@ -19,7 +19,7 @@ const urls: URLsForRedirect = {
   rsschool: 'https://rs.school/react/',
 };
 
-function Footer(): ReactNode {
+const Footer: React.FC = () => {
   const context: LangContext = useContext<LangContext>(LanguageContext);
   return (
     <footer className={styles.footer}>
@@ -52,6 +52,6 @@ function Footer(): ReactNode {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

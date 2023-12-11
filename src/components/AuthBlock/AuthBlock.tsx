@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
+import React from 'react';
 import styles from './AuthBlock.module.scss';
 import AuthButton from '@/components/AuthBlock/AuthButton/AuthButton';
 
-function AuthBlock(): ReactNode {
+const AuthBlock: React.FC = () => {
   //TODO have to add logic!!!
   return (
     <div className={styles.auth__block}>
@@ -10,6 +10,6 @@ function AuthBlock(): ReactNode {
       <AuthButton type={'sign-up'} />
     </div>
   );
-}
+};
 
 export default AuthBlock;

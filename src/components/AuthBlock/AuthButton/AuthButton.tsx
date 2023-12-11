@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import React, { useContext } from 'react';
 import styles from '@/components/AuthBlock/AuthButton/AuthButton.module.scss';
 import PropsAuthButton from '@/types/PropsAuthButton';
 import LangContext from '@/types/LangContext';
@@ -6,8 +6,8 @@ import LanguageContext from '@/context/langContext';
 import StylesOfButton from '@/types/PropsButtonComponent';
 import ButtonComponent from '@/components/AuthBlock/ButtonComponent/ButtonComponent';
 
-function AuthButton(props: PropsAuthButton): ReactNode {
-  const context = useContext<LangContext>(LanguageContext);
+const AuthButton: React.FC<PropsAuthButton> = (props: PropsAuthButton) => {
+  const context: LangContext = useContext<LangContext>(LanguageContext);
   const btnStyle: StylesOfButton = changeBtnType(props.type);
 
   return <ButtonComponent {...btnStyle} />;
@@ -35,6 +35,6 @@ function AuthButton(props: PropsAuthButton): ReactNode {
         };
     }
   }
-}
+};
 
 export default AuthButton;

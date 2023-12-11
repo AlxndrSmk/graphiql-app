@@ -1,16 +1,16 @@
-import { ReactNode, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import LangButton from '@/components/LangButton/LangButton';
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import AuthBlock from '@/components/AuthBlock/AuthBlock';
 import Link from 'next/link';
 import LanguageContext from '@/context/langContext';
 import LangContext from '@/types/LangContext';
 import checkQueryParams from '@/utils/checkQueryParams';
 
-function Header(): ReactNode {
-  const router = useRouter();
-  const context = useContext<LangContext>(LanguageContext);
+const Header: React.FC = () => {
+  const router: NextRouter = useRouter();
+  const context: LangContext = useContext<LangContext>(LanguageContext);
   const [stateHeader, setStateHeader] = useState<string>(
     styles.header + ' ' + styles.header_ordinary
   );
@@ -64,6 +64,6 @@ function Header(): ReactNode {
 
     return `.?lang=${lang}`;
   }
-}
+};
 
 export default Header;
