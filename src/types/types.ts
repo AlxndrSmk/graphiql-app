@@ -4,7 +4,10 @@ import { schema } from '@/validation/validationSchema';
 
 export interface ButtonProps {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
+  type?: string;
+  isLoading?: boolean;
+  isDisabled?: boolean;
 }
 
 export interface EmailAndPasswordProps {

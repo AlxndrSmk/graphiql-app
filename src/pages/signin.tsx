@@ -38,7 +38,7 @@ const SignIn = () => {
     return await logInWithEmailAndPassword({ email, password });
   };
 
-  return <SignInController authCallback={onSignIn} />;
+  return <SignInController authCallback={onSignIn} page={'SIGN_IN'} />;
 };
 
 export default SignIn;

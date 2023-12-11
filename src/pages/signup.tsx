@@ -36,7 +36,7 @@ const SignUp = () => {
     return await registerWithEmailAndPassword({ email, password });
   };
 
-  return <SignUpController authCallback={onSignUp} />;
+  return <SignUpController authCallback={onSignUp} page={'SIGN_UP'} />;
 };
 
 export default SignUp;
