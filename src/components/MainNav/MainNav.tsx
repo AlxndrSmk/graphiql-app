@@ -1,10 +1,10 @@
 import { Button } from '../Button/Button';
 
-import s from './MainNav.module.scss';
+import styles from './MainNav.module.scss';
 
-export const MainNav = () => {
+export const MainNav: React.FC = () => {
   return (
-    <div className={s.mainNav}>
+    <div className={styles.main_nav}>
       <Button text="Documentation" onClick={() => console.log('doc')}></Button>
       <Button
         text="Change endpoint"

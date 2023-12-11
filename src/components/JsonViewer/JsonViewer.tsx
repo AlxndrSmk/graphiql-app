@@ -1,9 +1,9 @@
-import s from './JsonViewer.module.scss';
+import styles from './JsonViewer.module.scss';
 
-export const JsonViewer = () => {
+export const JsonViewer: React.FC = () => {
   return (
-    <div className={s.jsonViewer}>
-      <textarea className={s.jsonViewer__textarea} readOnly>
+    <div className={styles.json_viewer}>
+      <textarea className={styles.json_viewer__textarea} readOnly>
         hello world
       </textarea>
     </div>

@@ -1,13 +1,13 @@
 import { Tabs } from '../Tabs/Tabs';
 import { Button } from '../Button/Button';
 
-import s from './QueryEditor.module.scss';
+import styles from './QueryEditor.module.scss';
 
-export const QueryEditor = () => {
+export const QueryEditor: React.FC = () => {
   return (
-    <div className={s.queryEditor}>
+    <div className={styles.query_editor}>
       <Button text="prettify" onClick={() => console.log('prettify')} />
-      <textarea className={s.queryEditor__textarea}>hello world</textarea>
+      <textarea className={styles.queryEditor__textarea}>hello world</textarea>
       <Tabs />
     </div>
   );

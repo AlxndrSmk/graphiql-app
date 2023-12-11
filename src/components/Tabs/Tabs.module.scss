@@ -2,19 +2,16 @@
   &__btns {
 
     button {
-    &:disabled {
-      color: yellow;
+      &:disabled {
+        color: yellow;
+      }
     }
-  }
   }
 
   &__content {
-
-
     &_input {
       min-height: 200px;
       width: 100%;
     }
-
   }
 }
