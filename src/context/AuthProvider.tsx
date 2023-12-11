@@ -1,20 +1,34 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  createContext,
+  ReactNode,
+} from 'react';
 import nookies from 'nookies';
 import { User } from 'firebase/auth';
 import { auth } from '@/firebase/firebaseClient';
-import { AuthProviderProps } from '@/types/types';
+// import { AuthProviderProps } from '@/types/types';
 
 const AuthContext = createContext<{ user: User | null }>({
   user: null,
 });
 
-export const AuthProvider = ({ children }: AuthProviderProps) => {
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined)
+    throw new Error('useAuth must be used within an AuthProvider');
+  return context;
+};
+
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       (window as any).nookies = nookies;
-      console.log((window as any).nookies);
     }
 
     return auth.onIdTokenChanged(async (user) => {
@@ -35,8 +49,4 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   return (
     <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
   );
-};
-
-export const useAuth = () => {
-  return useContext(AuthContext);
 };

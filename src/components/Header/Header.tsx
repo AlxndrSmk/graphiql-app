@@ -4,11 +4,12 @@ import { en } from '@/locale/en';
 import { ru } from '@/locale/ru';
 import styles from './Header.module.scss';
 import { ROUTES } from '@/constants/routes';
-import { useAuth } from '../auth/AuthController';
+import { useAuth } from '../../context/AuthProvider';
 import { logout } from '@/firebase/firebaseClient';
 
 export const Header: React.FC = () => {
   const { user } = useAuth();
+
   const lang: 'ru' | 'en' = 'en';
   const curLang = lang === 'en' ? en : ru;
 
@@ -27,13 +28,13 @@ export const Header: React.FC = () => {
 
   return (
     <div className={styles.header__btns}>
-      {!user ? (
-        <>
-          <Button text={curLang.welcome.signIn} onClick={handleSignIn} />
-          <Button text={curLang.welcome.signUp} onClick={handleSignUp} />
-        </>
+      {user ? (
+        <Button text={curLang.auth.signOut} onClick={handleSignOut} />
       ) : (
-        <Button text={curLang.welcome.signOut} onClick={handleSignOut} />
+        <>
+          <Button text={curLang.auth.signIn} onClick={handleSignIn} />
+          <Button text={curLang.auth.signUp} onClick={handleSignUp} />
+        </>
       )}
     </div>
   );

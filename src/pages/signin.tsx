@@ -3,7 +3,7 @@ import nookies from 'nookies';
 import { logInWithEmailAndPassword } from '@/firebase/firebaseClient';
 import { ROUTES } from '@/constants/routes';
 import { firebaseAdmin } from '@/firebase/firebaseAdmin';
-import SignInController from '@/components/auth/sign-in/SignInController';
+import SignInController from '@/components/auth/SignInController';
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   try {

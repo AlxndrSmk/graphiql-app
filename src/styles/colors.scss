@@ -1,7 +1,18 @@
-$orange-color: rgb(244 91 15);
+$sand-dollar: #e7d6c0;
+$blue-gray: #7491a0;
+$forest-green: #364e51;
+$cognac: #be9685;
+$grey: #a0a0a0;
+
 $dark_blue-color: #068ecb;
-$blue-color: rgb(148 192 212);
+$blue-color: $blue-gray;
 $white-color: #ffffff;
-$green-color: #378f80;
 $pink-color: #bc324cd1;
 $black-color: #000000;
+$grey-color: #787878;
+$link-color: #ffc75f;
+$error-color: #d32f2f;
+
+$background-color: $forest-green;
+$button-disabled: $grey;
+$disable-text-color: $grey-color;

@@ -1,11 +1,19 @@
 @import '../../styles/colors.scss';
 
 .form {
+  background-color: $background-color;
+  border-radius: 0px;
+  box-shadow:
+    rgba(0, 0, 0, 0.2) 0px 2px 1px -1px,
+    rgba(0, 0, 0, 0.14) 0px 1px 1px 0px,
+    rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+  color: $white-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  justify-content: center;
+  padding: 40px 48px;
   position: relative;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   width: 100%;
 
   &__block {
@@ -30,17 +38,19 @@
   }
 
   &__title {
-    color: #1e0e62;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 42px;
+    color: $white-color;
+    font-size: 2rem;
     font-weight: 700;
-    line-height: 52px;
+    text-transform: uppercase;
+
+    &-container {
+      height: 60px;
+      text-align: center;
+    }
   }
 
   &__terms {
-    color: #15143966;
     font-size: 16px;
-    font-weight: 400;
     letter-spacing: 0px;
     margin-top: 20px;
     text-align: left;
@@ -55,23 +65,11 @@
     z-index: 100;
   }
 
-  &__label {
-    color: #1e0e62;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    line-height: 40px;
-    margin-top: 26px;
-    text-align: left;
-  }
-
   &__controls {
     display: flex;
     flex-direction: column;
-    margin-bottom: 42px;
 
     &_signin {
-      gap: 20px;
       margin-top: 35px;
     }
   }
@@ -89,24 +87,21 @@
   }
 
   &__account {
-    color: #15143966;
     font-size: 18px;
-    font-weight: 500;
     line-height: 28px;
-    margin-top: 25px;
+    margin-top: 10px;
     text-align: center;
   }
 
   &__link {
-    color: #ffc75f;
+    color: $link-color;
     font-size: 18px;
-    font-weight: 500;
     line-height: 28px;
     text-decoration: none;
   }
 
   &__error {
-    color: rgb(220 38 38);
+    color: $error-color;
     margin-left: 0.25rem;
     margin-top: 0.25rem;
 
@@ -125,22 +120,61 @@
     }
   }
 
+  &__placeholder-container {
+    height: 80px;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+  }
+
   &__input {
-    appearance: none;
-    -webkit-appearance: none;
-    border: 2px solid #ebeaed;
-    border-radius: 100px;
-    color: #15143966;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 26px;
-    outline: none;
-    padding: 12px 24px;
+    border: 1px solid $white-color;
+    color: $white-color;
+    font-family: 'Raleway', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.2em;
+    height: 50px;
+    outline: 0;
+    padding: 0 20px;
     width: 100%;
 
-    &::placeholder {
-      color: #ebeaed;
-      font-weight: 400;
+    &[type='password'] {
+      font: small-caption;
     }
   }
+
+  &__label {
+    background-color: transparent;
+    bottom: 1px;
+    color: #fff;
+    font-size: 1.2em;
+    left: 15px;
+    letter-spacing: 1px;
+    pointer-events: none;
+    position: absolute;
+    top: 14px;
+    transition: all 200ms;
+  }
+
+  &__eye {
+    border-radius: 50%;
+    filter: invert(1);
+    padding: 5px;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    transition: 0.3s ease;
+
+    &:hover {
+      background-color: rgba(128, 128, 128, 0.5);
+      cursor: pointer;
+    }
+  }
+}
+
+.form__placeholder-container input:focus + label,
+.form__placeholder-container input:not(:placeholder-shown) + label {
+  font-size: 0.9em;
+  left: 4px;
+  top: -25px;
 }
