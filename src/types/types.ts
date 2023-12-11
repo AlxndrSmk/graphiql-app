@@ -4,10 +4,30 @@ import { schema } from '@/validation/validationSchema';
 
 export interface ButtonProps {
   text: string;
-  onClick?: () => void;
-  type?: string;
-  isLoading?: boolean;
-  isDisabled?: boolean;
+  onClick: () => void;
+}
+
+export interface EmailAndPasswordProps {
+  email: string;
+  password: string;
+}
+
+export interface AuthProviderProps {
+  children: JSX.Element;
+}
+
+export interface PageContainerProps {
+  children: React.ReactNode;
+}
+
+export interface CustomError {
+  code: string;
+  message: string;
+}
+
+export interface AuthViewProps {
+  authCallback: (email: string, password: string) => Promise<UserCredential>;
+  page: 'SIGN_IN' | 'SIGN_UP';
 }
 
 export type UserData = {
