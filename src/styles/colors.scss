@@ -1,3 +1,28 @@
+$buttonColors: (
+        'sign-in': #0cc96d,
+        'sign-up': #0c64c9,
+        'to-main': #6cbd0a,
+        'btn-shadow': 2px -3px 5px #563203,
+        'btn-shadow-active': 1px -2px 2px #563203,
+        'btn-text': #2a023f,
+);
+
+$footerColors: (
+        'ft-background': linear-gradient(180deg, #d5f1f1, #c7f3f3, #b3f3f3, #9cf3f3),
+        'names': #0b0bea,
+        'names-hover': #4505b2,
+        'names-active': #176288,
+        'created': #018d8d,
+);
+
+$headerColors: (
+        'ordinary': #8f8fda,
+        'sticky': #da9b83,
+        'link': #018a8a,
+        'link-hover': #450dab,
+        'link-active': #6b0470,
+);
+
 $sand-dollar: #e7d6c0;
 $blue-gray: #7491a0;
 $forest-green: #364e51;

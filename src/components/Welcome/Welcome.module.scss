@@ -4,6 +4,14 @@
   flex-direction: column;
   gap: 30px;
   justify-content: space-between;
+  align-items: center;
+
+  &__btns {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    align-self: flex-end;
+  }
 
   &__list {
     align-items: center;

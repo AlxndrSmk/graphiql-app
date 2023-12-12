@@ -1,44 +1,68 @@
-import Router from 'next/router';
-import { Button } from '../Button/Button';
-import { en } from '@/locale/en';
-import { ru } from '@/locale/ru';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './Header.module.scss';
-import { ROUTES } from '@/constants/routes';
-import { useAuth } from '../../context/AuthProvider';
-import { logout } from '@/firebase/firebaseClient';
-import Timer from '../Timer/Timer';
+import { NextRouter, useRouter } from 'next/router';
+import Link from 'next/link';
+import { LangContext } from "@/types/types";
+import LangButton from '@/components/LangButton/LangButton';
+import AuthBlock from '@/components/AuthBlock/AuthBlock';
+import LanguageContext from '@/context/langContext';
+import checkQueryParams from '@/utils/checkQueryParams';
 
-export const Header: React.FC = () => {
-  const { user } = useAuth();
+const Header: React.FC = () => {
+  const [stateHeader, setStateHeader] = useState<string>(
+      styles.header + ' ' + styles.header_ordinary
+  );
+  const router: NextRouter = useRouter();
+  const context: LangContext = useContext<LangContext>(LanguageContext);
 
-  const lang: 'ru' | 'en' = 'en';
-  const curLang = lang === 'en' ? en : ru;
+  const onScrollEv = (e: Event): void => {
+    const { scrollingElement } = e.target as Document;
+    const { scrollTop } = scrollingElement as Element;
 
-  const handleSignOut = (): void => {
-    logout();
-    Router.push(ROUTES.WELCOME);
-  };
+    if (scrollTop > 80) {
+      setStateHeader(styles.header + ' ' + styles.header_sticky);
+    } else {
+      setStateHeader(styles.header + ' ' + styles.header_ordinary);
+    }
+  }
+
+  const redirectToWelcome = (): string => {
+    const lang = router.query.lang;
+
+    return `.?lang=${lang}`;
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScrollEv);
+
+    return () => {
+      window.removeEventListener('scroll', onScrollEv);
+    };
+  }, []);
+
+  useEffect(() => {
+    const lang: string | null = checkQueryParams(router);
+    if (!lang) {
+      router
+        .replace(router.pathname + '?lang=en')
+        .then(() => context.setPageLang('en'));
+    } else {
+      context.setPageLang(lang ? lang : 'en');
+    }
+  }, []);
 
   return (
-    <div className={styles.header__btns}>
-      {user ? (
-        <>
-          <Button text={curLang.auth.signOut} onClick={handleSignOut} />
-          <Timer />
-        </>
-      ) : (
-        <>
-          <Button
-            text={curLang.auth.signIn}
-            onClick={() => Router.push(ROUTES.SIGN_IN)}
-          />
-          <Button
-            text={curLang.auth.signUp}
-            onClick={() => Router.push(ROUTES.SIGN_UP)}
-          />
-        </>
-      )}
-    </div>
+    <header className={stateHeader}>
+      <Link className={styles.header__link} href={redirectToWelcome()}>
+        {context.getConstants().welcomePageLink}
+      </Link>
+      <div className={styles.header__container}>
+        <LangButton />
+        <div className={styles['header__container-buttons']}>
+          <AuthBlock />
+        </div>
+      </div>
+    </header>
   );
 };
 
