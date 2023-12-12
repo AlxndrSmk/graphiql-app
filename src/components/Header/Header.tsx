@@ -6,6 +6,7 @@ import styles from './Header.module.scss';
 import { ROUTES } from '@/constants/routes';
 import { useAuth } from '../../context/AuthProvider';
 import { logout } from '@/firebase/firebaseClient';
+import Timer from '../Timer/Timer';
 
 export const Header: React.FC = () => {
   const { user } = useAuth();
@@ -18,22 +19,23 @@ export const Header: React.FC = () => {
     Router.push(ROUTES.WELCOME);
   };
 
-  const handleSignIn = (): void => {
-    Router.push(ROUTES.SIGN_IN);
-  };
-
-  const handleSignUp = (): void => {
-    Router.push(ROUTES.SIGN_UP);
-  };
-
   return (
     <div className={styles.header__btns}>
       {user ? (
-        <Button text={curLang.auth.signOut} onClick={handleSignOut} />
+        <>
+          <Button text={curLang.auth.signOut} onClick={handleSignOut} />
+          <Timer />
+        </>
       ) : (
         <>
-          <Button text={curLang.auth.signIn} onClick={handleSignIn} />
-          <Button text={curLang.auth.signUp} onClick={handleSignUp} />
+          <Button
+            text={curLang.auth.signIn}
+            onClick={() => Router.push(ROUTES.SIGN_IN)}
+          />
+          <Button
+            text={curLang.auth.signUp}
+            onClick={() => Router.push(ROUTES.SIGN_UP)}
+          />
         </>
       )}
     </div>

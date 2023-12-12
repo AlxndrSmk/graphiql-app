@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { UserCredential } from 'firebase/auth';
+import { User, UserCredential } from 'firebase/auth';
 import { schema } from '@/validation/validationSchema';
 
 export interface ButtonProps {
@@ -57,3 +57,8 @@ export interface CustomError {
 }
 
 export type schemaType = Yup.InferType<typeof schema>;
+
+export interface AuthContextProps {
+  user: User | null;
+  expirationTime: number;
+}
