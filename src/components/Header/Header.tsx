@@ -9,11 +9,28 @@ import LangContext from '@/types/LangContext';
 import checkQueryParams from '@/utils/checkQueryParams';
 
 const Header: React.FC = () => {
+  const [stateHeader, setStateHeader] = useState<string>(
+      styles.header + ' ' + styles.header_ordinary
+  );
   const router: NextRouter = useRouter();
   const context: LangContext = useContext<LangContext>(LanguageContext);
-  const [stateHeader, setStateHeader] = useState<string>(
-    styles.header + ' ' + styles.header_ordinary
-  );
+
+  const onScrollEv = (e: Event): void => {
+    const { scrollingElement } = e.target as Document;
+    const { scrollTop } = scrollingElement as Element;
+
+    if (scrollTop > 80) {
+      setStateHeader(styles.header + ' ' + styles.header_sticky);
+    } else {
+      setStateHeader(styles.header + ' ' + styles.header_ordinary);
+    }
+  }
+
+  const redirectToWelcome = (): string => {
+    const lang = router.query.lang;
+
+    return `.?lang=${lang}`;
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', onScrollEv);
@@ -47,23 +64,6 @@ const Header: React.FC = () => {
       </div>
     </header>
   );
-
-  function onScrollEv(e: Event): void {
-    const { scrollingElement } = e.target as Document;
-    const { scrollTop } = scrollingElement as Element;
-
-    if (scrollTop > 80) {
-      setStateHeader(styles.header + ' ' + styles.header_sticky);
-    } else {
-      setStateHeader(styles.header + ' ' + styles.header_ordinary);
-    }
-  }
-
-  function redirectToWelcome(): string {
-    const lang = router.query.lang;
-
-    return `.?lang=${lang}`;
-  }
 };
 
 export default Header;

@@ -8,11 +8,8 @@ import ButtonComponent from '@/components/AuthBlock/ButtonComponent/ButtonCompon
 
 const AuthButton: React.FC<PropsAuthButton> = (props: PropsAuthButton) => {
   const context: LangContext = useContext<LangContext>(LanguageContext);
-  const btnStyle: StylesOfButton = changeBtnType(props.type);
 
-  return <ButtonComponent {...btnStyle} />;
-
-  function changeBtnType(type: string): StylesOfButton {
+  const changeBtnType = (type: string): StylesOfButton => {
     switch (type) {
       case 'sign-in':
         return {
@@ -35,6 +32,10 @@ const AuthButton: React.FC<PropsAuthButton> = (props: PropsAuthButton) => {
         };
     }
   }
+
+  const btnStyle: StylesOfButton = changeBtnType(props.type);
+
+  return <ButtonComponent {...btnStyle} />;
 };
 
 export default AuthButton;
