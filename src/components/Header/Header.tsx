@@ -38,7 +38,6 @@ const Header: React.FC = () => {
 
   const redirectToWelcome = (): string => {
     const lang = Router.query.lang;
-
     return `.?lang=${lang}`;
   };
 
@@ -66,6 +65,11 @@ const Header: React.FC = () => {
       <Link className={styles.header__link} href={redirectToWelcome()}>
         {context.getConstants().welcomePageLink}
       </Link>
+      {user ? (
+        <Link className={styles.header__link} href="/main">
+          To main page
+        </Link>
+      ) : null}
       <div className={styles.header__container}>
         <LangButton />
         {user ? (
