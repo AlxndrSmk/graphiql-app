@@ -20,7 +20,7 @@
     cursor: pointer;
 
     &:hover {
-      color: map.get($headerColors, link-name);
+      color: map.get($headerColors, link-hover);
     }
 
     &:active {
