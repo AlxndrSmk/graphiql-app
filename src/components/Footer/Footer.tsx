@@ -1,16 +1,9 @@
 import React, { useContext } from 'react';
 import Image from 'next/image';
-import logo from './../../../public/rsschool.svg';
+import { LangContext, URLsForRedirect } from "@/types/types";
 import LanguageContext from '@/context/langContext';
-import LangContext from '@/types/LangContext';
+import logo from './../../../public/rsschool.svg';
 import styles from './Footer.module.scss';
-
-type URLsForRedirect = {
-  pozdnyakoks: string;
-  alxndrsmk: string;
-  brbrov: string;
-  rsschool: string;
-};
 
 const urls: URLsForRedirect = {
   pozdnyakoks: 'https://github.com/pozdnyakoks',

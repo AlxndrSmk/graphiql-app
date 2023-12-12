@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './AuthBlock.module.scss';
 import AuthButton from '@/components/AuthBlock/AuthButton/AuthButton';
+import styles from './AuthBlock.module.scss';
 
 const AuthBlock: React.FC = () => {
   //TODO have to add logic!!!

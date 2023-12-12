@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import langContextInit from '@/utils/langContextInit';
-import LangContext from '@/types/LangContext';
+import { LangContext } from "@/types/types";
 
 const LanguageContext = createContext<LangContext>(langContextInit);
 

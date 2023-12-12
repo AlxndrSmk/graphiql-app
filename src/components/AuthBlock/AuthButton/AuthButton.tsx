@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
-import styles from '@/components/AuthBlock/AuthButton/AuthButton.module.scss';
-import PropsAuthButton from '@/types/PropsAuthButton';
-import LangContext from '@/types/LangContext';
-import LanguageContext from '@/context/langContext';
-import StylesOfButton from '@/types/PropsButtonComponent';
+import { LangContext, PropsAuthButton, StylesOfButton } from '@/types/types';
+import LanguageContext from "@/context/langContext";
 import ButtonComponent from '@/components/AuthBlock/ButtonComponent/ButtonComponent';
+import styles from '@/components/AuthBlock/AuthButton/AuthButton.module.scss';
 
 const AuthButton: React.FC<PropsAuthButton> = (props: PropsAuthButton) => {
   const context: LangContext = useContext<LangContext>(LanguageContext);

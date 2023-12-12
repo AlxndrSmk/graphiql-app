@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from './Header.module.scss';
-import LangButton from '@/components/LangButton/LangButton';
 import { NextRouter, useRouter } from 'next/router';
-import AuthBlock from '@/components/AuthBlock/AuthBlock';
 import Link from 'next/link';
+import { LangContext } from "@/types/types";
+import LangButton from '@/components/LangButton/LangButton';
+import AuthBlock from '@/components/AuthBlock/AuthBlock';
 import LanguageContext from '@/context/langContext';
-import LangContext from '@/types/LangContext';
 import checkQueryParams from '@/utils/checkQueryParams';
 
 const Header: React.FC = () => {

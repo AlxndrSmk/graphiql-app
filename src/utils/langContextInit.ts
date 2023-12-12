@@ -1,5 +1,4 @@
-import LangContext from '@/types/LangContext';
-import LangConstants from '@/types/LangConstants';
+import { LangContext, LangConstants } from '@/types/types';
 
 const langContextInit: LangContext = {
   en: {

@@ -1,6 +1,5 @@
 import React from 'react';
-import StylesOfButton from '@/types/PropsButtonComponent';
-import './../AuthButton/AuthButton.module.scss';
+import { StylesOfButton } from "@/types/types";
 
 const ButtonComponent: React.FC<StylesOfButton> = (props: StylesOfButton) => {
   const { button, textButtonStyle, textButton } = props;

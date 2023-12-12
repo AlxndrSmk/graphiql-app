@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
-import LangContext from '@/types/LangContext';
+import { LangContext } from "@/types/types";
 import LanguageContext from '@/context/langContext';
 import {NextRouter, useRouter} from 'next/router';
 import styles from './LangButton.module.scss';
