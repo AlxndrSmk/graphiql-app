@@ -8,7 +8,7 @@ const Main: React.FC = () => {
 
   useEffect(() => {
     if (user == null) {
-      Router.push(ROUTES.SIGN_UP);
+      Router.push(ROUTES.SIGN_IN);
     }
   }, [user]);
 

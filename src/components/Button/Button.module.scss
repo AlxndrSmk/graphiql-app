@@ -8,7 +8,7 @@
   font-size: 20px;
   padding: 10px 20px;
   text-transform: uppercase;
-  transition: 0.3s ease;
+  transition: 0.5s ease;
 
   &:hover {
     background-color: $white-color;
@@ -19,5 +19,10 @@
     background-color: $button-disabled;
     color: $disable-text-color;
     cursor: auto;
+  }
+
+  &:active {
+    transition: none;
+    box-shadow: rgb(255, 255, 255) 0px 0px 10px 0px;
   }
 }

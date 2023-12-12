@@ -2,7 +2,6 @@ import { team } from '@/utils/team';
 import Image from 'next/image';
 import { en } from '@/locale/en';
 import { ru } from '@/locale/ru';
-import PageContainer from '../PageContainer/PageContainer';
 import Header from '../Header/Header';
 import styles from './Welcome.module.scss';
 
@@ -11,8 +10,7 @@ export const Welcome: React.FC = () => {
 
   const curLang = lang === 'en' ? en : ru;
   return (
-    <PageContainer>
-      <Header />
+    <>
       <section className={styles.main}>
         <h1 className={styles.main__title}>{curLang.welcome.title}</h1>
         <div className={styles.main__desc}>
@@ -39,6 +37,6 @@ export const Welcome: React.FC = () => {
           ))}
         </ul>
       </section>
-    </PageContainer>
+    </>
   );
 };
