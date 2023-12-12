@@ -1,5 +1,6 @@
 @use 'sass:map';
-@import './AuthButton.mixins';
+@import '../../../styles/mixins';
+@import '../../../styles/colors';
 
 .sign_in {
   @include buttonStyle(sign-in);

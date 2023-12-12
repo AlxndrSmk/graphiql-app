@@ -1,6 +1,6 @@
 @use 'sass:map';
-@import 'Header.colors';
-@import './Header.mixins';
+@import '../../styles/mixins';
+@import '../../styles/colors';
 
 .header {
   @include animateHeader;

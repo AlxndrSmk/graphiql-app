@@ -1,4 +1,4 @@
-import '@/styles/globals.css';
+import '@/styles/globals.scss';
 import type { AppProps } from 'next/app';
 import LanguageContext from '@/context/langContext';
 import langContextInit from '@/utils/langContextInit';
