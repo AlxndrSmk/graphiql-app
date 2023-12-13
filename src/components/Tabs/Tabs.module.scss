@@ -1,5 +1,13 @@
 .tabs {
   &__btns {
+    display: flex;
+    gap: 30px;
+
+    &_btn {
+      border: none;
+      color: yellow;
+
+    }
 
     button {
       &:disabled {

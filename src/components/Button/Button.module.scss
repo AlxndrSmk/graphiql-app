@@ -7,6 +7,16 @@
   border-radius: 20px;
   cursor: pointer;
 
+  &.tab__btns_btn, &.tab__btns_btn_dis {
+    border: none;
+    color: #fff;
+    transition: .3s ease;
+  }
+
+  &.tab__btns_btn_dis {
+    opacity: 0.5;
+  }
+
   &__tooltip {
     position: absolute;
     bottom: -80%;

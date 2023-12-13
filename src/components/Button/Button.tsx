@@ -8,15 +8,17 @@ const Button: React.FC<TButton> = ({
   img,
   onHoverText,
   isTooltip,
+  className,
 }) => {
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
   const onHoverFunc = () => setShowTooltip(true);
   const onMouseOutFunc = () => setShowTooltip(false);
+  console.log(className);
 
   return (
     <button
-      className={styles.btn}
+      className={`${styles.btn} ${className && styles[className]}`}
       onClick={onClick}
       onMouseOver={onHoverFunc}
       onMouseOut={onMouseOutFunc}

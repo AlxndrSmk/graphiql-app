@@ -4,6 +4,7 @@ export type TButton = {
   img?: JSX.Element;
   onHoverText?: string;
   isTooltip?: boolean;
+  className?: string;
 };
 
 export interface LangConstants {

@@ -1,4 +1,5 @@
 import { ChangeEvent, useRef, useState } from 'react';
+import Button from '../Button/Button';
 import styles from './Tabs.module.scss';
 
 const Tabs: React.FC = () => {
@@ -21,21 +22,29 @@ const Tabs: React.FC = () => {
   return (
     <>
       <div className={styles.tabs__btns}>
-        <button disabled={isVariable} onClick={handleTabClick}>
-          Variables
-        </button>
-        <button disabled={currentTab === 'headers'} onClick={handleTabClick}>
-          Headers
-        </button>
+        <Button
+          text="Variables"
+          onClick={handleTabClick}
+          className={!isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
+        />
+
+        <Button
+          text="Headers"
+          onClick={handleTabClick}
+          className={isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
+        />
       </div>
 
       <div className={styles.tabs__content}>
-        <input
+        <div
           className={styles.tabs__content_input}
           ref={ref}
           onChange={changeHandler}
-          value={isVariable ? varValue : headValue}
-        />
+          contentEditable={true}
+          spellCheck="false"
+        >
+          {isVariable ? varValue : headValue}
+        </div>
       </div>
     </>
   );

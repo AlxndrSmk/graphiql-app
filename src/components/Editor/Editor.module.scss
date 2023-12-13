@@ -1,13 +1,14 @@
-.query_editor {
+.editor {
   height: 100%;
   width: 100%;
   max-width: 35%;
   padding: 20px;
 
-  &__textarea {
-    margin-top: 20px;;
+  &__text {
+    margin-top: 20px;
     width: 100%;
     min-height: 400px;
-    margin-bottom: 30px;;
+    margin-bottom: 30px;
   }
+
 }
