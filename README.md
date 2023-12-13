@@ -1,5 +1,7 @@
-# GraphiQL 
+# GraphiQL
+
 <!-- DESCRIPTION -->
+
 _GraphiQL App is a playground and interactive development environment (IDE) for exploring and querying any open GraphQL API._
 
 Deployment Link: TBD
@@ -16,7 +18,9 @@ Deployment Link: TBD
 </details>
 
 <!-- TECHNOLOGY STACK -->
+
 ## Technology Stack
+
 The project uses the following technologies:
 
 - **Next.js:** React-based framework for building performant and SEO-friendly web applications.
@@ -43,11 +47,12 @@ The project uses the following technologies:
 
 - **Prettier:** Opinionated code formatter that automatically formats your code to follow a consistent style.
 
-- **Lint-staged:** Tool that runs linters on files as they are staged for commit, ensuring code quality before code changes are merged into the codebase. 
+- **Lint-staged:** Tool that runs linters on files as they are staged for commit, ensuring code quality before code changes are merged into the codebase.
 
 - **Husky:** Tool that helps enforce code quality and standards by running scripts (e.g., linting) before commits are made.
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 This is an example of how you can run a project locally. Follow these simple steps as an example.
@@ -58,32 +63,37 @@ This is an example of how you can run a project locally. Follow these simple ste
    ```sh
    git clone https://github.com/AlxndrSmk/graphiql-app.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 ### Running the Application
 
 To run the application, use the following command:
+
 ```
    npm run dev
 ```
-The application will be launched in development mode and can be accessed at [http://localhost:3000](http://localhost:3000).
 
+The application will be launched in development mode and can be accessed at [http://localhost:3000](http://localhost:3000).
 
 ### Code Formatting and Linting
 
 This project uses ESLint and Prettier for code formatting and linting. Husky is also configured to run pre-commit and pre-push hooks to ensure code quality.
 
 To format the code using Prettier manually, use the following command:
+
 ```
    npm run prettier-fix
 ```
+
 To run ESLint for TypeScript and JSX files, use the following command:
+
 ```
    npm run lint:fix
 ```
@@ -91,10 +101,13 @@ To run ESLint for TypeScript and JSX files, use the following command:
 ### Testing
 
 To run tests, use the following command:
+
 ```
    npm run test
 ```
+
 To see test coverage, use the following command:
+
 ```
    npm run e2e:coverage
 ```
@@ -102,6 +115,7 @@ To see test coverage, use the following command:
 ### Building the Project
 
 To create an optimized production build of the project, use the following command:
+
 ```
    npm run build
 ```
@@ -110,17 +124,20 @@ To create an optimized production build of the project, use the following comman
 
 Before running the preview, make sure you have a production build ready by running the `npm run build` command.
 To preview the build and see how the application works in production mode, use the following command:
+
 ```
    npm run start
 ```
 
 ## Available Commands
+
 In the BUYIT application, there are also other commands available that can be useful
 
 - `npm run lint`: To check Prettier formatting for TypeScript, JSX, and JSON files.
 - `npm run prettier`: To check ESLint errors for TypeScript and JSX files.
 
 <!-- CONTRIBUTORS -->
+
 ## Contributors
 
 - [Alexander Samak](https://github.com/alxndrsmk)
