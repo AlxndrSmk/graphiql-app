@@ -2,6 +2,8 @@ export type TButton = {
   text?: string;
   onClick: () => void;
   img?: JSX.Element;
+  onHoverText?: string;
+  isTooltip?: boolean;
 };
 
 export interface LangConstants {

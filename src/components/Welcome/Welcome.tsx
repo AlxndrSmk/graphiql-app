@@ -26,9 +26,9 @@ const Welcome: React.FC = () => {
       <ul className={styles.main__list}>
         {team[lang].map((el) => (
           <li className={styles.main__list_item} key={el.name}>
-            <a className={styles.main__list_item_link} href={el.github}>
+            <Link className={styles.main__list_item_link} href={el.github}>
               <Image src="/github.svg" alt="github" width="30" height="30" />
-            </a>
+            </Link>
             <Image src={el.img} alt={el.name} width="100" height="100" />
             <p>{el.name}</p>
             <p>{el.desc}</p>
