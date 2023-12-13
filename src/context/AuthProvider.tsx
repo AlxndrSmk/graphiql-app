@@ -76,11 +76,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   return (
     <>
-      {!isLoading ? (
+      {!isLoading && (
         <AuthContext.Provider value={{ user, expirationTime }}>
           {children}
         </AuthContext.Provider>
-      ) : null}
+      )}
     </>
   );
 };
