@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Image from 'next/image';
-import { LangContext, URLsForRedirect } from "@/types/types";
+import { LangContext, URLsForRedirect } from '@/types/types';
 import LanguageContext from '@/context/langContext';
 import logo from './../../../public/rsschool.svg';
 import styles from './Footer.module.scss';

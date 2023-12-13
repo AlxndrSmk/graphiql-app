@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { LangContext, PropsAuthButton, StylesOfButton } from '@/types/types';
-import LanguageContext from "@/context/langContext";
+import LanguageContext from '@/context/langContext';
 import ButtonComponent from '@/components/AuthBlock/ButtonComponent/ButtonComponent';
 import styles from '@/components/AuthBlock/AuthButton/AuthButton.module.scss';
 
@@ -29,7 +29,7 @@ const AuthButton: React.FC<PropsAuthButton> = (props: PropsAuthButton) => {
           textButton: context.getConstants().toMainBtn,
         };
     }
-  }
+  };
 
   const btnStyle: StylesOfButton = changeBtnType(props.type);
 

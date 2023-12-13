@@ -1,5 +1,5 @@
 import React from 'react';
-import { StylesOfButton } from "@/types/types";
+import { StylesOfButton } from '@/types/types';
 
 const ButtonComponent: React.FC<StylesOfButton> = (props: StylesOfButton) => {
   const { button, textButtonStyle, textButton } = props;
