@@ -1,4 +1,5 @@
 export type TButton = {
-  text: string;
+  text?: string;
   onClick: () => void;
+  img?: JSX.Element;
 };
