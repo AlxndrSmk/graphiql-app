@@ -1,18 +1,23 @@
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import styles from './Tabs.module.scss';
 
-export const Tabs: React.FC = () => {
-  const [currentTab, setCurrentTab] = useState('var');
-  const [varValue, setVarValue] = useState('');
-  const [headValue, setHeadValue] = useState('');
+const Tabs: React.FC = () => {
+  const [currentTab, setCurrentTab] = useState<'var' | 'headers'>('var');
+  const [varValue, setVarValue] = useState<string>('');
+  const [headValue, setHeadValue] = useState<string>('');
   const ref = useRef<HTMLInputElement>(null);
 
   const isVariable = currentTab === 'var';
 
-  function handleTabClick() {
+  const handleTabClick = () => {
     currentTab === 'var' ? setCurrentTab('headers') : setCurrentTab('var');
     ref.current?.focus();
-  }
+  };
+
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    isVariable ? setVarValue(e.target.value) : setHeadValue(e.target.value);
+  };
+
   return (
     <>
       <div className={styles.tabs__btns}>
@@ -28,14 +33,12 @@ export const Tabs: React.FC = () => {
         <input
           className={styles.tabs__content_input}
           ref={ref}
-          onChange={(e) =>
-            isVariable
-              ? setVarValue(e.target.value)
-              : setHeadValue(e.target.value)
-          }
+          onChange={changeHandler}
           value={isVariable ? varValue : headValue}
         />
       </div>
     </>
   );
 };
+
+export default Tabs;

@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import { Button } from '../Button/Button';
+import Button from '../Button/Button';
 
 import styles from './MainNav.module.scss';
 
-export const MainNav: React.FC = () => {
+const MainNav: React.FC = () => {
   const docImg = (
     <Image src="/document.svg" alt="documentation" width="50" height="50" />
   );
@@ -15,12 +15,9 @@ export const MainNav: React.FC = () => {
   return (
     <div className={styles.main_nav}>
       <Button img={docImg} onClick={() => console.log('doc')} />
-      {/* <Button img={docImg} onClick={() => console.log('doc')} /> */}
-      <Button
-        // text="Change endpoint"
-        img={queryImg}
-        onClick={() => console.log('change')}
-      ></Button>
+      <Button img={queryImg} onClick={() => console.log('change')} />
     </div>
   );
 };
+
+export default MainNav;

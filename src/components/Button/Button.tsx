@@ -1,7 +1,7 @@
-import styles from './Button.module.scss';
 import { TButton } from '@/types/types';
+import styles from './Button.module.scss';
 
-export const Button: React.FC<TButton> = ({ text, onClick, img }) => {
+const Button: React.FC<TButton> = ({ text, onClick, img }) => {
   return (
     <button className={styles.btn} onClick={onClick}>
       {text}
@@ -9,3 +9,5 @@ export const Button: React.FC<TButton> = ({ text, onClick, img }) => {
     </button>
   );
 };
+
+export default Button;

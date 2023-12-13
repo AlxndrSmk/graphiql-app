@@ -1,37 +1,26 @@
 import { team } from '@/utils/team';
 import Image from 'next/image';
-// import { Button } from '../Button/Button';
+import Link from 'next/link';
 import { en } from '@/locale/en';
 import { ru } from '@/locale/ru';
 import styles from './Welcome.module.scss';
 
-export const Welcome: React.FC = () => {
+const Welcome: React.FC = () => {
   const lang: 'ru' | 'en' = 'en';
 
   const curLang = lang === 'en' ? en : ru;
   return (
     <section className={styles.main}>
-      {/* <div className={styles.main__btns}>
-        <Button
-          text={curLang.welcome.signIn}
-          onClick={() => console.log('Sign In')}
-        />
-        <Button
-          text={curLang.welcome.signUp}
-          onClick={() => console.log('Sign Up')}
-        />
-      </div> */}
-
       <h1 className={styles.main__title}>{curLang.welcome.title}</h1>
       <div className={styles.main__desc}>
         {curLang.welcome.desc}{' '}
-        <a
+        <Link
           href="https://rickandmortyapi.com/documentation/"
           target="_blank"
           rel="noreferrer"
         >
           {curLang.welcome.descGrLink}{' '}
-        </a>
+        </Link>
         {curLang.welcome.descRs} <a href="https://rs.school/">RS School</a>
       </div>
       <ul className={styles.main__list}>
@@ -49,3 +38,5 @@ export const Welcome: React.FC = () => {
     </section>
   );
 };
+
+export default Welcome;
