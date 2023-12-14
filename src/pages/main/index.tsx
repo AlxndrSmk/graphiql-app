@@ -1,16 +1,22 @@
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import MainNav from '@/components/MainNav/MainNav';
+import Editor from '@/components/Editor/Editor';
 
-export default function MainPage() {
+import styles from './mainLayout.module.scss';
+
+const Main = () => {
   return (
-    <div>
+    <>
       <Header />
-      <div style={{ width: '100%', height: '2920px' }}>
-        <main style={{ width: '100%', height: '2860px' }}>
-          Here will main page...
-        </main>
-        <Footer />
-      </div>
-    </div>
+      <main className={styles.mainLayout}>
+        <MainNav />
+        <Editor editor="query" />
+        <Editor editor="json" />
+      </main>
+      <Footer />
+    </>
   );
-}
+};
+
+export default Main;

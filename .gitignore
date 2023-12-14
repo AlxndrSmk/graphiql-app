@@ -13,3 +13,5 @@ node_modules
 dist
 dist-ssr
 .next
+
+.env*.local

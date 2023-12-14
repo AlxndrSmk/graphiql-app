@@ -1,6 +1,15 @@
 export type TButton = {
-  text: string;
+  text?: string;
   onClick: () => void;
+  img?: JSX.Element;
+  onHoverText?: string;
+  isTooltip?: boolean;
+  className?: string;
+};
+
+export type TEditor = {
+  editor: 'json' | 'query';
+  text?: string;
 };
 
 export interface LangConstants {
