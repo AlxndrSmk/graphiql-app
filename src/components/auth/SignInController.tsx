@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { en } from '@/locale/en';
@@ -10,8 +9,10 @@ import { schema } from '@/validation/validationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getAuthError } from '../../utils/getAuthError';
 import { ROUTES } from '@/constants/routes';
-import { AuthViewProps, schemaType } from '@/types/types';
+import AuthInput from '../AuthInput/AuthInput';
 import AuthButton from '../AuthButton/AuthButton';
+import { AuthViewProps, schemaType } from '@/types/types';
+
 import styles from './style.module.scss';
 
 const SignInController = ({ authCallback }: AuthViewProps) => {
@@ -68,57 +69,25 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
           <div
             className={`${styles['form__controls']} ${styles['form__controls_signin']}`}
           >
-            <div className={styles['form__item']}>
-              <div className={styles['form__placeholder-container']}>
-                <input
-                  className={styles['form__input']}
-                  id="email"
-                  type="text"
-                  {...register('email')}
-                  placeholder=""
-                />
-                <label htmlFor="email" className={styles['form__label']}>
-                  {curLang.auth.email}
-                </label>
-                {errors.email?.message && (
-                  <p className={styles['form__error']}>
-                    {errors.email?.message}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            <div className={styles['form__item']}>
-              <div className={styles['form__placeholder-container']}>
-                <div className={styles['form__error-block']}>
-                  <Image
-                    onClick={handlePasswordVisibility}
-                    className={styles['form__eye']}
-                    src={isVisible ? `/open.png` : `/close.png`}
-                    alt="eye"
-                    width="35"
-                    height="35"
-                  />
-                  <input
-                    className={styles['form__input']}
-                    id="password"
-                    type={isVisible ? 'text' : 'password'}
-                    {...register('password')}
-                    placeholder=""
-                  />
-                  <label htmlFor="password" className={styles['form__label']}>
-                    {curLang.auth.password}
-                  </label>
-                  {errors.password?.message && (
-                    <p className={styles['form__error']}>
-                      {errors.password?.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
+            <AuthInput
+              id="email"
+              type="text"
+              register={register('email')}
+              label={curLang.auth.email}
+              error={errors.email?.message}
+              placeholder={''}
+            />
+            <AuthInput
+              id="password"
+              type={isVisible ? 'text' : 'password'}
+              register={register('password')}
+              label={curLang.auth.password}
+              error={errors.password?.message}
+              placeholder={''}
+              isVisible={isVisible}
+              handlePasswordVisibility={handlePasswordVisibility}
+            />
           </div>
-
           <AuthButton
             text={curLang.auth.signIn}
             type="submit"

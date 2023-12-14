@@ -37,6 +37,17 @@
     width: 100%;
   }
 
+  &__error {
+    color: $error-color;
+    margin-left: 0.25rem;
+    margin-top: 0.25rem;
+
+    &-block {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
   &__title {
     color: $white-color;
     font-size: 2rem;
@@ -99,82 +110,4 @@
     line-height: 28px;
     text-decoration: none;
   }
-
-  &__error {
-    color: $error-color;
-    margin-left: 0.25rem;
-    margin-top: 0.25rem;
-
-    &-block {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-
-  &__item {
-    position: relative;
-
-    &-signup {
-      display: flex;
-      gap: 20px;
-    }
-  }
-
-  &__placeholder-container {
-    height: 80px;
-    margin-bottom: 20px;
-    position: relative;
-    width: 100%;
-  }
-
-  &__input {
-    border: 1px solid $white-color;
-    color: $white-color;
-    font-family: 'Raleway', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    font-size: 1.2em;
-    height: 50px;
-    outline: 0;
-    padding: 0 20px;
-    width: 100%;
-
-    &[type='password'] {
-      font: small-caption;
-    }
-  }
-
-  &__label {
-    background-color: transparent;
-    bottom: 1px;
-    color: #fff;
-    font-size: 1.2em;
-    left: 15px;
-    letter-spacing: 1px;
-    pointer-events: none;
-    position: absolute;
-    top: 14px;
-    transition: all 200ms;
-  }
-
-  &__eye {
-    border-radius: 50%;
-    filter: invert(1);
-    padding: 5px;
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    transition: 0.3s ease;
-
-    &:hover {
-      background-color: rgba(128, 128, 128, 0.5);
-      cursor: pointer;
-    }
-  }
-}
-
-.form__placeholder-container input:focus + label,
-.form__placeholder-container input:not(:placeholder-shown) + label {
-  font-size: 0.9em;
-  left: 4px;
-  top: -25px;
 }

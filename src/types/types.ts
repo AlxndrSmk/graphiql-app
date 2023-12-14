@@ -114,3 +114,14 @@ export type FirebaseConfig = {
 export interface Cookies {
   [key: string]: string;
 }
+
+export interface SignInFieldProps {
+  id: string;
+  label: string;
+  type: string;
+  register: object;
+  placeholder: string;
+  error: string | undefined;
+  handlePasswordVisibility?: () => void;
+  isVisible?: boolean;
+}

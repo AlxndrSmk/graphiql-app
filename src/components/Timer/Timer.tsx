@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '@/context/AuthProvider';
 import { millisecondsToTime } from '@/utils/msToTime';
 
+import styles from './Timer.module.scss';
+
 const Timer: React.FC = () => {
   const [timer, setTimer] = useState('00:00');
   const Ref = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -46,7 +48,7 @@ const Timer: React.FC = () => {
     clearTimer();
   }, []);
 
-  return <div style={{ width: '70px', margin: 'auto 0' }}>{timer}</div>;
+  return <div className={styles.timer}>{timer}</div>;
 };
 
 export default Timer;
