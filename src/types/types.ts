@@ -30,7 +30,7 @@ export interface CustomError {
 
 export interface AuthViewProps {
   authCallback: (email: string, password: string) => Promise<UserCredential>;
-  page: 'SIGN_IN' | 'SIGN_UP';
+  page?: 'SIGN_IN' | 'SIGN_UP';
 }
 
 export type UserData = {
@@ -38,17 +38,8 @@ export type UserData = {
   email: string;
 };
 
-export interface EmailAndPasswordProps {
-  email: string;
-  password: string;
-}
-
 export interface PageContainerProps {
   children: React.ReactNode;
-}
-
-export interface AuthViewProps {
-  authCallback: (email: string, password: string) => Promise<UserCredential>;
 }
 
 export interface CustomError {
@@ -97,3 +88,16 @@ export type URLsForRedirect = {
   brbrov: string;
   rsschool: string;
 };
+
+export type FirebaseConfig = {
+  apiKey: string | undefined;
+  authDomain: string | undefined;
+  projectId: string | undefined;
+  storageBucket: string | undefined;
+  messagingSenderId: string | undefined;
+  appId: string | undefined;
+};
+
+export interface Cookies {
+  [key: string]: string;
+}

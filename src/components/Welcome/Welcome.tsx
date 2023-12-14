@@ -2,7 +2,6 @@ import { team } from '@/utils/team';
 import Image from 'next/image';
 import { en } from '@/locale/en';
 import { ru } from '@/locale/ru';
-import Header from '../Header/Header';
 import styles from './Welcome.module.scss';
 
 export const Welcome: React.FC = () => {

@@ -1,5 +1,10 @@
-import { initializeApp, getApp } from 'firebase/app';
-import { getFirestore, addDoc, collection } from 'firebase/firestore';
+import { initializeApp, getApp, FirebaseApp } from 'firebase/app';
+import {
+  getFirestore,
+  addDoc,
+  collection,
+  Firestore,
+} from 'firebase/firestore';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -7,10 +12,12 @@ import {
   signOut,
   setPersistence,
   browserSessionPersistence,
+  Auth,
+  UserCredential,
 } from 'firebase/auth';
-import { EmailAndPasswordProps } from '@/types/types';
+import { EmailAndPasswordProps, FirebaseConfig } from '@/types/types';
 
-const firebaseConfig = {
+const firebaseConfig: FirebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FB_API,
   authDomain: process.env.NEXT_PUBLIC_FB_AUTH_DOMAIN,
   projectId: process.env.NEXT_PUBLIC_FB_PROJECT_ID,
@@ -19,7 +26,7 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FB_APP_ID,
 };
 
-const getFirebaseApp = (config = {}) => {
+const getFirebaseApp: (config?: {}) => FirebaseApp = (config = {}) => {
   try {
     return getApp();
   } catch (e) {
@@ -27,14 +34,14 @@ const getFirebaseApp = (config = {}) => {
   }
 };
 
-const firebase = getFirebaseApp(firebaseConfig);
-const db = getFirestore(firebase);
-const auth = getAuth(firebase);
+const firebase: FirebaseApp = getFirebaseApp(firebaseConfig);
+const db: Firestore = getFirestore(firebase);
+const auth: Auth = getAuth(firebase);
 
 const registerWithEmailAndPassword = async ({
   email,
   password,
-}: EmailAndPasswordProps) => {
+}: EmailAndPasswordProps): Promise<UserCredential> => {
   return await createUserWithEmailAndPassword(auth, email, password).then(
     async (res) => {
       await addDoc(collection(db, 'users'), {
@@ -50,11 +57,11 @@ const registerWithEmailAndPassword = async ({
 const logInWithEmailAndPassword = async ({
   email,
   password,
-}: EmailAndPasswordProps) => {
+}: EmailAndPasswordProps): Promise<UserCredential> => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 
-const logout = async () => {
+const logout = async (): Promise<void> => {
   signOut(auth);
 };
 

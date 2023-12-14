@@ -1,22 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from './Header.module.scss';
 import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
-import { LangContext } from '@/types/types';
-import LangButton from '@/components/LangButton/LangButton';
 import LanguageContext from '@/context/langContext';
 import checkQueryParams from '@/utils/checkQueryParams';
 import { useAuth } from '@/context/AuthProvider';
 import { logout } from '@/firebase/firebaseClient';
 import { ROUTES } from '@/constants/routes';
-import { Button } from '../Button/Button';
-import Timer from '../Timer/Timer';
+import { Button } from '@/components/Button/Button';
+import Timer from '@/components/Timer/Timer';
+import LangButton from '@/components/LangButton/LangButton';
+
+import { LangContext } from '@/types/types';
+import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  const { user } = useAuth();
   const [stateHeader, setStateHeader] = useState<string>(
     styles.header + ' ' + styles.header_ordinary
   );
+  const { user } = useAuth();
   const Router: NextRouter = useRouter();
   const context: LangContext = useContext<LangContext>(LanguageContext);
 
