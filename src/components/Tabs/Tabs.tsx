@@ -14,7 +14,7 @@ const Tabs: React.FC = () => {
   const isVariable = currentTab === 'var';
 
   const handleTabClick = () => {
-    currentTab === 'var' ? setCurrentTab('headers') : setCurrentTab('var');
+    setCurrentTab((prevTab) => (prevTab === 'var' ? 'headers' : 'var'));
     ref.current?.focus();
   };
 
