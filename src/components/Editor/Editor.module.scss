@@ -1,14 +1,33 @@
 .editor {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: 35%;
+  max-width: 45%;
   padding: 20px;
+  border-left: 1px solid grey;
+  position: relative;
 
   &__text {
     margin-top: 20px;
     width: 100%;
-    min-height: 400px;
     margin-bottom: 30px;
+    color: #fff;
+    padding-right: 80px;
+
+    &:focus-visible {
+      outline: none;
+      border: none;
+    }
+  }
+
+  &__btns {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
 }

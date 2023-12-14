@@ -1,13 +1,14 @@
 .btn {
   position: relative;
   background-color: transparent;
-  padding:  10px 20px;
+  padding: 10px 20px;
   font-size: 20px;
   border: 1px solid grey;
   border-radius: 20px;
   cursor: pointer;
 
-  &.tab__btns_btn, &.tab__btns_btn_dis {
+  &.tab__btns_btn,
+  &.tab__btns_btn_dis {
     border: none;
     color: #fff;
     transition: .3s ease;
@@ -15,6 +16,23 @@
 
   &.tab__btns_btn_dis {
     opacity: 0.5;
+  }
+
+  &__tab_btn,
+  &__tab_btn_open {
+    border: none;
+    margin-left: auto;
+    transform: rotate(180deg);
+    transition: .3s ease;
+  }
+
+  &__tab_btn_open {
+    transform: rotate(0deg);
+  }
+
+  &.execute_btn {
+    background-color: green;
+    border: none;
   }
 
   &__tooltip {

@@ -7,6 +7,11 @@ export type TButton = {
   className?: string;
 };
 
+export type TEditor = {
+  editor: 'json' | 'query';
+  text?: string;
+};
+
 export interface LangConstants {
   langButton: string;
   altLogo: string;
