@@ -6,12 +6,12 @@ import checkQueryParams from '@/utils/checkQueryParams';
 import { useAuth } from '@/context/AuthProvider';
 import { logout } from '@/firebase/firebaseClient';
 import { ROUTES } from '@/constants/routes';
-import { Button } from '@/components/Button/Button';
 import Timer from '@/components/Timer/Timer';
 import LangButton from '@/components/LangButton/LangButton';
 
 import { LangContext } from '@/types/types';
 import styles from './Header.module.scss';
+import AuthButton from '../AuthButton/AuthButton';
 
 const Header: React.FC = () => {
   const [stateHeader, setStateHeader] = useState<string>(
@@ -75,16 +75,16 @@ const Header: React.FC = () => {
         <LangButton />
         {user ? (
           <>
-            <Button text="Sign Out" onClick={handleSignOut} />
+            <AuthButton text="Sign Out" onClick={handleSignOut} />
             <Timer />
           </>
         ) : (
           <>
-            <Button
+            <AuthButton
               text="Sign In"
               onClick={() => Router.push(ROUTES.SIGN_IN)}
             />
-            <Button
+            <AuthButton
               text="Sign Up"
               onClick={() => Router.push(ROUTES.SIGN_UP)}
             />

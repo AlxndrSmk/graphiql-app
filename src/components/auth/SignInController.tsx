@@ -10,8 +10,8 @@ import { schema } from '@/validation/validationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getAuthError } from '../../utils/getAuthError';
 import { ROUTES } from '@/constants/routes';
-import { Button } from '../Button/Button';
 import { AuthViewProps, schemaType } from '@/types/types';
+import AuthButton from '../AuthButton/AuthButton';
 import styles from './style.module.scss';
 
 const SignInController = ({ authCallback }: AuthViewProps) => {
@@ -119,7 +119,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
             </div>
           </div>
 
-          <Button
+          <AuthButton
             text={curLang.auth.signIn}
             type="submit"
             isLoading={loading}

@@ -15,7 +15,7 @@ import * as Yup from 'yup';
 import { User, UserCredential } from 'firebase/auth';
 import { schema } from '@/validation/validationSchema';
 
-export interface ButtonProps {
+export interface AuthButtonProps {
   text: string;
   onClick?: () => void;
   type?: string;
@@ -101,7 +101,6 @@ export type URLsForRedirect = {
   brbrov: string;
   rsschool: string;
 };
-
 
 export type FirebaseConfig = {
   apiKey: string | undefined;

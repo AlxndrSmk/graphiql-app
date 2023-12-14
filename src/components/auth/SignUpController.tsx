@@ -11,7 +11,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { getAuthError } from '../../utils/getAuthError';
 import { useAuth } from '../../context/AuthProvider';
 import { ROUTES } from '@/constants/routes';
-import { Button } from '../Button/Button';
+import AuthButton from '../AuthButton/AuthButton';
 import { AuthViewProps, schemaType } from '@/types/types';
 import styles from './style.module.scss';
 
@@ -131,7 +131,7 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
             </div>
           </div>
 
-          <Button
+          <AuthButton
             text={curLang.auth.signUp}
             type="submit"
             isLoading={loading}
