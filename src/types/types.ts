@@ -1,3 +1,16 @@
+export type TButton = {
+  text?: string;
+  onClick: () => void;
+  img?: JSX.Element;
+  onHoverText?: string;
+  isTooltip?: boolean;
+  className?: string;
+};
+
+export type TEditor = {
+  editor: 'json' | 'query';
+  text?: string;
+};
 import * as Yup from 'yup';
 import { User, UserCredential } from 'firebase/auth';
 import { schema } from '@/validation/validationSchema';
@@ -88,6 +101,7 @@ export type URLsForRedirect = {
   brbrov: string;
   rsschool: string;
 };
+
 
 export type FirebaseConfig = {
   apiKey: string | undefined;

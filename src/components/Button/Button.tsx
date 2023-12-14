@@ -1,15 +1,37 @@
+import { useState } from 'react';
+import { TButton } from '@/types/types';
 import styles from './Button.module.scss';
-import { ButtonProps } from '@/types/types';
 
-export const Button: React.FC<ButtonProps> = ({
-  isDisabled,
-  isLoading,
+const Button: React.FC<TButton> = ({
   text,
   onClick,
+  img,
+  onHoverText,
+  isTooltip,
+  className,
 }) => {
+  const [showTooltip, setShowTooltip] = useState<boolean>(false);
+
+  const onHoverFunc = () => setShowTooltip(true);
+  const onMouseOutFunc = () => setShowTooltip(false);
+  console.log(className);
+
   return (
-    <button className={styles.button} onClick={onClick} disabled={isDisabled}>
-      {isLoading ? 'Loading' : text}
+    <button
+      className={`${styles.btn} ${className && styles[className]}`}
+      onClick={onClick}
+      onMouseOver={onHoverFunc}
+      onMouseOut={onMouseOutFunc}
+    >
+      {isTooltip && (
+        <p className={`${styles.btn__tooltip} ${showTooltip && styles.active}`}>
+          {onHoverText}
+        </p>
+      )}
+      {text}
+      {img}
     </button>
   );
 };
+
+export default Button;
