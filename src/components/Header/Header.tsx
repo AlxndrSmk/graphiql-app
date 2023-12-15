@@ -1,19 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from './Header.module.scss';
 import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
-import { LangContext } from "@/types/types";
-import LangButton from '@/components/LangButton/LangButton';
-import AuthBlock from '@/components/AuthBlock/AuthBlock';
 import LanguageContext from '@/context/langContext';
 import checkQueryParams from '@/utils/checkQueryParams';
+import { useAuth } from '@/context/AuthProvider';
+import { logout } from '@/firebase/firebaseClient';
+import { ROUTES } from '@/constants/routes';
+import Timer from '@/components/Timer/Timer';
+import LangButton from '@/components/LangButton/LangButton';
+
+import { LangContext } from '@/types/types';
+import styles from './Header.module.scss';
+import AuthButton from '../AuthButton/AuthButton';
 
 const Header: React.FC = () => {
   const [stateHeader, setStateHeader] = useState<string>(
-      styles.header + ' ' + styles.header_ordinary
+    styles.header + ' ' + styles.header_ordinary
   );
-  const router: NextRouter = useRouter();
+  const { user } = useAuth();
+  const Router: NextRouter = useRouter();
   const context: LangContext = useContext<LangContext>(LanguageContext);
+
+  const handleSignOut = (): void => {
+    logout();
+    Router.push(ROUTES.WELCOME);
+  };
 
   const onScrollEv = (e: Event): void => {
     const { scrollingElement } = e.target as Document;
@@ -24,13 +35,12 @@ const Header: React.FC = () => {
     } else {
       setStateHeader(styles.header + ' ' + styles.header_ordinary);
     }
-  }
+  };
 
   const redirectToWelcome = (): string => {
-    const lang = router.query.lang;
-
+    const lang = Router.query.lang;
     return `.?lang=${lang}`;
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('scroll', onScrollEv);
@@ -41,11 +51,11 @@ const Header: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const lang: string | null = checkQueryParams(router);
+    const lang: string | null = checkQueryParams(Router);
     if (!lang) {
-      router
-        .replace(router.pathname + '?lang=en')
-        .then(() => context.setPageLang('en'));
+      Router.replace(Router.pathname + '?lang=en').then(() =>
+        context.setPageLang('en')
+      );
     } else {
       context.setPageLang(lang ? lang : 'en');
     }
@@ -56,11 +66,30 @@ const Header: React.FC = () => {
       <Link className={styles.header__link} href={redirectToWelcome()}>
         {context.getConstants().welcomePageLink}
       </Link>
+      {user && (
+        <Link className={styles.header__link} href="/main">
+          To main page
+        </Link>
+      )}
       <div className={styles.header__container}>
         <LangButton />
-        <div className={styles['header__container-buttons']}>
-          <AuthBlock />
-        </div>
+        {user ? (
+          <>
+            <AuthButton text="Sign Out" onClick={handleSignOut} />
+            <Timer />
+          </>
+        ) : (
+          <>
+            <AuthButton
+              text="Sign In"
+              onClick={() => Router.push(ROUTES.SIGN_IN)}
+            />
+            <AuthButton
+              text="Sign Up"
+              onClick={() => Router.push(ROUTES.SIGN_UP)}
+            />
+          </>
+        )}
       </div>
     </header>
   );

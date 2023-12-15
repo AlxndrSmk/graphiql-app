@@ -14,7 +14,6 @@ const Button: React.FC<TButton> = ({
 
   const onHoverFunc = () => setShowTooltip(true);
   const onMouseOutFunc = () => setShowTooltip(false);
-  console.log(className);
 
   return (
     <button

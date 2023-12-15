@@ -3,6 +3,7 @@
     "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "noImplicitAny": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -11,6 +12,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "noUnusedLocals": true,
     "jsx": "preserve",
     "incremental": true,
     "paths": {

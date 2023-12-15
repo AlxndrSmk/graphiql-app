@@ -6,15 +6,16 @@
   @include animateHeader;
 
   &_ordinary {
-    @include headerStyle(100%, map.get($headerColors, ordinary));
+    @include headerStyle(100%, map.get($headerColors, ordinary), 80px);
   }
 
   &_sticky {
     @include headerPosition;
-    @include headerStyle(90%, map.get($headerColors, sticky));
+    @include headerStyle(90%, map.get($headerColors, sticky), 60px);
   }
 
   &__link {
+    transition: 0.3s ease;
     font-size: 1.5em;
     color: map.get($headerColors, link);
     cursor: pointer;
