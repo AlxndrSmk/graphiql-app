@@ -90,12 +90,11 @@
   }
 }
 
-@mixin headerStyle($widthParam, $background) {
+@mixin headerStyle($widthParam, $background, $heightParam) {
   display: flex;
   z-index: 1;
   box-sizing: border-box;
-  width: $widthParam;
-  height: 80px;
+  height: $heightParam;
   margin: 0 auto;
   padding: 5px 15px;
   justify-content: space-between;
@@ -120,6 +119,6 @@
 @mixin headerPosition {
   position: sticky;
   top: 0;
-  border-radius: 0 0 10px 10px;
+  // border-radius: 0 0 10px 10px;
   animation: showHeader 500ms linear forwards;
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
-import { LangContext } from "@/types/types";
+import { LangContext } from '@/types/types';
 import LanguageContext from '@/context/langContext';
-import {NextRouter, useRouter} from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import styles from './LangButton.module.scss';
 
 const LangButton: React.FC = () => {
@@ -16,23 +16,23 @@ const LangButton: React.FC = () => {
       default:
         return `${styles.language_button} ${styles.en_bg}`;
     }
-  }
+  };
 
   const [btnStyle, setBtnStyle] = useReducer(
-      onAction,
-      `${styles.language_button} ${styles.en_bg}`
+    onAction,
+    `${styles.language_button} ${styles.en_bg}`
   );
   const router: NextRouter = useRouter();
   const context: LangContext = useContext<LangContext>(LanguageContext);
 
-  const  onChangeLang = async (): Promise<void> => {
+  const onChangeLang = async (): Promise<void> => {
     if (!isClicked) {
       setIsClicked(true);
       context.pageLang = context.pageLang === 'en' ? 'ru' : 'en';
       await router.replace(router.pathname + `?lang=${context.pageLang}`);
       setIsClicked(false);
     }
-  }
+  };
 
   useEffect(() => {
     const lang: string = context.pageLang;
@@ -48,6 +48,6 @@ const LangButton: React.FC = () => {
       </button>
     </div>
   );
-}
+};
 
 export default LangButton;

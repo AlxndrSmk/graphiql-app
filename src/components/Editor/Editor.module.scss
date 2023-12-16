@@ -7,6 +7,10 @@
   border-left: 1px solid grey;
   position: relative;
 
+  div {
+    font-family: monospace;
+  }
+
   &__text {
     margin-top: 20px;
     width: 100%;
@@ -29,5 +33,4 @@
     flex-direction: column;
     gap: 20px;
   }
-
 }
