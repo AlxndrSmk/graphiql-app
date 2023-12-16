@@ -1,0 +1,36 @@
+.tabs {
+  &__btns {
+    border-top: 1px solid grey;
+    margin-top: auto;
+    display: flex;
+    gap: 30px;
+    width: 100%;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    overflow: hidden;
+
+    &_open {
+      grid-template-rows: 200px;
+      color: #fff;
+      visibility: visible;
+
+      &:focus-visible {
+        border: none;
+        outline: none;
+      }
+    }
+
+    &_input {
+      width: 100%;
+
+      &:focus-visible {
+        border: none;
+        outline: none;
+      }
+    }
+  }
+}

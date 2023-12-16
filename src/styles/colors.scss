@@ -8,17 +8,36 @@ $buttonColors: (
 );
 
 $footerColors: (
-  'ft-background': linear-gradient(180deg, #d5f1f1, #c7f3f3, #b3f3f3, #9cf3f3),
-  'names': #0b0bea,
-  'names-hover': #4505b2,
+  'ft-background': #000000,
+  'names': #ffffff,
+  'names-hover': #018a8a,
   'names-active': #176288,
-  'created': #018d8d,
+  'created': #ffffff,
 );
 
 $headerColors: (
-  'ordinary': #8f8fda,
-  'sticky': #da9b83,
-  'link': #018a8a,
-  'link-hover': #450dab,
-  'link-active': #6b0470,
+  'ordinary': #000000,
+  'sticky': #000000,
+  'link': #ffffff,
+  'link-hover': #018a8a,
+  'link-active': #176288,
 );
+
+$sand-dollar: #e7d6c0;
+$blue-gray: #7491a0;
+$forest-green: #364e51;
+$cognac: #be9685;
+$grey: #a0a0a0;
+
+$dark_blue-color: #068ecb;
+$blue-color: $blue-gray;
+$white-color: #ffffff;
+$pink-color: #bc324cd1;
+$black-color: #000000;
+$grey-color: #787878;
+$link-color: #ffc75f;
+$error-color: #d32f2f;
+
+$background-color: $forest-green;
+$button-disabled: $grey;
+$disable-text-color: $grey-color;

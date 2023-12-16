@@ -11,5 +11,6 @@ node_modules
 
 #Dist folder
 .next
+.env*.local
 .nyc_output
 .coverage
