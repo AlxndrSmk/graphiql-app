@@ -20,8 +20,7 @@ const EditorText: React.FC = () => {
         # GraphQL queries typically start with a &#123; character. Lines that
         start{' '}
       </div>
-      <div># with a </div>
-      <div># are ignored.</div>
+      <div># with a # are ignored.</div>
       <div>#</div>
       <div># An example GraphQL query might look like:</div>
       <div>#</div>

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
-import { LangContext } from "@/types/types";
+import { LangContext } from '@/types/types';
 import LangButton from '@/components/LangButton/LangButton';
 import AuthBlock from '@/components/AuthBlock/AuthBlock';
 import LanguageContext from '@/context/langContext';
@@ -10,7 +10,7 @@ import checkQueryParams from '@/utils/checkQueryParams';
 
 const Header: React.FC = () => {
   const [stateHeader, setStateHeader] = useState<string>(
-      styles.header + ' ' + styles.header_ordinary
+    styles.header + ' ' + styles.header_ordinary
   );
   const router: NextRouter = useRouter();
   const context: LangContext = useContext<LangContext>(LanguageContext);
@@ -24,13 +24,13 @@ const Header: React.FC = () => {
     } else {
       setStateHeader(styles.header + ' ' + styles.header_ordinary);
     }
-  }
+  };
 
   const redirectToWelcome = (): string => {
     const lang = router.query.lang;
 
     return `.?lang=${lang}`;
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('scroll', onScrollEv);
