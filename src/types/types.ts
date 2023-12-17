@@ -128,3 +128,8 @@ export interface SignInFieldProps {
   handlePasswordVisibility?: () => void;
   isVisible?: boolean;
 }
+
+export interface ErrorBoundaryState {
+  hasError: boolean;
+  error: null | Error;
+}

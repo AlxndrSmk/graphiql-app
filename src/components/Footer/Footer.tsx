@@ -15,6 +15,7 @@ const urls: URLsForRedirect = {
 
 const Footer: React.FC = () => {
   const context: LangContext = useContext<LangContext>(LanguageContext);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__authors}>
