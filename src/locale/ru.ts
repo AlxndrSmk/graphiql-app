@@ -41,7 +41,7 @@ const rusConstants: LangConstants = {
   textCreated: 'Дата создания',
   welcomePageLink: 'На страницу приветствия',
   signIn: 'Войти',
-  signUp: 'Создать',
+  signUp: 'Зарегистрироваться',
   signOut: 'Выйти',
   email: 'Электронная почта',
   password: 'Пароль',

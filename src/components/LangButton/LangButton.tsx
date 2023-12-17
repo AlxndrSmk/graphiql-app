@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react';
-import { LangContext } from '@/types/types';
-import LanguageContext from '@/context/langContext';
-import { NextRouter, useRouter } from 'next/router';
-import styles from './LangButton.module.scss';
+import React, { useContext, useEffect, useReducer, useState } from "react";
+import { LangContext } from "@/types/types";
+import LanguageContext from "@/context/langContext";
+import { NextRouter, useRouter } from "next/router";
+import styles from "./LangButton.module.scss";
+import storeLangParam from "@/utils/storeLangParam";
 
 const LangButton: React.FC = () => {
   const [isClicked, setIsClicked] = useState(false);
@@ -28,7 +29,8 @@ const LangButton: React.FC = () => {
   const onChangeLang = async (): Promise<void> => {
     if (!isClicked) {
       setIsClicked(true);
-      context.pageLang = context.pageLang === 'en' ? 'ru' : 'en';
+      const switchedLang: string = context.pageLang === 'en' ? 'ru' : 'en';
+      context.pageLang = storeLangParam(switchedLang);
       await router.replace(router.pathname + `?lang=${context.pageLang}`);
       setIsClicked(false);
     }

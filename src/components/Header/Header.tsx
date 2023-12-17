@@ -12,6 +12,7 @@ import LangButton from '@/components/LangButton/LangButton';
 import { LangContext } from '@/types/types';
 import styles from './Header.module.scss';
 import AuthButton from '../AuthButton/AuthButton';
+import storeLangParam from "@/utils/storeLangParam";
 
 const Header: React.FC = () => {
   const [stateHeader, setStateHeader] = useState<string>(
@@ -52,12 +53,13 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const lang: string | null = checkQueryParams(Router);
+    const checkedLang: string = storeLangParam(lang);
     if (!lang) {
-      Router.replace(Router.pathname + '?lang=en').then(() =>
-        context.setPageLang('en')
+      Router.replace(Router.pathname + `?lang=${checkedLang}`).then(() =>
+        context.setPageLang(checkedLang)
       );
     } else {
-      context.setPageLang(lang ? lang : 'en');
+      context.setPageLang(checkedLang);
     }
   }, []);
 
