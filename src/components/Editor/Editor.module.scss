@@ -1,11 +1,48 @@
+@import './../../styles/colors.scss';
+
 .editor {
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 45%;
   padding: 20px;
-  border-left: 1px solid grey;
+  border-left: 1px solid $grey-color;
   position: relative;
+
+  @media (max-width: 800px) {
+    .show_next {
+      position: absolute;
+      right: 20px;
+      top: 38%;
+      background-color: transparent;
+      border: none;
+    }
+
+    max-width: 86%;
+    transition: max-width .3s ease;
+
+
+    &:last-child,
+    &.open {
+      max-width: 0;
+      visibility: hidden;
+      max-height: 100vh;
+      display: none;
+
+      .show_next {
+        left: 20px;
+        right: unset;
+        transform: rotate(180deg);
+      }
+    }
+
+    &.open~& {
+      max-width: 86%;
+      visibility: visible;
+      display: block;
+    }
+  }
+
 
   div {
     font-family: monospace;
@@ -15,7 +52,7 @@
     margin-top: 20px;
     width: 100%;
     margin-bottom: 30px;
-    color: #fff;
+    color: $white-color;
     padding-right: 80px;
 
     &:focus-visible {
