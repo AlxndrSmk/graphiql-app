@@ -16,6 +16,6 @@ const langLocalStorage = (lang: string | null): string => {
   }
 
   return langStorage;
-}
+};
 
 export default langLocalStorage;

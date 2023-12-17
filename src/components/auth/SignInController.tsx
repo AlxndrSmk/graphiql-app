@@ -1,23 +1,26 @@
-import { useContext, useState } from "react";
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 import Link from 'next/link';
 import { schema } from '@/validation/validationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { getAuthError } from "@/utils/getAuthError";
+import { getAuthError } from '@/utils/getAuthError';
 import { ROUTES } from '@/constants/routes';
 import AuthInput from '../AuthInput/AuthInput';
 import AuthButton from '../AuthButton/AuthButton';
-import { AuthViewProps, LangContext, schemaType } from "@/types/types";
+import { AuthViewProps, LangContext, schemaType } from '@/types/types';
 
 import styles from './style.module.scss';
-import langContext from "@/context/langContext";
+import langContext from '@/context/langContext';
+import langChecker from '@/utils/langChecker';
 
 const SignInController = ({ authCallback }: AuthViewProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [authError, setAuthError] = useState<string>('');
   const [loading, setLoading] = useState(false);
   const context: LangContext = useContext<LangContext>(langContext);
+
+  const checkedLang = langChecker(Router, context);
 
   const handlePasswordVisibility = (): void => {
     setIsVisible(!isVisible);
@@ -46,19 +49,29 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
       <div className={styles['form__block']}>
         <form className={styles['form']} onSubmit={onSubmit}>
           <div className={styles['form__title-container']}>
-            <h3 className={styles['form__title']}>{context.getConstants().signIn}</h3>
+            <h3 className={styles['form__title']}>
+              {context.getConstants().signIn}
+            </h3>
             {authError && (
-              <p className={styles['form__error']}>{context.getConstants().incorrect}</p>
+              <p className={styles['form__error']}>
+                {context.getConstants().incorrect}
+              </p>
             )}
           </div>
           <p className={styles['form__account']}>
             {context.getConstants().haveAccount}{' '}
-            <Link className={styles['form__link']} href={ROUTES.SIGN_UP}>
+            <Link
+              className={styles['form__link']}
+              href={ROUTES.SIGN_UP + `?lang=${checkedLang}`}
+            >
               {context.getConstants().signUpHere}
             </Link>
             <br />
             {context.getConstants().signOr}{' '}
-            <Link className={styles['form__link']} href={ROUTES.WELCOME}>
+            <Link
+              className={styles['form__link']}
+              href={ROUTES.WELCOME + `?lang=${checkedLang}`}
+            >
               {context.getConstants().signToWelcome}
             </Link>
           </p>

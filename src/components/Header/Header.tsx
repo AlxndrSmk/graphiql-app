@@ -10,8 +10,7 @@ import LangButton from '@/components/LangButton/LangButton';
 import { LangContext } from '@/types/types';
 import styles from './Header.module.scss';
 import AuthButton from '../AuthButton/AuthButton';
-import checkQueryParams from "@/utils/checkQueryParams";
-import langLocalStorage from "@/utils/langLocalStorage";
+import langChecker from '@/utils/langChecker';
 
 const Header: React.FC = () => {
   const [stateHeader, setStateHeader] = useState<string>(
@@ -21,14 +20,7 @@ const Header: React.FC = () => {
   const Router: NextRouter = useRouter();
   const context: LangContext = useContext<LangContext>(LanguageContext);
 
-  const lang: string | null = checkQueryParams(Router);
-  const checkedLang = langLocalStorage(lang);
-
-  if (!lang) {
-    Router.replace(Router.pathname + `?lang=${checkedLang}`).then(() => context.setPageLang(checkedLang));
-  } else {
-    context.setPageLang(lang);
-  }
+  const checkedLang = langChecker(Router, context);
 
   const handleSignOut = (): void => {
     logout();
@@ -83,11 +75,15 @@ const Header: React.FC = () => {
           <>
             <AuthButton
               text={context.getConstants().signIn}
-              onClick={() => Router.push(ROUTES.SIGN_IN)}
+              onClick={() =>
+                Router.push(ROUTES.SIGN_IN + `?lang=${checkedLang}`)
+              }
             />
             <AuthButton
               text={context.getConstants().signUp}
-              onClick={() => Router.push(ROUTES.SIGN_UP)}
+              onClick={() =>
+                Router.push(ROUTES.SIGN_UP + `?lang=${checkedLang}`)
+              }
             />
           </>
         )}

@@ -1,7 +1,10 @@
 import Image from 'next/image';
-import { SignInFieldProps } from '@/types/types';
+import { LangContext, SignInFieldProps } from '@/types/types';
 
 import styles from './AuthInput.module.scss';
+import { useContext } from 'react';
+import langContext from '@/context/langContext';
+import errorLocalization from '@/utils/errorLocalization';
 
 const AuthInput: React.FC<SignInFieldProps> = ({
   label,
@@ -13,6 +16,10 @@ const AuthInput: React.FC<SignInFieldProps> = ({
   handlePasswordVisibility,
   isVisible,
 }) => {
+  const context = useContext<LangContext>(langContext);
+
+  const errorLocalize = errorLocalization(error, context);
+
   return (
     <div className={styles['form__item']}>
       <div className={styles['form__placeholder-container']}>
@@ -36,7 +43,9 @@ const AuthInput: React.FC<SignInFieldProps> = ({
         <label htmlFor={id} className={styles['form__label']}>
           {label}
         </label>
-        {error && <p className={styles['form__error']}>{error}</p>}
+        {errorLocalize && (
+          <p className={styles['form__error']}>{errorLocalize}</p>
+        )}
       </div>
     </div>
   );

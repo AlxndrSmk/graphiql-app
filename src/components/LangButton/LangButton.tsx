@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
-import { LangContext } from "@/types/types";
-import LanguageContext from "@/context/langContext";
-import { NextRouter, useRouter } from "next/router";
-import styles from "./LangButton.module.scss";
+import React, { useContext, useEffect, useReducer, useState } from 'react';
+import { LangContext } from '@/types/types';
+import LanguageContext from '@/context/langContext';
+import { NextRouter, useRouter } from 'next/router';
+import styles from './LangButton.module.scss';
 
 const LangButton: React.FC = () => {
   const [isClicked, setIsClicked] = useState(false);

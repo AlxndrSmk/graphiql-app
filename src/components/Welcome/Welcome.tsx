@@ -2,9 +2,9 @@ import { team } from '@/utils/team';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Welcome.module.scss';
-import { LangContext, TeamData, TeamMember } from "@/types/types";
+import { LangContext, TeamData, TeamMember } from '@/types/types';
 import langContext from '@/context/langContext';
-import { useContext } from "react";
+import { useContext } from 'react';
 
 const Welcome: React.FC = () => {
   const context: LangContext = useContext<LangContext>(langContext);

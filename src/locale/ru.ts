@@ -49,10 +49,8 @@ const rusConstants: LangConstants = {
   haveAccount: 'Еще не зарегистрированы?',
   signUpHere: 'Зарегистрироваться',
   signInHere: 'Войти',
-
   signOr: 'или',
   signToWelcome: 'на страницу приветствия',
-
   signUpTitle: 'Создание аккаунта',
   alreadyRegistered: 'Уже зарегистрированы?',
   alreadyExists: 'Данный аккаунт уже зарегистрирован',
