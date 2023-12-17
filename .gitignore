@@ -16,3 +16,4 @@ dist-ssr
 
 .env*.local
 .DS_Store
+!/.env
