@@ -28,16 +28,6 @@ export interface EmailAndPasswordProps {
   password: string;
 }
 
-//TODO not use!!!
-// export interface AuthProviderProps {
-//   children: JSX.Element;
-// }
-
-//TODO not use!!!
-// export interface PageContainerProps {
-//   children: React.ReactNode;
-// }
-
 export interface CustomError {
   code: string;
   message: string;
@@ -47,17 +37,6 @@ export interface AuthViewProps {
   authCallback: (email: string, password: string) => Promise<UserCredential>;
   page?: 'SIGN_IN' | 'SIGN_UP';
 }
-
-//TODO not use!!!
-// export type UserData = {
-//   id: string;
-//   email: string;
-// };
-
-//TODO not used!!!
-// export interface PageContainerProps {
-//   children: React.ReactNode;
-// }
 
 export interface CustomError {
   code: string;
@@ -124,18 +103,6 @@ export interface TeamMember {
   desc: string;
   github: string;
 }
-
-//TODO not use!!!
-// export interface PropsAuthButton {
-//   type: "sign-in" | "sign-up" | "to-main";
-// }
-
-//TODO not use!!!
-// export interface StylesOfButton {
-//   button: string;
-//   textButtonStyle: string;
-//   textButton: string;
-// }
 
 export type FirebaseConfig = {
   apiKey: string | undefined;
