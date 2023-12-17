@@ -6,12 +6,13 @@ import Button from '../Button/Button';
 import { TEditor } from '@/types/types';
 import { prettify } from '@/utils/prettify';
 import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
+import { DEFAULT_REQUEST } from '@/constants/DefaultRequest';
 
 import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
 import styles from './Editor.module.scss';
 
 const Editor: React.FC<TEditor> = ({ type }) => {
-  const [editorValue, setEditorValue] = useState<string>('');
+  const [editorValue, setEditorValue] = useState<string>(DEFAULT_REQUEST);
   const isQueryEditor = type === 'query';
 
   const handleEditorChange = React.useCallback((value: string) => {
