@@ -28,13 +28,15 @@ export interface EmailAndPasswordProps {
   password: string;
 }
 
-export interface AuthProviderProps {
-  children: JSX.Element;
-}
+//TODO not use!!!
+// export interface AuthProviderProps {
+//   children: JSX.Element;
+// }
 
-export interface PageContainerProps {
-  children: React.ReactNode;
-}
+//TODO not use!!!
+// export interface PageContainerProps {
+//   children: React.ReactNode;
+// }
 
 export interface CustomError {
   code: string;
@@ -46,14 +48,16 @@ export interface AuthViewProps {
   page?: 'SIGN_IN' | 'SIGN_UP';
 }
 
-export type UserData = {
-  id: string;
-  email: string;
-};
+//TODO not use!!!
+// export type UserData = {
+//   id: string;
+//   email: string;
+// };
 
-export interface PageContainerProps {
-  children: React.ReactNode;
-}
+//TODO not used!!!
+// export interface PageContainerProps {
+//   children: React.ReactNode;
+// }
 
 export interface CustomError {
   code: string;
@@ -72,9 +76,30 @@ export interface LangConstants {
   altLogo: string;
   textCreated: string;
   welcomePageLink: string;
-  signInBtn: string;
-  signUpBtn: string;
-  toMainBtn: string;
+  signIn: string;
+  signUp: string;
+  signOut: string;
+  email: string;
+  password: string;
+  incorrect: string;
+  haveAccount: string;
+  signUpHere: string;
+  signInHere: string;
+  signUpTitle: string;
+  alreadyRegistered: string;
+  alreadyExists: string;
+  title: string;
+  desc: string;
+  descGrLink: string;
+  descRs: string;
+  emailRequired: string;
+  emailValid: string;
+  emailDomain: string;
+  passwordRequired: string;
+  passwordLength: string;
+  passwordDigit: string;
+  passwordLetter: string;
+  passwordCharacters: string;
 }
 
 export interface LangContext {
@@ -85,22 +110,29 @@ export interface LangContext {
   getConstants: () => LangConstants;
 }
 
-export interface PropsAuthButton {
-  type: 'sign-in' | 'sign-up' | 'to-main';
+export interface TeamData {
+  en: Array<TeamMember>;
+  ru: Array<TeamMember>;
 }
 
-export interface StylesOfButton {
-  button: string;
-  textButtonStyle: string;
-  textButton: string;
+export interface TeamMember {
+  name: string;
+  img: string;
+  desc: string;
+  github: string;
 }
 
-export type URLsForRedirect = {
-  pozdnyakoks: string;
-  alxndrsmk: string;
-  brbrov: string;
-  rsschool: string;
-};
+//TODO not use!!!
+// export interface PropsAuthButton {
+//   type: "sign-in" | "sign-up" | "to-main";
+// }
+
+//TODO not use!!!
+// export interface StylesOfButton {
+//   button: string;
+//   textButtonStyle: string;
+//   textButton: string;
+// }
 
 export type FirebaseConfig = {
   apiKey: string | undefined;

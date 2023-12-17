@@ -75,17 +75,20 @@ const Header: React.FC = () => {
         <LangButton />
         {user ? (
           <>
-            <AuthButton text="Sign Out" onClick={handleSignOut} />
+            <AuthButton
+              text={context.getConstants().signOut}
+              onClick={handleSignOut}
+            />
             <Timer />
           </>
         ) : (
           <>
             <AuthButton
-              text="Sign In"
+              text={context.getConstants().signIn}
               onClick={() => Router.push(ROUTES.SIGN_IN)}
             />
             <AuthButton
-              text="Sign Up"
+              text={context.getConstants().signUp}
               onClick={() => Router.push(ROUTES.SIGN_UP)}
             />
           </>
