@@ -9,6 +9,7 @@
   padding: 20px;
   position: relative;
   width: 100%;
+  overflow: hidden;
 
   @media (max-width: 800px) {
     .show_next {
@@ -22,13 +23,12 @@
     max-width: 86%;
     transition: max-width .3s ease;
 
-
     &:last-child,
     &.open {
       max-width: 0;
       visibility: hidden;
+      opacity: 0;
       max-height: 100vh;
-      display: none;
 
       .show_next {
         left: 20px;
@@ -40,7 +40,7 @@
     &.open~& {
       max-width: 86%;
       visibility: visible;
-      display: block;
+      opacity: 1;
     }
   }
 

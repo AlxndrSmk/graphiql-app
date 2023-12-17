@@ -17,7 +17,7 @@ import styles from './Editor.module.scss';
 const Editor: React.FC<TEditor> = ({ type, showRight, setShowRight }) => {
   const [editorValue, setEditorValue] = useState<string>(DEFAULT_REQUEST);
   const [responseValue] = useState<string>('');
-  const isQueryEditor = type === 'json';
+  const isQueryEditor = type === 'query';
   const { width } = useGetWindowDimensions();
   const isTablet = width < tablet;
 
