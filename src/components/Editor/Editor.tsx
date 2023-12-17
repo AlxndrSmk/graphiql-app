@@ -13,6 +13,8 @@ import styles from './Editor.module.scss';
 
 const Editor: React.FC<TEditor> = ({ type }) => {
   const [editorValue, setEditorValue] = useState<string>(DEFAULT_REQUEST);
+  const [responseValue] = useState<string>('');
+
   const isQueryEditor = type === 'query';
 
   const handleEditorChange = React.useCallback((value: string) => {
@@ -27,7 +29,7 @@ const Editor: React.FC<TEditor> = ({ type }) => {
     <div className={styles.editor}>
       <div className={styles.editor__text}>
         <CodeMirror
-          value={editorValue}
+          value={isQueryEditor ? editorValue : responseValue}
           onChange={handleEditorChange}
           theme={codeMirrorTheme}
           readOnly={!isQueryEditor}
