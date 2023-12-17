@@ -14,9 +14,10 @@ export type TButton = {
 
 export type TEditor = {
   type: 'json' | 'query';
-  text?: string;
   showRight: boolean;
   setShowRight: Dispatch<SetStateAction<boolean>>;
+  responseText?: string;
+  setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
 };
 
 export interface AuthButtonProps {

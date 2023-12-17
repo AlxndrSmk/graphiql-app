@@ -35,12 +35,7 @@ const Main: React.FC = () => {
           showRight={showRight}
           setShowRight={setShowRight}
         />
-        <Editor
-          type="json"
-          showRight={showRight}
-          setShowRight={setShowRight}
-          text="this is result"
-        />
+        <Editor type="json" showRight={showRight} setShowRight={setShowRight} />
       </main>
       <Footer />
     </>

@@ -1,19 +1,23 @@
+import React from 'react';
 import Image from 'next/image';
+import { useState } from 'react';
+import CodeMirror from '@uiw/react-codemirror';
 import { useGetWindowDimensions } from '@/utils/use-get-windows-dimensions';
 import Tabs from '../Tabs/Tabs';
 import Button from '../Button/Button';
-import EditorText from '@/utils/editorText';
 import { TEditor } from '@/types/types';
+import { prettify } from '@/utils/prettify';
+import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
+import { DEFAULT_REQUEST } from '@/constants/DefaultRequest';
 import { tablet } from '@/utils/constants';
 
+import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
 import styles from './Editor.module.scss';
 
-const Editor: React.FC<TEditor> = ({
-  type = 'json',
-  text,
-  showRight,
-  setShowRight,
-}) => {
+const Editor: React.FC<TEditor> = ({ type, showRight, setShowRight }) => {
+  const [editorValue, setEditorValue] = useState<string>(DEFAULT_REQUEST);
+  const [responseValue] = useState<string>('');
+  const isQueryEditor = type === 'json';
   const { width } = useGetWindowDimensions();
   const isTablet = width < tablet;
 
@@ -21,17 +25,24 @@ const Editor: React.FC<TEditor> = ({
     setShowRight((prev) => !prev);
   };
 
-  const isQueryEditor = type === 'query';
+  const handleEditorChange = React.useCallback((value: string) => {
+    setEditorValue(value);
+  }, []);
 
-  const CleainImg = (
-    <Image src="/clean.svg" alt="prettify" width="20" height="20" />
-  );
-  const PlayImg = (
-    <Image src="play.svg" alt="prettify" width="20" height="20" />
-  );
+  const handlePrettifyClick = () => {
+    setEditorValue(prettify(editorValue));
+  };
 
   return (
     <div className={`${styles.editor} ${showRight && styles.open}`}>
+      <div className={styles.editor__text}>
+        <CodeMirror
+          value={isQueryEditor ? editorValue : responseValue}
+          onChange={handleEditorChange}
+          theme={codeMirrorTheme}
+          readOnly={!isQueryEditor}
+        />
+      </div>
       {isTablet && (
         <button className={styles.show_next} onClick={() => openNext()}>
           <Image
@@ -43,31 +54,25 @@ const Editor: React.FC<TEditor> = ({
         </button>
       )}
       {isQueryEditor && (
-        <div className={styles.editor__btns}>
-          <Button
-            img={CleainImg}
-            isTooltip={true}
-            onHoverText="Prettify"
-            onClick={() => console.log('prettify')}
-          />
-          <Button
-            img={PlayImg}
-            isTooltip={true}
-            onHoverText="Execute query"
-            onClick={() => console.log('Execute query')}
-            className="execute_btn"
-          />
-        </div>
+        <>
+          <div className={styles.editor__btns}>
+            <Button
+              img={CLEAN_IMAGE}
+              isTooltip={true}
+              onHoverText="Prettify"
+              onClick={handlePrettifyClick}
+            />
+            <Button
+              img={PLAY_IMAGE}
+              isTooltip={true}
+              onHoverText="Execute query"
+              onClick={() => console.log('Execute query')}
+              className="execute_btn"
+            />
+          </div>
+          <Tabs />
+        </>
       )}
-      <div
-        className={styles.editor__text}
-        contentEditable={isQueryEditor}
-        spellCheck="false"
-      >
-        {isQueryEditor && <EditorText />}
-        {text}
-      </div>
-      {isQueryEditor && <Tabs />}
     </div>
   );
 };
