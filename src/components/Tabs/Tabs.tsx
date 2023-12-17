@@ -62,6 +62,7 @@ const Tabs: React.FC = () => {
           ref={ref}
           onChange={changeHandler}
           contentEditable={true}
+          suppressContentEditableWarning={true}
           spellCheck="false"
           style={{ minHeight: '0' }}
         >
