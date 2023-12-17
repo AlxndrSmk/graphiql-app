@@ -28,8 +28,8 @@ const Main: React.FC = () => {
       <Header />
       <main className={styles.mainLayout}>
         <MainNav />
-        <Editor editor="query" />
-        <Editor editor="json" />
+        <Editor type="query" />
+        <Editor type="json" />
       </main>
       <Footer />
     </>
