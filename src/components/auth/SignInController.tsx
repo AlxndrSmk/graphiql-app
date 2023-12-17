@@ -1,27 +1,23 @@
-import { useState } from 'react';
+import { useContext, useState } from "react";
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 import Link from 'next/link';
-
-import { en } from '@/locale/en';
-import { ru } from '@/locale/ru';
 import { schema } from '@/validation/validationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { getAuthError } from '../../utils/getAuthError';
+import { getAuthError } from "@/utils/getAuthError";
 import { ROUTES } from '@/constants/routes';
 import AuthInput from '../AuthInput/AuthInput';
 import AuthButton from '../AuthButton/AuthButton';
-import { AuthViewProps, schemaType } from '@/types/types';
+import { AuthViewProps, LangContext, schemaType } from "@/types/types";
 
 import styles from './style.module.scss';
+import langContext from "@/context/langContext";
 
 const SignInController = ({ authCallback }: AuthViewProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [authError, setAuthError] = useState<string>('');
   const [loading, setLoading] = useState(false);
-
-  const lang: 'ru' | 'en' = 'en';
-  const curLang = lang === 'en' ? en : ru;
+  const context: LangContext = useContext<LangContext>(langContext);
 
   const handlePasswordVisibility = (): void => {
     setIsVisible(!isVisible);
@@ -37,7 +33,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
     setLoading(true);
     try {
       await authCallback(email, password);
-      Router.push(ROUTES.MAIN);
+      await Router.push(ROUTES.MAIN);
     } catch (e) {
       const err = getAuthError(e);
       setAuthError(err);
@@ -50,20 +46,20 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
       <div className={styles['form__block']}>
         <form className={styles['form']} onSubmit={onSubmit}>
           <div className={styles['form__title-container']}>
-            <h3 className={styles['form__title']}>{curLang.auth.signIn}</h3>
+            <h3 className={styles['form__title']}>{context.getConstants().signIn}</h3>
             {authError && (
-              <p className={styles['form__error']}>{curLang.auth.incorrect}</p>
+              <p className={styles['form__error']}>{context.getConstants().incorrect}</p>
             )}
           </div>
           <p className={styles['form__account']}>
-            {curLang.auth.haveAccount}{' '}
+            {context.getConstants().haveAccount}{' '}
             <Link className={styles['form__link']} href={ROUTES.SIGN_UP}>
-              {curLang.auth.signUpHere}
+              {context.getConstants().signUpHere}
             </Link>
             <br />
-            or{' '}
+            {context.getConstants().signOr}{' '}
             <Link className={styles['form__link']} href={ROUTES.WELCOME}>
-              back to welcome page
+              {context.getConstants().signToWelcome}
             </Link>
           </p>
           <div
@@ -73,7 +69,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
               id="email"
               type="text"
               register={register('email')}
-              label={curLang.auth.email}
+              label={context.getConstants().email}
               error={errors.email?.message}
               placeholder={''}
             />
@@ -81,7 +77,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
               id="password"
               type={isVisible ? 'text' : 'password'}
               register={register('password')}
-              label={curLang.auth.password}
+              label={context.getConstants().password}
               error={errors.password?.message}
               placeholder={''}
               isVisible={isVisible}
@@ -89,7 +85,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
             />
           </div>
           <AuthButton
-            text={curLang.auth.signIn}
+            text={context.getConstants().signIn}
             type="submit"
             isLoading={loading}
             isDisabled={!isValid || loading}

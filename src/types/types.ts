@@ -85,6 +85,8 @@ export interface LangConstants {
   haveAccount: string;
   signUpHere: string;
   signInHere: string;
+  signOr: string;
+  signToWelcome: string;
   signUpTitle: string;
   alreadyRegistered: string;
   alreadyExists: string;

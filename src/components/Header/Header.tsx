@@ -2,17 +2,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
 import LanguageContext from '@/context/langContext';
-import checkQueryParams from '@/utils/checkQueryParams';
 import { useAuth } from '@/context/AuthProvider';
 import { logout } from '@/firebase/firebaseClient';
 import { ROUTES } from '@/constants/routes';
 import Timer from '@/components/Timer/Timer';
 import LangButton from '@/components/LangButton/LangButton';
-
 import { LangContext } from '@/types/types';
 import styles from './Header.module.scss';
 import AuthButton from '../AuthButton/AuthButton';
-import storeLangParam from "@/utils/storeLangParam";
+import checkQueryParams from "@/utils/checkQueryParams";
+import langLocalStorage from "@/utils/langLocalStorage";
 
 const Header: React.FC = () => {
   const [stateHeader, setStateHeader] = useState<string>(
@@ -21,6 +20,15 @@ const Header: React.FC = () => {
   const { user } = useAuth();
   const Router: NextRouter = useRouter();
   const context: LangContext = useContext<LangContext>(LanguageContext);
+
+  const lang: string | null = checkQueryParams(Router);
+  const checkedLang = langLocalStorage(lang);
+
+  if (!lang) {
+    Router.replace(Router.pathname + `?lang=${checkedLang}`).then(() => context.setPageLang(checkedLang));
+  } else {
+    context.setPageLang(lang);
+  }
 
   const handleSignOut = (): void => {
     logout();
@@ -49,18 +57,6 @@ const Header: React.FC = () => {
     return () => {
       window.removeEventListener('scroll', onScrollEv);
     };
-  }, []);
-
-  useEffect(() => {
-    const lang: string | null = checkQueryParams(Router);
-    const checkedLang: string = storeLangParam(lang);
-    if (!lang) {
-      Router.replace(Router.pathname + `?lang=${checkedLang}`).then(() =>
-        context.setPageLang(checkedLang)
-      );
-    } else {
-      context.setPageLang(checkedLang);
-    }
   }, []);
 
   return (

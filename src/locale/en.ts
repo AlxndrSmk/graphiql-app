@@ -37,6 +37,8 @@ const engConstants: LangConstants = {
   haveAccount: 'Dont have an account?',
   signUpHere: 'Sign Up here',
   signInHere: 'Sign In here',
+  signOr: 'or',
+  signToWelcome: 'back to welcome page',
   signUpTitle: 'Create an account',
   alreadyRegistered: 'Already registered?',
   alreadyExists: 'User with this email already exists',
