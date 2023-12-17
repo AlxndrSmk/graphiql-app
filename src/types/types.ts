@@ -76,6 +76,7 @@ export interface LangConstants {
   altLogo: string;
   textCreated: string;
   welcomePageLink: string;
+  mainPageLink: string;
   signIn: string;
   signUp: string;
   signOut: string;

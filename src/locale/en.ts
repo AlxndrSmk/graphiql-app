@@ -28,6 +28,7 @@ const engConstants: LangConstants = {
   altLogo: 'RSSchool logo',
   textCreated: 'Created at',
   welcomePageLink: 'To welcome page',
+  mainPageLink: 'To main page',
   signIn: 'Sign In',
   signUp: 'Sign Up',
   signOut: 'Sign Out',

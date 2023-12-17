@@ -38,11 +38,6 @@ const Header: React.FC = () => {
     }
   };
 
-  const redirectToWelcome = (): string => {
-    const lang = Router.query.lang;
-    return `.?lang=${lang}`;
-  };
-
   useEffect(() => {
     window.addEventListener('scroll', onScrollEv);
 
@@ -53,12 +48,15 @@ const Header: React.FC = () => {
 
   return (
     <header className={stateHeader}>
-      <Link className={styles.header__link} href={redirectToWelcome()}>
+      <Link className={styles.header__link} href={`.?lang=${checkedLang}`}>
         {context.getConstants().welcomePageLink}
       </Link>
       {user && (
-        <Link className={styles.header__link} href="/main">
-          To main page
+        <Link
+          className={styles.header__link}
+          href={`/main?lang=${checkedLang}`}
+        >
+          {context.getConstants().mainPageLink}
         </Link>
       )}
       <div className={styles.header__container}>

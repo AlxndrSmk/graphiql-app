@@ -40,6 +40,7 @@ const rusConstants: LangConstants = {
   altLogo: 'RSSchool лого',
   textCreated: 'Дата создания',
   welcomePageLink: 'На страницу приветствия',
+  mainPageLink: 'На главную',
   signIn: 'Войти',
   signUp: 'Создать',
   signOut: 'Выйти',
