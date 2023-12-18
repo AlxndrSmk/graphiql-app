@@ -131,3 +131,8 @@ export interface SignInFieldProps {
   handlePasswordVisibility?: () => void;
   isVisible?: boolean;
 }
+
+export type TSize = {
+  width: number;
+  height: number;
+};

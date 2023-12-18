@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
-import { useGetWindowDimensions } from '@/utils/use-get-windows-dimensions';
+import useGetWindowDimensions from '../../utils/useGetWindowsDimensions';
 import Tabs from '../Tabs/Tabs';
 import Button from '../Button/Button';
 import { TEditor } from '@/types/types';
