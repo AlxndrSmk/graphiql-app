@@ -9,7 +9,7 @@ const Button: React.FC<TButton> = ({
   onHoverText,
   isTooltip,
   className,
-  disabled,
+  isDisabled,
 }) => {
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
@@ -22,7 +22,7 @@ const Button: React.FC<TButton> = ({
       onClick={onClick}
       onMouseOver={onHoverFunc}
       onMouseOut={onMouseOutFunc}
-      disabled={disabled}
+      disabled={isDisabled}
     >
       {isTooltip && (
         <p className={`${styles.btn__tooltip} ${showTooltip && styles.active}`}>

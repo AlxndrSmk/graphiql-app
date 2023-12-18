@@ -9,7 +9,7 @@ export type TButton = {
   img?: JSX.Element;
   onHoverText?: string;
   isTooltip?: boolean;
-  disabled?: boolean;
+  isDisabled?: boolean;
   className?: string;
 };
 
