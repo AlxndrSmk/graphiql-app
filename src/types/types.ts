@@ -1,3 +1,8 @@
+import * as Yup from 'yup';
+import { User, UserCredential } from 'firebase/auth';
+import { schema } from '@/validation/validationSchema';
+import { Dispatch, SetStateAction } from 'react';
+
 export type TButton = {
   text?: string;
   onClick: () => void;
@@ -8,12 +13,10 @@ export type TButton = {
 };
 
 export type TEditor = {
-  editor: 'json' | 'query';
-  text?: string;
+  type: 'json' | 'query';
+  responseText?: string;
+  setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
 };
-import * as Yup from 'yup';
-import { User, UserCredential } from 'firebase/auth';
-import { schema } from '@/validation/validationSchema';
 
 export interface AuthButtonProps {
   text: string;
