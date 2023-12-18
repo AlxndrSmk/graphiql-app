@@ -16,10 +16,11 @@
     border: none;
     color: #fff;
     transition: 0.3s ease;
+    opacity: 0.5;
   }
 
   &.tab__btns_btn_dis {
-    opacity: 0.5;
+    opacity: 1;
   }
 
   &__tab_btn,
