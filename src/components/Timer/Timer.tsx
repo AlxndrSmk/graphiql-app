@@ -22,7 +22,7 @@ const Timer: React.FC = () => {
   };
 
   const startTimer = (time: number) => {
-    let { total, minutes, seconds } = getTimeRemaining(time);
+    const { total, minutes, seconds } = getTimeRemaining(time);
     if (total >= 0) {
       setTimer(
         (minutes > 9 ? minutes : `0${minutes}`) +
