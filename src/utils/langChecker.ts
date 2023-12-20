@@ -3,7 +3,7 @@ import { LangContext } from '@/types/types';
 import checkQueryParams from '@/utils/checkQueryParams';
 import langLocalStorage from '@/utils/langLocalStorage';
 
-const langChecker = (router: NextRouter, context: LangContext) => {
+const langChecker = (router: NextRouter, context: LangContext): string => {
   const lang: string | null = checkQueryParams(router);
   const checkedLang = langLocalStorage(lang);
 
