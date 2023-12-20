@@ -26,7 +26,7 @@ const firebaseConfig: FirebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FB_APP_ID,
 };
 
-const getFirebaseApp: (config?: {}) => FirebaseApp = (config = {}) => {
+const getFirebaseApp: (config?: object) => FirebaseApp = (config = {}) => {
   try {
     return getApp();
   } catch (e) {

@@ -33,7 +33,7 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
       setLoading(false);
       Router.push(ROUTES.MAIN);
     }
-  }, [user]);
+  }, [user, Router]);
 
   const {
     register,

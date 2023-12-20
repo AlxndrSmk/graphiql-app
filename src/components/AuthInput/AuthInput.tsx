@@ -20,19 +20,26 @@ const AuthInput: React.FC<SignInFieldProps> = ({
 
   const errorLocalize = errorLocalization(error, context);
 
+  const renderIcon = () => {
+    if (id === 'password')
+      return (
+        <Image
+          className={styles['form__eye']}
+          onClick={handlePasswordVisibility}
+          src={isVisible ? `/open.png` : `/close.png`}
+          width="35"
+          height="35"
+          alt="eye"
+        />
+      );
+
+    return null;
+  };
+
   return (
     <div className={styles['form__item']}>
       <div className={styles['form__placeholder-container']}>
-        {id === 'password' && (
-          <Image
-            className={styles['form__eye']}
-            onClick={handlePasswordVisibility}
-            src={isVisible ? `/open.png` : `/close.png`}
-            width="35"
-            height="35"
-            alt="eye"
-          />
-        )}
+        {renderIcon()}
         <input
           className={styles['form__input']}
           id={id}
