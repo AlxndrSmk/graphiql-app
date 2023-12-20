@@ -1,0 +1,42 @@
+.main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: space-between;
+  align-items: center;
+
+  &__btns {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    align-self: flex-end;
+  }
+
+  &__list {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    list-style: none;
+
+    &_item {
+      align-items: center;
+      border: 2px solid wheat;
+      border-radius: 30px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 30px 20px;
+      position: relative;
+
+      &_link {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    }
+  }
+}

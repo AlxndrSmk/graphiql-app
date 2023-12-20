@@ -1,0 +1,113 @@
+@import '../../styles/colors.scss';
+
+.form {
+  background-color: $background-color;
+  border-radius: 0px;
+  box-shadow:
+    rgba(0, 0, 0, 0.2) 0px 2px 1px -1px,
+    rgba(0, 0, 0, 0.14) 0px 1px 1px 0px,
+    rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+  color: $white-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 48px;
+  position: relative;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  width: 100%;
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    max-width: 470px;
+    width: 100%;
+  }
+
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    gap: 130px;
+    justify-content: center;
+    margin-top: 110px;
+    width: 100%;
+  }
+
+  &__img {
+    height: 99px;
+    width: 100%;
+  }
+
+  &__error {
+    color: $error-color;
+    margin-left: 0.25rem;
+    margin-top: 0.25rem;
+
+    &-block {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__title {
+    color: $white-color;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    &-container {
+      height: 60px;
+      text-align: center;
+    }
+  }
+
+  &__terms {
+    font-size: 16px;
+    letter-spacing: 0px;
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  &__loading {
+    align-items: center;
+    display: flex;
+    inset: 0px;
+    justify-content: center;
+    position: absolute;
+    z-index: 100;
+  }
+
+  &__controls {
+    display: flex;
+    flex-direction: column;
+
+    &_signin {
+      margin-top: 35px;
+    }
+  }
+
+  &__agree {
+    margin-bottom: 24px;
+  }
+
+  &__divider {
+    margin-top: 50px;
+
+    &_none {
+      display: none;
+    }
+  }
+
+  &__account {
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  &__link {
+    color: $link-color;
+    font-size: 18px;
+    line-height: 28px;
+    text-decoration: none;
+  }
+}
