@@ -7,16 +7,14 @@ import { logout } from '../../firebase/firebaseClient';
 import { ROUTES } from '../../constants/routes';
 import Timer from '../../components/Timer/Timer';
 import LangButton from '../../components/LangButton/LangButton';
-import { LangContext } from '../../types/types';
+import { AuthContextProps, LangContext } from '../../types/types';
 import styles from './Header.module.scss';
 import AuthButton from '../AuthButton/AuthButton';
 import langChecker from '../../utils/langChecker';
 
 const Header: React.FC = () => {
-  const [isHeaderSticky, setIsHeaderSticky] = useState<string>(
-    styles.header + ' ' + styles.header_ordinary
-  );
-  const { user } = useAuth();
+  const [isHeaderSticky, setIsHeaderSticky] = useState<boolean>(false);
+  const { user } = useAuth() as AuthContextProps;
   const Router: NextRouter = useRouter();
   const context: LangContext = useContext<LangContext>(LanguageContext);
 
@@ -31,11 +29,7 @@ const Header: React.FC = () => {
     const { scrollingElement } = e.target as Document;
     const { scrollTop } = scrollingElement as Element;
 
-    if (scrollTop > 80) {
-      setIsHeaderSticky(styles.header + ' ' + styles.header_sticky);
-    } else {
-      setIsHeaderSticky(styles.header + ' ' + styles.header_ordinary);
-    }
+    setIsHeaderSticky(scrollTop > 80);
   };
 
   useEffect(() => {
@@ -47,7 +41,13 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className={isHeaderSticky}>
+    <header
+      className={
+        isHeaderSticky
+          ? styles.header + ' ' + styles.header_sticky
+          : styles.header + ' ' + styles.header_ordinary
+      }
+    >
       <Link className={styles.header__link} href={`.?lang=${checkedLang}`}>
         {context.getConstants().welcomePageLink}
       </Link>
