@@ -25,7 +25,7 @@ const Header: React.FC = () => {
     Router.push(ROUTES.WELCOME);
   };
 
-  const onScrollEv = (e: Event): void => {
+  const handleScroll = (e: Event): void => {
     const { scrollingElement } = e.target as Document;
     const { scrollTop } = scrollingElement as Element;
 
@@ -33,10 +33,10 @@ const Header: React.FC = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', onScrollEv);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', onScrollEv);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
