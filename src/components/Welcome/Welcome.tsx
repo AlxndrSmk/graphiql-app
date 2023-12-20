@@ -8,7 +8,6 @@ import { useContext } from 'react';
 
 const Welcome: React.FC = () => {
   const context: LangContext = useContext<LangContext>(langContext);
-  console.log(context.pageLang);
 
   return (
     <section className={styles.main}>
