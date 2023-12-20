@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
-import LanguageContext from '@/context/langContext';
-import { useAuth } from '@/context/AuthProvider';
-import { logout } from '@/firebase/firebaseClient';
-import { ROUTES } from '@/constants/routes';
-import Timer from '@/components/Timer/Timer';
-import LangButton from '@/components/LangButton/LangButton';
-import { LangContext } from '@/types/types';
+import LanguageContext from '../../context/langContext';
+import { useAuth } from '../../context/AuthProvider';
+import { logout } from '../../firebase/firebaseClient';
+import { ROUTES } from '../../constants/routes';
+import Timer from '../../components/Timer/Timer';
+import LangButton from '../../components/LangButton/LangButton';
+import { LangContext } from '../../types/types';
 import styles from './Header.module.scss';
 import AuthButton from '../AuthButton/AuthButton';
-import langChecker from '@/utils/langChecker';
+import langChecker from '../../utils/langChecker';
 
 const Header: React.FC = () => {
-  const [stateHeader, setStateHeader] = useState<string>(
+  const [isHeaderSticky, setIsHeaderSticky] = useState<string>(
     styles.header + ' ' + styles.header_ordinary
   );
   const { user } = useAuth();
@@ -32,9 +32,9 @@ const Header: React.FC = () => {
     const { scrollTop } = scrollingElement as Element;
 
     if (scrollTop > 80) {
-      setStateHeader(styles.header + ' ' + styles.header_sticky);
+      setIsHeaderSticky(styles.header + ' ' + styles.header_sticky);
     } else {
-      setStateHeader(styles.header + ' ' + styles.header_ordinary);
+      setIsHeaderSticky(styles.header + ' ' + styles.header_ordinary);
     }
   };
 
@@ -47,7 +47,7 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className={stateHeader}>
+    <header className={isHeaderSticky}>
       <Link className={styles.header__link} href={`.?lang=${checkedLang}`}>
         {context.getConstants().welcomePageLink}
       </Link>
