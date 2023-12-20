@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { User, UserCredential } from 'firebase/auth';
-import { schema } from '@/validation/validationSchema';
+import { schema } from '../validation/validationSchema';
 import { Dispatch, SetStateAction } from 'react';
 
 export type TButton = {
