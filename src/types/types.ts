@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { User, UserCredential } from 'firebase/auth';
-import { schema } from '@/validation/validationSchema';
+import { schema } from '../validation/validationSchema';
 import { Dispatch, SetStateAction } from 'react';
 
 export type TButton = {
@@ -136,3 +136,20 @@ export type TSize = {
   width: number;
   height: number;
 };
+
+export interface CustomHeaders {
+  [key: string]: string;
+}
+
+export interface Variables extends CustomHeaders {}
+
+export interface GQLQueryBody {
+  operationName: string;
+  variables: Variables;
+  query: string;
+}
+export interface GQlArguments {
+  url: string;
+  headers: CustomHeaders;
+  body: GQLQueryBody;
+}

@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { graphQLApi } from '../rtk-query/fetchApI';
 import urlSlice from '../url/urlSlice';
 
-const store = configureStore({
+const storeApp = configureStore({
   reducer: {
     [urlSlice.reducerPath]: urlSlice.reducer,
     [graphQLApi.reducerPath]: graphQLApi.reducer,
@@ -11,4 +11,4 @@ const store = configureStore({
     getDefaultMiddleware().concat(graphQLApi.middleware),
 });
 
-export default store;
+export default storeApp;

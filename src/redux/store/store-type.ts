@@ -1,5 +1,5 @@
-import { store } from './store';
+import storeApp from './store';
 
-type StoreType = ReturnType<typeof store.getState>;
+type StoreType = ReturnType<typeof storeApp.getState>;
 
 export default StoreType;

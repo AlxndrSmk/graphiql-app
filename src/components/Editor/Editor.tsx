@@ -5,14 +5,15 @@ import CodeMirror from '@uiw/react-codemirror';
 import useGetWindowDimensions from '../../utils/useGetWindowsDimensions';
 import Tabs from '../Tabs/Tabs';
 import Button from '../Button/Button';
-import { TEditor } from '@/types/types';
-import { prettify } from '@/utils/prettify';
-import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
-import { DEFAULT_REQUEST } from '@/constants/DefaultRequest';
-import { tablet } from '@/utils/constants';
+import { TEditor } from '../../types/types';
+import { prettify } from '../../utils/prettify';
+import { CLEAN_IMAGE, PLAY_IMAGE } from '../../constants/buttonsImages';
+import { DEFAULT_REQUEST } from '../../constants/DefaultRequest';
+import { tablet } from '../../utils/constants';
 
-import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
+import { codeMirrorTheme } from '../../styles/codeMirrorTheme';
 import styles from './Editor.module.scss';
+import { useGetIntrospectionQuery } from '../../redux/rtk-query/fetchApI';
 
 const Editor: React.FC<TEditor> = ({ type, showRight, setShowRight }) => {
   const [editorValue, setEditorValue] = useState<string>(DEFAULT_REQUEST);
@@ -20,6 +21,9 @@ const Editor: React.FC<TEditor> = ({ type, showRight, setShowRight }) => {
   const isQueryEditor = type === 'query';
   const { width } = useGetWindowDimensions();
   const isTablet = width < tablet;
+  const intro = useGetIntrospectionQuery('https://rickandmortyapi.com/graphql');
+
+  console.log(intro.data);
 
   const openNext = () => {
     setShowRight((prev) => !prev);
