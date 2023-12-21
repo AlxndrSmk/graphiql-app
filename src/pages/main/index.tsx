@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Router from 'next/router';
-import { ROUTES } from '@/constants/routes';
-import { useAuth } from '@/context/AuthProvider';
+import { ROUTES } from '../../constants/routes';
+import { useAuth } from '../../context/AuthProvider';
 
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
-import MainNav from '@/components/MainNav/MainNav';
-import Editor from '@/components/Editor/Editor';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import MainNav from '../../components/MainNav/MainNav';
+import Editor from '../../components/Editor/Editor';
 
 import styles from './mainLayout.module.scss';
 

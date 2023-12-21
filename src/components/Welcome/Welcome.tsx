@@ -1,8 +1,8 @@
-import { team } from '@/utils/team';
+import { team } from '../../utils/team';
 import Image from 'next/image';
 import Link from 'next/link';
-import { en } from '@/locale/en';
-import { ru } from '@/locale/ru';
+import { en } from '../../locale/en';
+import { ru } from '../../locale/ru';
 import styles from './Welcome.module.scss';
 
 const Welcome: React.FC = () => {

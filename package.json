@@ -29,11 +29,12 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.48.2",
+    "react-redux": "^9.0.4",
     "react-router": "^6.20.1"
   },
   "devDependencies": {
-    "@hookform/resolvers": "^3.3.2",
     "@cypress/code-coverage": "^3.12.14",
+    "@hookform/resolvers": "^3.3.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
