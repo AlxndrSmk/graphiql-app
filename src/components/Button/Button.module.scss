@@ -7,15 +7,20 @@
   border-radius: 20px;
   cursor: pointer;
 
+  @media (max-width: 800px) {
+    padding: 5px 10px;
+  }
+
   &.tab__btns_btn,
   &.tab__btns_btn_dis {
     border: none;
     color: #fff;
     transition: 0.3s ease;
+    opacity: 0.5;
   }
 
   &.tab__btns_btn_dis {
-    opacity: 0.5;
+    opacity: 1;
   }
 
   &__tab_btn,

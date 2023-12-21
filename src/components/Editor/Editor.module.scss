@@ -1,12 +1,48 @@
+@import './../../styles/colors.scss';
+
 .editor {
   background-color: rgba(0, 0, 0, 0);
-  border-left: 1px solid grey;
+  border-left: 1px solid $grey-color;
   display: flex;
   flex-direction: column;
   max-width: 45%;
   padding: 20px;
   position: relative;
   width: 100%;
+  overflow: hidden;
+
+  @media (max-width: 800px) {
+    .show_next {
+      position: absolute;
+      right: 20px;
+      top: 38%;
+      background-color: transparent;
+      border: none;
+    }
+
+    max-width: 86%;
+    transition: max-width 0.3s ease;
+
+    &:last-child,
+    &.open {
+      max-width: 0;
+      visibility: hidden;
+      opacity: 0;
+      max-height: 100vh;
+
+      .show_next {
+        left: 20px;
+        right: unset;
+        transform: rotate(180deg);
+      }
+    }
+
+    &.open ~ & {
+      max-width: 86%;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
 
   &div,
   span {
@@ -14,7 +50,7 @@
   }
 
   &__text {
-    color: #fff;
+    color: $white-color;
     margin-bottom: 30px;
     margin-top: 20px;
     padding-right: 80px;

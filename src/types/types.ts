@@ -9,11 +9,14 @@ export type TButton = {
   img?: JSX.Element;
   onHoverText?: string;
   isTooltip?: boolean;
+  isDisabled?: boolean;
   className?: string;
 };
 
 export type TEditor = {
   type: 'json' | 'query';
+  showRight: boolean;
+  setShowRight: Dispatch<SetStateAction<boolean>>;
   responseText?: string;
   setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
 };
@@ -128,6 +131,11 @@ export interface SignInFieldProps {
   handlePasswordVisibility?: () => void;
   isVisible?: boolean;
 }
+
+export type TSize = {
+  width: number;
+  height: number;
+};
 
 export interface ErrorBoundaryState {
   hasError: boolean;

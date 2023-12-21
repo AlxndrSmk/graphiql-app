@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Router from 'next/router';
 import { ROUTES } from '@/constants/routes';
 import { useAuth } from '@/context/AuthProvider';
@@ -11,6 +11,8 @@ import Editor from '@/components/Editor/Editor';
 import styles from './mainLayout.module.scss';
 
 const Main: React.FC = () => {
+  const [showRight, setShowRight] = useState<boolean>(false);
+
   const { user } = useAuth();
 
   useEffect(() => {
@@ -28,8 +30,12 @@ const Main: React.FC = () => {
       <Header />
       <main className={styles.mainLayout}>
         <MainNav />
-        <Editor type="query" />
-        <Editor type="json" />
+        <Editor
+          type="query"
+          showRight={showRight}
+          setShowRight={setShowRight}
+        />
+        <Editor type="json" showRight={showRight} setShowRight={setShowRight} />
       </main>
       <Footer />
     </>

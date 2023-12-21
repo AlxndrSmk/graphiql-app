@@ -9,7 +9,7 @@ const Tabs: React.FC = () => {
   const [headValue, setHeadValue] = useState<string>('');
   const [openTab, setOpenTab] = useState<boolean>(false);
 
-  const ref = useRef<HTMLInputElement>(null);
+  const ref = useRef<HTMLTextAreaElement>(null);
 
   const isVariable = currentTab === 'var';
 
@@ -18,7 +18,7 @@ const Tabs: React.FC = () => {
     ref.current?.focus();
   };
 
-  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const changeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     isVariable ? setVarValue(e.target.value) : setHeadValue(e.target.value);
   };
 
@@ -38,12 +38,14 @@ const Tabs: React.FC = () => {
           text="Variables"
           onClick={handleTabClick}
           className={!isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
+          isDisabled={isVariable}
         />
 
         <Button
           text="Headers"
           onClick={handleTabClick}
           className={isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
+          isDisabled={!isVariable}
         />
         <Button
           onClick={openTabs}
@@ -57,7 +59,7 @@ const Tabs: React.FC = () => {
           openTab && styles.tabs__content_open
         }`}
       >
-        <div
+        <textarea
           className={styles.tabs__content_input}
           ref={ref}
           onChange={changeHandler}
@@ -65,9 +67,8 @@ const Tabs: React.FC = () => {
           suppressContentEditableWarning={true}
           spellCheck="false"
           style={{ minHeight: '0' }}
-        >
-          {isVariable ? varValue : headValue}
-        </div>
+          value={isVariable ? varValue : headValue}
+        />
       </div>
     </>
   );
