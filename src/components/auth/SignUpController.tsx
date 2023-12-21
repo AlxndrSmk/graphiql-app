@@ -1,29 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
-
-import { en } from '@/locale/en';
-import { ru } from '@/locale/ru';
 import { schema } from '@/validation/validationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { getAuthError } from '../../utils/getAuthError';
-import { useAuth } from '../../context/AuthProvider';
+import { getAuthError } from '@/utils/getAuthError';
+import { useAuth } from '@/context/AuthProvider';
 import { ROUTES } from '@/constants/routes';
 import AuthButton from '../AuthButton/AuthButton';
 import AuthInput from '../AuthInput/AuthInput';
-import { AuthViewProps, schemaType } from '@/types/types';
-
+import { AuthViewProps, LangContext, schemaType } from '@/types/types';
 import styles from './style.module.scss';
+import langContext from '@/context/langContext';
+import langChecker from '@/utils/langChecker';
 
 const SignUpController = ({ authCallback }: AuthViewProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [authError, setAuthError] = useState<string>('');
   const [loading, setLoading] = useState(false);
+  const context = useContext<LangContext>(langContext);
+  const Router = useRouter();
   const { user } = useAuth();
 
-  const lang: 'ru' | 'en' = 'en';
-  const curLang = lang === 'en' ? en : ru;
+  const checkedLang = langChecker(Router, context);
 
   const handlePasswordVisibility = (): void => {
     setIsVisible(!isVisible);
@@ -34,7 +33,7 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
       setLoading(false);
       Router.push(ROUTES.MAIN);
     }
-  }, [user]);
+  }, [user, Router]);
 
   const {
     register,
@@ -59,23 +58,29 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
         <form className={styles['form']} onSubmit={onSubmit}>
           <div className={styles['form__title-container']}>
             <h3 className={styles['form__title']}>
-              {curLang.auth.signUpTitle}
+              {context.getConstants().signUpTitle}
             </h3>
             {authError && (
               <p className={styles['form__error']}>
-                {curLang.auth.alreadyExists}
+                {context.getConstants().alreadyExists}
               </p>
             )}
           </div>
           <p className={styles['form__account']}>
-            {curLang.auth.alreadyRegistered}{' '}
-            <Link className={styles['form__link']} href={ROUTES.SIGN_IN}>
-              {curLang.auth.signInHere}
+            {context.getConstants().alreadyRegistered}{' '}
+            <Link
+              className={styles['form__link']}
+              href={ROUTES.SIGN_IN + `?lang=${checkedLang}`}
+            >
+              {context.getConstants().signInHere}
             </Link>
             <br />
-            or{' '}
-            <Link className={styles['form__link']} href={ROUTES.WELCOME}>
-              back to welcome page
+            {context.getConstants().signOr}{' '}
+            <Link
+              className={styles['form__link']}
+              href={ROUTES.WELCOME + `?lang=${checkedLang}`}
+            >
+              {context.getConstants().signToWelcome}
             </Link>
           </p>
           <div
@@ -85,7 +90,7 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
               id="email"
               type="text"
               register={register('email')}
-              label={curLang.auth.email}
+              label={context.getConstants().email}
               error={errors.email?.message}
               placeholder={''}
             />
@@ -93,7 +98,7 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
               id="password"
               type={isVisible ? 'text' : 'password'}
               register={register('password')}
-              label={curLang.auth.password}
+              label={context.getConstants().password}
               error={errors.password?.message}
               placeholder={''}
               isVisible={isVisible}
@@ -102,7 +107,7 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
           </div>
 
           <AuthButton
-            text={curLang.auth.signUp}
+            text={context.getConstants().signUp}
             type="submit"
             isLoading={loading}
             isDisabled={!isValid || loading}
