@@ -1,19 +1,18 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 import introspectionQuery from '../../constants/introspection-query';
-import { GQlArguments } from '../../types/types';
+import { GQLArguments } from '../../types/types';
+import dynamicBaseQuery from './dinamicBaseQuery';
 
 export const graphQLApi = createApi({
   reducerPath: 'GraphQL',
-  baseQuery: fetchBaseQuery({
+  baseQuery: dynamicBaseQuery({
     baseUrl: 'https://rickandmortyapi.com/graphql',
   }),
   endpoints: (build) => ({
     getIntrospection: build.query({
-      query: (url: string) => ({
-        url: !url ? 'https://rickandmortyapi.com/graphql' : url,
+      query: (arg?: GQLArguments): GQLArguments => ({
+        url: !arg.url ? 'https://rickandmortyapi.com/graphql' : arg.url,
         headers: { Warning: 'RSHeroes' },
-        mode: 'cors',
-        method: 'post',
         body: {
           operationName: 'IntrospectionQuery',
           variables: {},
@@ -22,15 +21,14 @@ export const graphQLApi = createApi({
       }),
     }),
     getGQLResponse: build.query({
-      query: (arg: GQlArguments) => ({
+      query: (arg: GQLArguments): GQLArguments => ({
         url: arg.url,
-        mode: 'cors',
-        method: 'post',
         headers: arg.headers,
-        body: arg.headers,
+        body: arg.body,
       }),
     }),
   }),
 });
 
-export const { useGetIntrospectionQuery, useGetGQLResponseQuery } = graphQLApi;
+export const { useGetIntrospectionQuery, useLazyGetGQLResponseQuery } =
+  graphQLApi;

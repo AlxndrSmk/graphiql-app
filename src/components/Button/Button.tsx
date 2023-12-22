@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { TButton } from '@/types/types';
+import { FC, useState } from 'react';
+import { TButton } from '../../types/types';
 import styles from './Button.module.scss';
 
-const Button: React.FC<TButton> = ({
+const Button: FC<TButton> = ({
   text,
   onClick,
   img,

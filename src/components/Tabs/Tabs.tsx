@@ -1,25 +1,37 @@
 import Image from 'next/image';
-import { ChangeEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useRef, useState } from 'react';
 import Button from '../Button/Button';
 import styles from './Tabs.module.scss';
+import { TabsProps } from '../../types/types';
 
-const Tabs: React.FC = () => {
-  const [currentTab, setCurrentTab] = useState<'var' | 'headers'>('var');
-  const [varValue, setVarValue] = useState<string>('');
-  const [headValue, setHeadValue] = useState<string>('');
+const Tabs: React.FC<TabsProps> = ({
+  variables,
+  headers,
+  setVariables,
+  setHeaders,
+}) => {
+  const [currentTab, setCurrentTab] = useState<'Variables' | 'Headers'>(
+    'Variables'
+  );
   const [openTab, setOpenTab] = useState<boolean>(false);
 
   const ref = useRef<HTMLTextAreaElement>(null);
 
-  const isVariable = currentTab === 'var';
+  const isVariable = currentTab === 'Variables';
 
-  const handleTabClick = () => {
-    setCurrentTab((prevTab) => (prevTab === 'var' ? 'headers' : 'var'));
+  const handleTabClick = (event: SyntheticEvent): void => {
+    const { target } = event;
+    const { textContent } = target as HTMLButtonElement;
+    if (textContent !== currentTab) {
+      setCurrentTab((prevTab) =>
+        prevTab === 'Variables' ? 'Headers' : 'Variables'
+      );
+    }
     ref.current?.focus();
   };
 
   const changeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    isVariable ? setVarValue(e.target.value) : setHeadValue(e.target.value);
+    isVariable ? setVariables(e.target.value) : setHeaders(e.target.value);
   };
 
   const openTabs = () => {
@@ -38,14 +50,14 @@ const Tabs: React.FC = () => {
           text="Variables"
           onClick={handleTabClick}
           className={!isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
-          disabled={isVariable}
+          isDisabled={isVariable}
         />
 
         <Button
           text="Headers"
           onClick={handleTabClick}
           className={isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
-          disabled={!isVariable}
+          isDisabled={!isVariable}
         />
         <Button
           onClick={openTabs}
@@ -67,7 +79,7 @@ const Tabs: React.FC = () => {
           suppressContentEditableWarning={true}
           spellCheck="false"
           style={{ minHeight: '0' }}
-          value={isVariable ? varValue : headValue}
+          value={isVariable ? variables : headers}
         />
       </div>
     </>

@@ -1,12 +1,12 @@
 import * as Yup from 'yup';
 import { User, UserCredential } from 'firebase/auth';
 import { schema } from '../validation/validationSchema';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction, SyntheticEvent } from 'react';
 
 export type TButton = {
   text?: string;
-  onClick: () => void;
-  img?: JSX.Element;
+  onClick(e: SyntheticEvent): void;
+  img?: ReactNode;
   onHoverText?: string;
   isTooltip?: boolean;
   isDisabled?: boolean;
@@ -19,6 +19,8 @@ export type TEditor = {
   setShowRight: Dispatch<SetStateAction<boolean>>;
   responseText?: string;
   setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
+  operation(args?: PrettierArgs): void;
+  response: string;
 };
 
 export interface AuthButtonProps {
@@ -144,12 +146,24 @@ export interface CustomHeaders {
 export interface Variables extends CustomHeaders {}
 
 export interface GQLQueryBody {
-  operationName: string;
-  variables: Variables;
+  operationName: string | null;
+  variables: Variables | object;
   query: string;
 }
-export interface GQlArguments {
+export interface GQLArguments {
   url: string;
-  headers: CustomHeaders;
+  headers?: CustomHeaders;
   body: GQLQueryBody;
+}
+
+export interface PrettierArgs {
+  args: GQLArguments;
+  errors: Array<string> | null;
+}
+
+export interface TabsProps {
+  variables: string;
+  headers: string;
+  setVariables: Dispatch<SetStateAction<string>>;
+  setHeaders: Dispatch<SetStateAction<string>>;
 }

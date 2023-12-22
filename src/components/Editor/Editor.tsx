@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import useGetWindowDimensions from '../../utils/useGetWindowsDimensions';
 import Tabs from '../Tabs/Tabs';
 import Button from '../Button/Button';
-import { TEditor } from '../../types/types';
+import { PrettierArgs, TEditor } from '../../types/types';
 import { prettify } from '../../utils/prettify';
 import { CLEAN_IMAGE, PLAY_IMAGE } from '../../constants/buttonsImages';
 import { DEFAULT_REQUEST } from '../../constants/DefaultRequest';
@@ -13,35 +13,56 @@ import { tablet } from '../../utils/constants';
 
 import { codeMirrorTheme } from '../../styles/codeMirrorTheme';
 import styles from './Editor.module.scss';
-import { useGetIntrospectionQuery } from '../../redux/rtk-query/fetchApI';
+import createGQLArgs from '../../utils/createGQLArgs';
+import { useSelector } from 'react-redux';
+import StoreType from '../../redux/store/store-type';
 
-const Editor: React.FC<TEditor> = ({ type, showRight, setShowRight }) => {
+const Editor: React.FC<TEditor> = ({
+  type,
+  showRight,
+  setShowRight,
+  operation,
+  response,
+}) => {
   const [editorValue, setEditorValue] = useState<string>(DEFAULT_REQUEST);
-  const [responseValue] = useState<string>('');
+  const [variables, setVariables] = useState<string>('');
+  const [headers, setHeaders] = useState<string>('');
+  const urlFromStore = useSelector((state: StoreType) => state.url);
+
   const isQueryEditor = type === 'query';
+
   const { width } = useGetWindowDimensions();
   const isTablet = width < tablet;
-  const intro = useGetIntrospectionQuery('https://rickandmortyapi.com/graphql');
-
-  console.log(intro.data);
 
   const openNext = () => {
     setShowRight((prev) => !prev);
   };
 
-  const handleEditorChange = React.useCallback((value: string) => {
+  const handleEditorChange = useCallback((value: string) => {
     setEditorValue(value);
   }, []);
 
-  const handlePrettifyClick = () => {
+  const handlePrettifyClick = (): void => {
     setEditorValue(prettify(editorValue));
+  };
+
+  const executeQuery = (): void => {
+    if (isQueryEditor) {
+      const params: PrettierArgs = createGQLArgs(
+        editorValue,
+        variables,
+        headers,
+        urlFromStore
+      );
+      operation(params);
+    }
   };
 
   return (
     <div className={`${styles.editor} ${showRight && styles.open}`}>
       <div className={styles.editor__text}>
         <CodeMirror
-          value={isQueryEditor ? editorValue : responseValue}
+          value={isQueryEditor ? editorValue : response}
           onChange={handleEditorChange}
           theme={codeMirrorTheme}
           readOnly={!isQueryEditor}
@@ -70,11 +91,16 @@ const Editor: React.FC<TEditor> = ({ type, showRight, setShowRight }) => {
               img={PLAY_IMAGE}
               isTooltip={true}
               onHoverText="Execute query"
-              onClick={() => console.log('Execute query')}
+              onClick={executeQuery}
               className="execute_btn"
             />
           </div>
-          <Tabs />
+          <Tabs
+            headers={headers}
+            setHeaders={setHeaders}
+            setVariables={setVariables}
+            variables={variables}
+          />
         </>
       )}
     </div>

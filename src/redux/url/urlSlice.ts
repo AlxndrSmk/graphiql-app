@@ -5,7 +5,9 @@ const urlSlice = createSlice({
   initialState: 'https://rickandmortyapi.com/graphql',
   name: 'url',
   reducerPath: 'url',
-  reducers: { urlReducer },
+  reducers: {
+    setURL: urlReducer,
+  },
 });
 
 export default urlSlice;
