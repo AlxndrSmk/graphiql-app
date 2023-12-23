@@ -138,3 +138,8 @@ export type TSize = {
   width: number;
   height: number;
 };
+
+export interface ErrorBoundaryState {
+  hasError: boolean;
+  error: null | Error;
+}

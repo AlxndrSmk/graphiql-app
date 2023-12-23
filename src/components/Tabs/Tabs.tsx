@@ -38,14 +38,14 @@ const Tabs: React.FC = () => {
           text="Variables"
           onClick={handleTabClick}
           className={!isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
-          disabled={isVariable}
+          isDisabled={isVariable}
         />
 
         <Button
           text="Headers"
           onClick={handleTabClick}
           className={isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
-          disabled={!isVariable}
+          isDisabled={!isVariable}
         />
         <Button
           onClick={openTabs}
