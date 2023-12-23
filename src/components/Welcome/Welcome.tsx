@@ -1,30 +1,31 @@
 import { team } from '@/utils/team';
 import Image from 'next/image';
 import Link from 'next/link';
-import { en } from '@/locale/en';
-import { ru } from '@/locale/ru';
 import styles from './Welcome.module.scss';
+import { LangContext, TeamData, TeamMember } from '@/types/types';
+import langContext from '@/context/langContext';
+import { useContext } from 'react';
 
 const Welcome: React.FC = () => {
-  const lang: 'ru' | 'en' = 'en';
+  const context: LangContext = useContext<LangContext>(langContext);
 
-  const curLang = lang === 'en' ? en : ru;
   return (
     <section className={styles.main}>
-      <h1 className={styles.main__title}>{curLang.welcome.title}</h1>
+      <h1 className={styles.main__title}>{context.getConstants().title}</h1>
       <div className={styles.main__desc}>
-        {curLang.welcome.desc}{' '}
+        {context.getConstants().desc}{' '}
         <Link
           href="https://rickandmortyapi.com/documentation/"
           target="_blank"
           rel="noreferrer"
         >
-          {curLang.welcome.descGrLink}{' '}
+          {context.getConstants().descGrLink}{' '}
         </Link>
-        {curLang.welcome.descRs} <a href="https://rs.school/">RS School</a>
+        {context.getConstants().descRs}{' '}
+        <a href="https://rs.school/">RS School</a>
       </div>
       <ul className={styles.main__list}>
-        {team[lang].map((el) => (
+        {team[context.pageLang as keyof TeamData].map((el: TeamMember) => (
           <li className={styles.main__list_item} key={el.name}>
             <Link className={styles.main__list_item_link} href={el.github}>
               <Image src="/github.svg" alt="github" width="30" height="30" />

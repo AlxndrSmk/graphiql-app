@@ -1,4 +1,6 @@
-export const team = {
+import { TeamData } from '@/types/types';
+
+export const team: TeamData = {
   en: [
     {
       name: 'Oksana Pozdnyak',
