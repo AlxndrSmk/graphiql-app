@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Button from '../Button/Button';
+import Button from '@/components/Button/Button';
 import styles from './MainNav.module.scss';
 
 const MainNav: React.FC = () => {

@@ -1,4 +1,4 @@
-import { team } from '@/utils/team';
+import { team } from '@/constants/team';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Welcome.module.scss';

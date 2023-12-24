@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LangContext, TeamData } from '../../types/types';
-import LanguageContext from '../../context/langContext';
-import { team } from '../../utils/team';
-import logo from './../../../public/rsschool.svg';
+import { LangContext, TeamData } from '@/types/types';
+import LanguageContext from '@/context/langContext';
+import { team } from '@/constants/team';
+import logo from '@/public/rsschool.svg';
 import styles from './Footer.module.scss';
-import { TeamMember } from '../../types/types';
+import { TeamMember } from '@/types/types';
 
 const Footer: React.FC = () => {
   const context: LangContext = useContext<LangContext>(LanguageContext);
