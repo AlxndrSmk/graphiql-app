@@ -1,51 +1,107 @@
-.language_wrapper {
-  display: flex;
-  width: 50px;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-}
+@import '../../styles/colors';
 
-.language_button {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: none;
-  box-shadow: black 2px -3px 4px;
-}
+.switch {
+  display: inline-block;
+  margin: 0 5px;
+  position: relative;
 
-.language_label {
-  font-size: 1.4em;
-  font-weight: 800;
-}
+  span {
+    font-size: 12px;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+    text-transform: uppercase;
+    top: 11px;
+    width: 50%;
 
-@keyframes rotateButton {
-  from {
-    transform: scale(1.2, 0.8);
-  }
-  50% {
-    transform: scale(0.8, 1.2);
-  }
-  to {
-    transform: scale(1, 1);
+    &.on {
+      color: $black-color;
+      left: 0;
+      padding-left: 2px;
+    }
+
+    &.off {
+      color: $white-color;
+      padding-right: 4px;
+      right: -1px;
+    }
   }
 }
 
-.language_button:active {
-  animation: rotateButton 100ms forwards ease-in-out;
+input.check-toggle-round-flat:checked ~ .off {
+  color: $black-color;
 }
 
-.ru_bg {
-  color: #5c0979;
-  text-shadow: 0 0 3px #0bea95;
-  background: linear-gradient(180deg, #032172, #ffffff, #940202);
+input.check-toggle-round-flat:checked ~ .on {
+  color: $white-color;
 }
 
-.en_bg {
-  color: #cbcb00;
-  text-shadow: 0 0 4px #3e0265;
-  background: linear-gradient(90deg, #ffffff, rgba(140, 0, 0, 0.9), #ffffff);
+.check-toggle {
+  margin-left: -9999px;
+  position: absolute;
+  visibility: hidden;
+}
+
+.check-toggle + label {
+  cursor: pointer;
+  display: block;
+  outline: none;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+input.check-toggle-round-flat + label {
+  background-color: $black-color;
+  border: 1px solid $white-color;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+  border-radius: 60px;
+  height: 35px;
+  padding: 2px;
+  width: 65px;
+}
+input.check-toggle-round-flat + label:before,
+input.check-toggle-round-flat + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+}
+
+input.check-toggle-round-flat + label:before {
+  -webkit--moz-border-radius: 60px;
+  background-color: $black-color;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+  border-radius: 60px;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+  top: 2px;
+}
+
+input.check-toggle-round-flat + label:after {
+  background-color: #fff;
+  -webkit-border-radius: 52px;
+  -moz-border-radius: 52px;
+  -ms-border-radius: 52px;
+  -o-border-radius: 52px;
+  border-radius: 52px;
+  bottom: 4px;
+  left: 4px;
+  top: 4px;
+  -webkit-transition: margin 0.2s;
+  -moz-transition: margin 0.2s;
+  -o-transition: margin 0.2s;
+  transition: margin 0.2s;
+  width: 25px;
+}
+
+input.check-toggle-round-flat:checked + label:after {
+  margin-left: 30px;
 }
