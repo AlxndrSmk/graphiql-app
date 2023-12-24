@@ -6,8 +6,8 @@ import { registerWithEmailAndPassword } from '@/firebase/firebaseClient';
 import { firebaseAdmin } from '@/firebase/firebaseAdmin';
 import { UserCredential } from 'firebase/auth';
 import { ROUTES } from '@/constants/routes';
-import SignUpController from '@/components/auth/SignUpController';
 import { Cookies } from '@/types/types';
+import SignUpController from '@/components/AuthBlock/SignUpController';
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   try {

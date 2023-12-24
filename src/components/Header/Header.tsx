@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
-import LanguageContext from '../../context/langContext';
-import { useAuth } from '../../context/AuthProvider';
-import { logout } from '../../firebase/firebaseClient';
-import { ROUTES } from '../../constants/routes';
-import Timer from '../../components/Timer/Timer';
-import LangButton from '../../components/LangButton/LangButton';
-import { AuthContextProps, LangContext } from '../../types/types';
+
+import LanguageContext from '@/context/langContext';
+import { useAuth } from '@/context/AuthProvider';
+import { logout } from '@/firebase/firebaseClient';
+import langChecker from '@/utils/langChecker';
+import { ROUTES } from '@/constants/routes';
+import AuthButton from '@/components/AuthBlock/AuthButton/AuthButton';
+import Timer from '@/components/Timer/Timer';
+import LangButton from '@/components/LangButton/LangButton';
+import { AuthContextProps, LangContext } from '@/types/types';
 import styles from './Header.module.scss';
-import AuthButton from '../AuthButton/AuthButton';
-import langChecker from '../../utils/langChecker';
 
 const Header: React.FC = () => {
   const [isHeaderSticky, setIsHeaderSticky] = useState<boolean>(false);

@@ -46,7 +46,7 @@ const Timer: React.FC = () => {
 
   useEffect(() => {
     clearTimer();
-  });
+  }, []);
 
   return <div className={styles.timer}>{timer}</div>;
 };

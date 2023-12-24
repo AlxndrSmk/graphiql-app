@@ -1,39 +1,30 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import Link from 'next/link';
 import { schema } from '@/validation/validationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getAuthError } from '@/utils/getAuthError';
-import { useAuth } from '@/context/AuthProvider';
 import { ROUTES } from '@/constants/routes';
-import AuthButton from '../AuthButton/AuthButton';
-import AuthInput from '../AuthInput/AuthInput';
+import AuthInput from './AuthInput/AuthInput';
+import AuthButton from './AuthButton/AuthButton';
 import { AuthViewProps, LangContext, schemaType } from '@/types/types';
+
 import styles from './style.module.scss';
 import langContext from '@/context/langContext';
 import langChecker from '@/utils/langChecker';
 
-const SignUpController = ({ authCallback }: AuthViewProps) => {
+const SignInController = ({ authCallback }: AuthViewProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [authError, setAuthError] = useState<string>('');
   const [loading, setLoading] = useState(false);
-  const context = useContext<LangContext>(langContext);
-  const Router = useRouter();
-  const { user } = useAuth();
+  const context: LangContext = useContext<LangContext>(langContext);
 
   const checkedLang = langChecker(Router, context);
 
   const handlePasswordVisibility = (): void => {
     setIsVisible(!isVisible);
   };
-
-  useEffect(() => {
-    if (user) {
-      setLoading(false);
-      Router.push(ROUTES.MAIN);
-    }
-  }, [user, Router]);
 
   const {
     register,
@@ -45,6 +36,7 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
     setLoading(true);
     try {
       await authCallback(email, password);
+      await Router.push(ROUTES.MAIN);
     } catch (e) {
       const err = getAuthError(e);
       setAuthError(err);
@@ -58,21 +50,21 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
         <form className={styles['form']} onSubmit={onSubmit}>
           <div className={styles['form__title-container']}>
             <h3 className={styles['form__title']}>
-              {context.getConstants().signUpTitle}
+              {context.getConstants().signIn}
             </h3>
             {authError && (
               <p className={styles['form__error']}>
-                {context.getConstants().alreadyExists}
+                {context.getConstants().incorrect}
               </p>
             )}
           </div>
           <p className={styles['form__account']}>
-            {context.getConstants().alreadyRegistered}{' '}
+            {context.getConstants().haveAccount}{' '}
             <Link
               className={styles['form__link']}
-              href={ROUTES.SIGN_IN + `?lang=${checkedLang}`}
+              href={ROUTES.SIGN_UP + `?lang=${checkedLang}`}
             >
-              {context.getConstants().signInHere}
+              {context.getConstants().signUpHere}
             </Link>
             <br />
             {context.getConstants().signOr}{' '}
@@ -105,9 +97,8 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
               handlePasswordVisibility={handlePasswordVisibility}
             />
           </div>
-
           <AuthButton
-            text={context.getConstants().signUp}
+            text={context.getConstants().signIn}
             type="submit"
             isLoading={loading}
             isDisabled={!isValid || loading}
@@ -118,4 +109,4 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
   );
 };
 
-export default SignUpController;
+export default SignInController;

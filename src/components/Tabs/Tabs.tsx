@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { ChangeEvent, useRef, useState } from 'react';
-import Button from '../Button/Button';
+import Button from '@/components/Button/Button';
 import styles from './Tabs.module.scss';
 
 const Tabs: React.FC = () => {
