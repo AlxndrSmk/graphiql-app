@@ -1,6 +1,6 @@
 @use 'sass:map';
-@import '../../styles/mixins';
-@import '../../styles/colors';
+@import '@/styles/mixins';
+@import '@/styles/colors';
 
 .footer {
   @include divDisplay(spaced);

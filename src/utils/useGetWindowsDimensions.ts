@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { TSize } from '../types/types';
+import { TSize } from '@/types/types';
 
 const useGetWindowDimensions = (): TSize => {
   const [windowSize, setWindowSize] = useState({

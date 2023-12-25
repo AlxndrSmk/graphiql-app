@@ -1,24 +1,10 @@
 import { LangContext, LangConstants } from '@/types/types';
+import engConstants from '@/locale/en';
+import rusConstants from '@/locale/ru';
 
 const langContextInit: LangContext = {
-  en: {
-    langButton: 'EN',
-    altLogo: 'RSSchool logo',
-    textCreated: 'Created at',
-    welcomePageLink: 'To welcome page',
-    signInBtn: 'Sign In',
-    signUpBtn: 'Sign Up',
-    toMainBtn: 'To main',
-  },
-  ru: {
-    langButton: 'RU',
-    altLogo: 'RSSchool лого',
-    textCreated: 'Дата создания',
-    welcomePageLink: 'На страницу приветствия',
-    signInBtn: 'Логин',
-    signUpBtn: 'Создать',
-    toMainBtn: 'На главную',
-  },
+  en: engConstants,
+  ru: rusConstants,
   pageLang: 'en',
   setPageLang: function (lang: string): void {
     this.pageLang = lang;

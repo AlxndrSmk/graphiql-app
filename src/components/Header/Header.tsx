@@ -1,92 +1,88 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
+
 import LanguageContext from '@/context/langContext';
-import checkQueryParams from '@/utils/checkQueryParams';
 import { useAuth } from '@/context/AuthProvider';
 import { logout } from '@/firebase/firebaseClient';
+import langChecker from '@/utils/langChecker';
 import { ROUTES } from '@/constants/routes';
+import AuthButton from '@/components/AuthBlock/AuthButton/AuthButton';
 import Timer from '@/components/Timer/Timer';
 import LangButton from '@/components/LangButton/LangButton';
-
-import { LangContext } from '@/types/types';
+import { AuthContextProps, LangContext } from '@/types/types';
 import styles from './Header.module.scss';
-import AuthButton from '../AuthButton/AuthButton';
 
 const Header: React.FC = () => {
-  const [stateHeader, setStateHeader] = useState<string>(
-    styles.header + ' ' + styles.header_ordinary
-  );
-  const { user } = useAuth();
+  const [isHeaderSticky, setIsHeaderSticky] = useState<boolean>(false);
+  const { user } = useAuth() as AuthContextProps;
   const Router: NextRouter = useRouter();
   const context: LangContext = useContext<LangContext>(LanguageContext);
+
+  const checkedLang = langChecker(Router, context);
 
   const handleSignOut = (): void => {
     logout();
     Router.push(ROUTES.WELCOME);
   };
 
-  const onScrollEv = (e: Event): void => {
+  const handleScroll = (e: Event): void => {
     const { scrollingElement } = e.target as Document;
     const { scrollTop } = scrollingElement as Element;
 
-    if (scrollTop > 80) {
-      setStateHeader(styles.header + ' ' + styles.header_sticky);
-    } else {
-      setStateHeader(styles.header + ' ' + styles.header_ordinary);
-    }
-  };
-
-  const redirectToWelcome = (): string => {
-    const lang = Router.query.lang;
-    return `.?lang=${lang}`;
+    setIsHeaderSticky(scrollTop > 80);
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', onScrollEv);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', onScrollEv);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  useEffect(() => {
-    const lang: string | null = checkQueryParams(Router);
-    if (!lang) {
-      Router.replace(Router.pathname + '?lang=en').then(() =>
-        context.setPageLang('en')
-      );
-    } else {
-      context.setPageLang(lang ? lang : 'en');
-    }
-  }, []);
-
   return (
-    <header className={stateHeader}>
-      <Link className={styles.header__link} href={redirectToWelcome()}>
+    <header
+      className={
+        isHeaderSticky
+          ? styles.header + ' ' + styles.header_sticky
+          : styles.header + ' ' + styles.header_ordinary
+      }
+    >
+      <Link className={styles.header__link} href={`.?lang=${checkedLang}`}>
         {context.getConstants().welcomePageLink}
       </Link>
       {user && (
-        <Link className={styles.header__link} href="/main">
-          To main page
+        <Link
+          className={styles.header__link}
+          href={`/main?lang=${checkedLang}`}
+        >
+          {context.getConstants().mainPageLink}
         </Link>
       )}
       <div className={styles.header__container}>
         <LangButton />
         {user ? (
           <>
-            <AuthButton text="Sign Out" onClick={handleSignOut} />
+            <AuthButton
+              text={context.getConstants().signOut}
+              onClick={handleSignOut}
+            />
             <Timer />
           </>
         ) : (
           <>
             <AuthButton
-              text="Sign In"
-              onClick={() => Router.push(ROUTES.SIGN_IN)}
+              text={context.getConstants().signIn}
+              onClick={() =>
+                Router.push(ROUTES.SIGN_IN + `?lang=${checkedLang}`)
+              }
             />
             <AuthButton
-              text="Sign Up"
-              onClick={() => Router.push(ROUTES.SIGN_UP)}
+              text={context.getConstants().signUp}
+              onClick={() =>
+                Router.push(ROUTES.SIGN_UP + `?lang=${checkedLang}`)
+              }
             />
           </>
         )}

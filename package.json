@@ -19,6 +19,7 @@
     "@apollo/client": "^3.8.8",
     "@codemirror/lang-json": "^6.0.1",
     "@reduxjs/toolkit": "^2.0.1",
+    "@types/react-redux": "^7.1.33",
     "@uiw/react-codemirror": "^4.21.21",
     "cm6-graphql": "0.0.12",
     "codemirror-graphql": "^2.0.10",

@@ -1,4 +1,4 @@
-import { GQLArguments } from '../../types/types';
+import { GQLArguments } from '@/types/types';
 
 const dynamicBaseQuery =
   ({ baseUrl }: { baseUrl: string }) =>
@@ -14,9 +14,11 @@ const dynamicBaseQuery =
       'Content-Type': 'application/json',
     };
 
-    const summaryHeaders: Record<string, string> = Object.keys(headers).length
-      ? Object.assign(defaultHeaders, headers)
-      : defaultHeaders;
+    const summaryHeaders: Record<string, string> | undefined = !Object.keys(
+      headers!
+    ).length
+      ? defaultHeaders
+      : Object.assign(defaultHeaders, headers);
 
     try {
       const response: Response = await fetch(url ? url : baseUrl, {
@@ -29,8 +31,8 @@ const dynamicBaseQuery =
       const result = response.json();
 
       return { data: result };
-    } catch (error) {
-      return { error: { status: 500, data: error } };
+    } catch (error: unknown) {
+      return { error: { status: 500, data: <string>error } };
     }
   };
 

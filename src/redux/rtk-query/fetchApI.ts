@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import introspectionQuery from '../../constants/introspection-query';
-import { GQLArguments } from '../../types/types';
+import introspectionQuery from '@/constants/introspection-query';
+import { GQLArguments } from '@/types/types';
 import dynamicBaseQuery from './dinamicBaseQuery';
 
 export const graphQLApi = createApi({
@@ -11,7 +11,7 @@ export const graphQLApi = createApi({
   endpoints: (build) => ({
     getIntrospection: build.query({
       query: (arg?: GQLArguments): GQLArguments => ({
-        url: !arg.url ? 'https://rickandmortyapi.com/graphql' : arg.url,
+        url: !arg!.url ? 'https://rickandmortyapi.com/graphql' : arg!.url,
         headers: { Warning: 'RSHeroes' },
         body: {
           operationName: 'IntrospectionQuery',
