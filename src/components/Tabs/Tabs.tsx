@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { ChangeEvent, useRef, useState } from 'react';
-import Button from '../Button/Button';
+import Button from '@/components/Button/Button';
 import styles from './Tabs.module.scss';
 
 const Tabs: React.FC = () => {
@@ -38,14 +38,14 @@ const Tabs: React.FC = () => {
           text="Variables"
           onClick={handleTabClick}
           className={!isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
-          disabled={isVariable}
+          isDisabled={isVariable}
         />
 
         <Button
           text="Headers"
           onClick={handleTabClick}
           className={isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
-          disabled={!isVariable}
+          isDisabled={!isVariable}
         />
         <Button
           onClick={openTabs}

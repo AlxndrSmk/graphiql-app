@@ -1,0 +1,43 @@
+.error {
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+  }
+
+  &__container {
+    background-color: #990000;
+    border-radius: 5px;
+    color: #b5b7b7;
+    max-width: 700px;
+    padding: 20px;
+    word-wrap: break-word;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  &__description {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  &__stack {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    color: #4e4e4e;
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 10px;
+    white-space: pre-wrap;
+  }
+}
