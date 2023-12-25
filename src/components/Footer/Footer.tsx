@@ -31,9 +31,9 @@ const Footer: React.FC = () => {
         )}
       </div>
       <div className={styles.footer__created}>
-        <span className={styles['footer__created-text']}>{`${
+        <span className={styles['footer__created-text']}>{`© 2023 ${
           context.getConstants().textCreated
-        } 2023`}</span>
+        }`}</span>
       </div>
       <div className={styles.footer__logo}>
         <Link href="https://rs.school/react/" target="blank">
