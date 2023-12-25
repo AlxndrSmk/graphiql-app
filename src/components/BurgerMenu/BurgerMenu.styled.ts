@@ -10,7 +10,7 @@ export const StyledMenu = styled.nav<{ open: boolean }>`
   background-color: ${colors.lightbrown};
   z-index: 1;
 
-  display: flex;
+  display: ${({ open }) => (open ? 'flex' : 'none')};
   gap: 10px;
   flex-direction: column;
   padding: 10rem 0;

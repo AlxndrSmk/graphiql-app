@@ -16,7 +16,12 @@
 
   &_sticky {
     @include headerPosition;
-    @include headerStyle(90%, map.get($headerColors, sticky), 60px);
+    @include headerStyle(90%, map.get($headerColors, sticky), 80px);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(0, 0, 0, 1) 31%
+    );
   }
 
   &__link {
