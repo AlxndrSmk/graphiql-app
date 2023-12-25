@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import { ChangeEvent, SyntheticEvent, useRef, useState } from 'react';
+import { ChangeEvent, FC, SyntheticEvent, useRef, useState } from 'react';
 import Button from '@/components/Button/Button';
 import styles from './Tabs.module.scss';
 import { TabsProps } from '@/types/types';
 
-const Tabs: React.FC<TabsProps> = ({
+const Tabs: FC<TabsProps> = ({
   variables,
   headers,
   setVariables,

@@ -1,109 +1,143 @@
-import React, { useCallback } from 'react';
+import React, { ReactNode, useState } from 'react';
+import { CMCType, PrettierArgs, TEditor } from '@/types/types';
 import Image from 'next/image';
-import { useState } from 'react';
-import CodeMirror from '@uiw/react-codemirror';
-import useGetWindowDimensions from '@/utils/useGetWindowsDimensions';
-import Tabs from '@/components/Tabs/Tabs';
 import Button from '@/components/Button/Button';
-import { PrettierArgs, TEditor } from '@/types/types';
-import { prettify } from '@/utils/prettify';
 import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
-import { DEFAULT_REQUEST } from '@/constants/DefaultRequest';
-import { tablet } from '@/utils/constants';
-
-import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
-import styles from './Editor.module.scss';
-import createGQLArgs from '../../utils/createGQLArgs';
+import Tabs from '@/components/Tabs/Tabs';
+import { prettify } from '@/utils/prettify';
+import createGQLArgs from '@/utils/createGQLArgs';
 import { useSelector } from 'react-redux';
-import StoreType from '../../redux/store/store-type';
+import StoreType from '@/redux/store/store-type';
+import { useLazyGetGQLResponseQuery } from '@/redux/rtk-query/fetchApI';
+import useGetWindowDimensions from '@/utils/useGetWindowsDimensions';
+import { tablet } from '@/utils/constants';
+import styles from '@/components/Editor/Editor.module.scss';
 
-const Editor: React.FC<TEditor> = ({
-  type,
-  showRight,
-  setShowRight,
-  operation,
-  response,
-}) => {
-  const [editorValue, setEditorValue] = useState<string>(DEFAULT_REQUEST);
-  const [variables, setVariables] = useState<string>('');
-  const [headers, setHeaders] = useState<string>('');
-  const urlFromStore = useSelector((state: StoreType) => state.url);
+const Editor = (
+  EditorComponent: React.FC<CMCType>,
+  props: TEditor
+): ReactNode => {
+  const { type, stateData, setStateData } = props;
+  const [isShow, setShow] = useState<boolean>(false);
 
-  const isQueryEditor = type === 'query';
   const { width } = useGetWindowDimensions();
   const isTablet = width < tablet;
 
-  const openNext = () => {
-    setShowRight((prev) => !prev);
+  const openNext = (): void => {
+    setShow((prev) => !prev);
   };
+  const QueryEditor: React.FC = () => {
+    const [stateInput, setStateInput] = useState(
+      'query getCharacters {\n' +
+        '  characters(page: 1, filter: {\n' +
+        '    name: "Rick"\n' +
+        '  }) {\n' +
+        '    results {\n' +
+        '      id\n' +
+        '      name\n' +
+        '      image\n' +
+        '    }\n' +
+        '  }\n' +
+        '}'
+    );
 
-  const handleEditorChange = useCallback((value: string) => {
-    setEditorValue(value);
-  }, []);
+    const [variables, setVariables] = useState<string>('');
+    const [headers, setHeaders] = useState<string>('');
 
-  const handlePrettifyClick = (): void => {
-    setEditorValue(prettify(editorValue));
-  };
+    const urlFromStore = useSelector((state: StoreType) => state.url);
+    const [fetchGQL, data] = useLazyGetGQLResponseQuery();
 
-  const executeQuery = (): void => {
-    if (isQueryEditor) {
-      const params: PrettierArgs = createGQLArgs(
-        editorValue,
+    const handleEditorChange = (value: string): void => {
+      setStateInput(value);
+    };
+
+    const handlePrettifyClick = (): void => {
+      setStateInput(prettify(stateInput));
+    };
+    const handleExecute = (): void => {
+      const args: PrettierArgs = createGQLArgs(
+        stateInput,
         variables,
         headers,
         urlFromStore
       );
-      operation(params);
-    }
-  };
 
-  return (
-    <div className={`${styles.editor} ${showRight && styles.open}`}>
-      <div className={styles.editor__text}>
-        <CodeMirror
-          value={isQueryEditor ? editorValue : response}
-          onChange={handleEditorChange}
-          theme={codeMirrorTheme}
-          readOnly={!isQueryEditor}
+      if (args.errors) {
+        setStateData(`errors:\n ${args.errors!.join('\n')}`);
+      } else {
+        fetchGQL(args.args);
+        const result: string = prettify(JSON.stringify(data.data));
+        setStateData(result);
+      }
+    };
+
+    return (
+      <div className={`${styles.editor} ${isShow && styles.open}`}>
+        <div className={styles.editor__text}>
+          <EditorComponent
+            valueView={stateInput}
+            readOnly={false}
+            eventOnChange={handleEditorChange}
+          />
+        </div>
+        {isTablet && (
+          <button className={styles.show_next} onClick={openNext}>
+            <Image
+              src="/openNext.svg"
+              alt="open JSON Viewer"
+              width="30"
+              height="30"
+            />
+          </button>
+        )}
+        <div className={styles.editor__btns}>
+          <Button
+            img={CLEAN_IMAGE}
+            isTooltip={true}
+            onHoverText="Prettify"
+            onClick={handlePrettifyClick}
+          />
+          <Button
+            img={PLAY_IMAGE}
+            isTooltip={true}
+            onHoverText="Execute query"
+            onClick={handleExecute}
+            className="execute_btn"
+          />
+        </div>
+        <Tabs
+          headers={headers}
+          setHeaders={setHeaders}
+          variables={variables}
+          setVariables={setVariables}
         />
       </div>
-      {isTablet && (
-        <button className={styles.show_next} onClick={() => openNext()}>
-          <Image
-            src="/openNext.svg"
-            alt="open JSON Viewer"
-            width="30"
-            height="30"
-          />
-        </button>
-      )}
-      {isQueryEditor && (
-        <>
-          <div className={styles.editor__btns}>
-            <Button
-              img={CLEAN_IMAGE}
-              isTooltip={true}
-              onHoverText="Prettify"
-              onClick={handlePrettifyClick}
+    );
+  };
+
+  const JsonEditor: React.FC = () => {
+    return (
+      <div className={`${styles.editor}`}>
+        <div className={styles.editor__text}>
+          <EditorComponent valueView={stateData} readOnly={true} />
+        </div>
+        {isTablet && (
+          <button className={styles.show_next} onClick={openNext}>
+            <Image
+              src="/openNext.svg"
+              alt="open JSON Viewer"
+              width="30"
+              height="30"
             />
-            <Button
-              img={PLAY_IMAGE}
-              isTooltip={true}
-              onHoverText="Execute query"
-              onClick={executeQuery}
-              className="execute_btn"
-            />
-          </div>
-          <Tabs
-            headers={headers}
-            setHeaders={setHeaders}
-            setVariables={setVariables}
-            variables={variables}
-          />
-        </>
-      )}
-    </div>
-  );
+          </button>
+        )}
+      </div>
+    );
+  };
+
+  if (type === 'query') return <QueryEditor />;
+
+  return <JsonEditor />;
 };
 
 export default Editor;

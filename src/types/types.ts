@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { User, UserCredential } from 'firebase/auth';
-import { schema } from '../validation/validationSchema';
+import { schema } from '@/validation/validationSchema';
 import { Dispatch, ReactNode, SetStateAction, SyntheticEvent } from 'react';
 
 export type TButton = {
@@ -13,7 +13,18 @@ export type TButton = {
   className?: string;
 };
 
-export type TEditor = {
+//TODO TEditor
+// export type TEditor = {
+//   type: 'json' | 'query';
+//   showRight: boolean;
+//   setShowRight: Dispatch<SetStateAction<boolean>>;
+//   responseText?: string;
+//   setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
+//   operation(args?: PrettierArgs): void;
+//   response: string;
+// };
+
+export type TEditorOld = {
   type: 'json' | 'query';
   showRight: boolean;
   setShowRight: Dispatch<SetStateAction<boolean>>;
@@ -44,11 +55,6 @@ export interface CustomError {
 export interface AuthViewProps {
   authCallback: (email: string, password: string) => Promise<UserCredential>;
   page?: 'SIGN_IN' | 'SIGN_UP';
-}
-
-export interface CustomError {
-  code: string;
-  message: string;
 }
 
 export type schemaType = Yup.InferType<typeof schema>;
@@ -174,3 +180,15 @@ export interface TabsProps {
   setVariables: Dispatch<SetStateAction<string>>;
   setHeaders: Dispatch<SetStateAction<string>>;
 }
+
+export interface CMCType {
+  valueView: string;
+  readOnly: boolean;
+  eventOnChange?(value: string): void;
+}
+
+export type TEditor = {
+  type: 'json' | 'query';
+  setStateData: Dispatch<SetStateAction<string>>;
+  stateData: string;
+};
