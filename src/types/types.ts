@@ -136,3 +136,54 @@ export type TSize = {
   width: number;
   height: number;
 };
+
+export type TDocType = {
+  kind: string;
+  name: string;
+  description: string;
+  fields: TDocField[] | null;
+  inputFields: null;
+  interfaces: [] | null;
+  enumValues: null | [];
+  possibleTypes?: null;
+};
+
+type TDocField = {
+  name: string;
+  description: string;
+  args: TDocArgs[];
+  type: TDocOfType | null;
+  isDeprecated: boolean;
+  deprecationReason: null;
+};
+
+export type TDocOfType = {
+  kind: string;
+  name: string | null;
+  ofType: TDocOfType | null;
+};
+
+type TDocArgs = {
+  name: string;
+  description: string;
+  type: {
+    kind: string;
+    name: string | null;
+    ofType: TDocOfType;
+    defaultValue?: null;
+  };
+};
+
+export type TDoc = {
+  data: {
+    __schema: {
+      queryType: {
+        name: string;
+      };
+      mutationType?: null;
+      subscriptionType?: null;
+      types: TDocType[];
+      // directives: [];
+    };
+  };
+};
