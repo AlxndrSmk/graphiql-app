@@ -17,6 +17,7 @@ import createGQLArgs from '../../utils/createGQLArgs';
 import { useSelector } from 'react-redux';
 import StoreType from '../../redux/store/store-type';
 
+//TODO must be delete or approve
 const EditorOld: React.FC<TEditorOld> = ({
   type,
   showRight,

@@ -13,17 +13,6 @@ export type TButton = {
   className?: string;
 };
 
-//TODO TEditor
-// export type TEditor = {
-//   type: 'json' | 'query';
-//   showRight: boolean;
-//   setShowRight: Dispatch<SetStateAction<boolean>>;
-//   responseText?: string;
-//   setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
-//   operation(args?: PrettierArgs): void;
-//   response: string;
-// };
-
 export type TEditorOld = {
   type: 'json' | 'query';
   showRight: boolean;
@@ -189,6 +178,23 @@ export interface CMCType {
 
 export type TEditor = {
   type: 'json' | 'query';
+};
+
+export interface TEditorHOC {
   setStateData: Dispatch<SetStateAction<string>>;
   stateData: string;
-};
+  isTablet: boolean;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  isShow: boolean;
+}
+
+//TODO for restore old version
+// export type TEditor = {
+//   type: 'json' | 'query';
+//   showRight: boolean;
+//   setShowRight: Dispatch<SetStateAction<boolean>>;
+//   responseText?: string;
+//   setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
+//   operation(args?: PrettierArgs): void;
+//   response: string;
+// };

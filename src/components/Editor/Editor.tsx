@@ -1,5 +1,5 @@
-import React, { ReactNode, useState } from 'react';
-import { CMCType, PrettierArgs, TEditor } from '@/types/types';
+import React, { useState } from 'react';
+import { CMCType, PrettierArgs, TEditor, TEditorHOC } from '@/types/types';
 import Image from 'next/image';
 import Button from '@/components/Button/Button';
 import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
@@ -9,37 +9,32 @@ import createGQLArgs from '@/utils/createGQLArgs';
 import { useSelector } from 'react-redux';
 import StoreType from '@/redux/store/store-type';
 import { useLazyGetGQLResponseQuery } from '@/redux/rtk-query/fetchApI';
-import useGetWindowDimensions from '@/utils/useGetWindowsDimensions';
-import { tablet } from '@/utils/constants';
 import styles from '@/components/Editor/Editor.module.scss';
 
 const Editor = (
   EditorComponent: React.FC<CMCType>,
   props: TEditor
-): ReactNode => {
-  const { type, stateData, setStateData } = props;
-  const [isShow, setShow] = useState<boolean>(false);
-  const [stateInput, setStateInput] = useState(
-    'query getCharacters {\n' +
-      '  characters(page: 1, filter: {\n' +
-      '    name: "Rick"\n' +
-      '  }) {\n' +
-      '    results {\n' +
-      '      id\n' +
-      '      name\n' +
-      '      image\n' +
-      '    }\n' +
-      '  }\n' +
-      '}'
-  );
-
-  const { width } = useGetWindowDimensions();
-  const isTablet = width < tablet;
-
-  const openNext = (): void => {
-    setShow((prev) => !prev);
-  };
-  const QueryEditor: React.FC = () => {
+): React.FC<TEditorHOC> => {
+  const { type } = props;
+  const QueryEditor: React.FC<TEditorHOC> = ({
+    setStateData,
+    setShow,
+    isShow,
+    isTablet,
+  }) => {
+    const [stateInput, setStateInput] = useState(
+      'query getCharacters {\n' +
+        '  characters(page: 1, filter: {\n' +
+        '    name: "Rick"\n' +
+        '  }) {\n' +
+        '    results {\n' +
+        '      id\n' +
+        '      name\n' +
+        '      image\n' +
+        '    }\n' +
+        '  }\n' +
+        '}'
+    );
     const [variables, setVariables] = useState<string>('');
     const [headers, setHeaders] = useState<string>('');
 
@@ -71,6 +66,10 @@ const Editor = (
           setStateData(result);
         });
       }
+    };
+
+    const openNext = (): void => {
+      setShow((prev) => !prev);
     };
 
     return (
@@ -117,9 +116,17 @@ const Editor = (
     );
   };
 
-  const JsonEditor: React.FC = () => {
+  const JsonEditor: React.FC<TEditorHOC> = ({
+    stateData,
+    setShow,
+    isShow,
+    isTablet,
+  }) => {
+    const openNext = (): void => {
+      setShow((prev) => !prev);
+    };
     return (
-      <div className={`${styles.editor}`}>
+      <div className={`${styles.editor} ${isShow && styles.open}`}>
         <div className={styles.editor__text}>
           <EditorComponent valueView={stateData} readOnly={true} />
         </div>
@@ -137,9 +144,9 @@ const Editor = (
     );
   };
 
-  if (type === 'query') return <QueryEditor />;
+  if (type === 'query') return QueryEditor;
 
-  return <JsonEditor />;
+  return JsonEditor;
 };
 
 export default Editor;
