@@ -5,21 +5,30 @@
 .footer {
   @include divDisplay(spaced);
   width: 100%;
-  height: 80px;
   box-sizing: border-box;
-  padding: 5px 20px;
-  gap: 5px;
+  padding: 15px 20px 20px 20px;
+  gap: 10px;
   background: map.get($footerColors, 'ft-background');
+
+  @media screen and (max-width: 675px) {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
 
   &__authors {
     @include divDisplay(spaced);
     width: 300px;
     gap: 10px;
 
+    @media screen and (max-width: 675px) {
+      width: 80%;
+    }
+
     &-names {
       text-decoration: none;
       text-align: center;
-      font-size: 1em;
+      font-weight: 100;
       color: map.get($footerColors, 'names');
       cursor: pointer;
 
@@ -37,7 +46,7 @@
     @include divDisplay(centered);
 
     &-text {
-      font-size: 1.5em;
+      font-size: 1.1em;
       font-weight: 200;
       color: map.get($footerColors, 'created');
     }

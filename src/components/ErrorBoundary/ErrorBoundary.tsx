@@ -1,5 +1,5 @@
 import { ErrorBoundaryState } from '@/types/types';
-import React, { Component, PropsWithChildren } from 'react';
+import { Component, PropsWithChildren } from 'react';
 import styles from './ErrorBoundary.module.scss';
 
 class ErrorBoundary extends Component<PropsWithChildren, ErrorBoundaryState> {

@@ -1,6 +1,6 @@
 const enFooter = {
   altLogo: 'RSSchool logo',
-  textCreated: 'Created at',
+  textCreated: 'All Rights Reserved.',
 };
 
 export default enFooter;
