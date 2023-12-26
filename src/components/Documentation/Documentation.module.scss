@@ -10,6 +10,13 @@
 
   &__title {
     font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 5px;
+    padding: 5px;
+
   }
 
   &__header {
@@ -36,5 +43,14 @@
     padding: 10px;
     overflow-y: scroll;
     background-color: rgb(33, 42, 59);
+  }
+
+  &__bread {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
   }
 }

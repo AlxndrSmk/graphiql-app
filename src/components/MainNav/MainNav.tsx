@@ -4,7 +4,7 @@ import Button from '@/components/Button/Button';
 import Documentation from '../Documentation/Documentation';
 // import res from './fakeResponse.json';
 // import { TDoc, TDocType } from '../../types/types';
-import styles from './MainNav.moduoe.scss';
+import styles from './MainNav.module.scss';
 
 const MainNav: React.FC = () => {
   const [isShowDoc, setIsShowDoc] = useState<boolean>(false);
