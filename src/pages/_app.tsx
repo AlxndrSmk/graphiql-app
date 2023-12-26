@@ -5,13 +5,18 @@ import langContextInit from '@/utils/langContextInit';
 import ErrorBoundary from '@/components/ErrorBoundary/ErrorBoundary';
 
 import '@/styles/globals.scss';
-import React from 'react';
+import React, { useRef } from 'react';
 import { Provider } from 'react-redux';
-import store from '../redux/store/store';
+import storeApp from '../redux/store/store';
+import { StoreMaker } from '@/redux/store/store-type';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+  const storeRef = useRef<StoreMaker>();
+  if (!storeRef.current) {
+    storeRef.current = storeApp();
+  }
   return (
-    <Provider store={store}>
+    <Provider store={storeRef.current}>
       <LanguageContext.Provider value={langContextInit}>
         <AuthProvider>
           <ErrorBoundary>

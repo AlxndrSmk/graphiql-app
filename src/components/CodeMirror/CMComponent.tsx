@@ -3,6 +3,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
 import { CMCType } from '@/types/types';
 import styles from './CMCComponent.module.scss';
+
 const CMComponent: React.FC<CMCType> = ({
   valueView,
   readOnly,

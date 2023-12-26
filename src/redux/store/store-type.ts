@@ -1,5 +1,7 @@
 import storeApp from './store';
 
-type StoreType = ReturnType<(typeof storeApp)['getState']>;
+export type StoreMaker = ReturnType<typeof storeApp>;
+
+type StoreType = ReturnType<StoreMaker['getState']>;
 
 export default StoreType;

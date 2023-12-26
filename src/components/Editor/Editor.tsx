@@ -19,6 +19,19 @@ const Editor = (
 ): ReactNode => {
   const { type, stateData, setStateData } = props;
   const [isShow, setShow] = useState<boolean>(false);
+  const [stateInput, setStateInput] = useState(
+    'query getCharacters {\n' +
+      '  characters(page: 1, filter: {\n' +
+      '    name: "Rick"\n' +
+      '  }) {\n' +
+      '    results {\n' +
+      '      id\n' +
+      '      name\n' +
+      '      image\n' +
+      '    }\n' +
+      '  }\n' +
+      '}'
+  );
 
   const { width } = useGetWindowDimensions();
   const isTablet = width < tablet;
@@ -27,25 +40,11 @@ const Editor = (
     setShow((prev) => !prev);
   };
   const QueryEditor: React.FC = () => {
-    const [stateInput, setStateInput] = useState(
-      'query getCharacters {\n' +
-        '  characters(page: 1, filter: {\n' +
-        '    name: "Rick"\n' +
-        '  }) {\n' +
-        '    results {\n' +
-        '      id\n' +
-        '      name\n' +
-        '      image\n' +
-        '    }\n' +
-        '  }\n' +
-        '}'
-    );
-
     const [variables, setVariables] = useState<string>('');
     const [headers, setHeaders] = useState<string>('');
 
     const urlFromStore = useSelector((state: StoreType) => state.url);
-    const [fetchGQL, data] = useLazyGetGQLResponseQuery();
+    const [fetchGQL] = useLazyGetGQLResponseQuery();
 
     const handleEditorChange = (value: string): void => {
       setStateInput(value);
@@ -65,9 +64,12 @@ const Editor = (
       if (args.errors) {
         setStateData(`errors:\n ${args.errors!.join('\n')}`);
       } else {
-        fetchGQL(args.args);
-        const result: string = prettify(JSON.stringify(data.data));
-        setStateData(result);
+        fetchGQL(args.args, true).then(({ data, error, isSuccess }) => {
+          const result: string = isSuccess
+            ? prettify(JSON.stringify(data))
+            : prettify(JSON.stringify(error));
+          setStateData(result);
+        });
       }
     };
 

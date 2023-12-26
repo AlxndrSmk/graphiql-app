@@ -3,7 +3,6 @@ export const prettify = (value: string) => {
 };
 
 const removeNewlineAndSpaces = (value: string) => {
-  console.log(value);
   return value.replaceAll('\n', ' ').replace(/\s+/g, ' ');
 };
 
