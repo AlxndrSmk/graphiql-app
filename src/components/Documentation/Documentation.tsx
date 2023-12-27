@@ -1,36 +1,41 @@
-// import { TDoc } from '../../types/types';
+// import { TDoc, TDocType } from '../../types/types';
 
 import styles from './Documentation.module.scss';
-// import DocQuery from './DocQuery';
 import Image from 'next/image';
 
-import { res } from '../MainNav/ddd';
-import { useState } from 'react';
-// import crumb from '.'
+import res from '../MainNav/ddd.json';
+import { useEffect, useState } from 'react';
 
 const Documentation: React.FC = () => {
-  // const [isMainDoc, setIsMainDoc] = useState<boolean>(true);
-  const [, setQueryData] = useState(null);
+  // const rr = dat.data.__schema.types;
+  const [data, setQueryData] = useState(res);
   const [breadCrumb, setBreadCrumb] = useState(['Docs']);
 
-  // const btnHandler = (el) => {
-  //   // setIsMainDoc((prev) => !prev);
-  //   setQueryData(el);
-  // };
+  useEffect(() => {
+    const filter = res.filter((el) => !el.name.startsWith('_'));
+    setQueryData(filter);
+  }, []);
 
   const handleBreadCrumbsBtn = (ind: number, el: string) => {
     const arr = breadCrumb.slice(0, ind + 1);
-    console.log(arr);
+
     setBreadCrumb(arr);
-    filterData(el);
+    if (el !== 'Docs') {
+      filterData(el);
+    } else {
+      const filter = res.filter((el) => !el.name.startsWith('_'));
+      setQueryData(filter);
+    }
   };
 
   const handleBtnClick = (title: string) => {
     setBreadCrumb((prev) => [...prev, title]);
+    filterData(title);
   };
 
   const filterData = (key: string) => {
-    const filtered = res.filter((el) => el.kind === key);
+    const filtered = res.filter((el) => el.name === key);
+    // console.log(res);
     setQueryData(filtered);
   };
 
@@ -66,10 +71,10 @@ const Documentation: React.FC = () => {
     <div className={styles.docs}>
       <div className={styles.docs__title}>{breadCrumbsMaker()}</div>
 
-      {res.map((el, ind) => {
+      {data.map((el, ind) => {
         return (
           <div key={el.description + ind}>
-            {el.name === 'Query' ? (
+            {/* {el.name === 'Query' ? (
               <>
                 <h3 className={styles.docs__header}>Root types</h3>
                 <button
@@ -80,16 +85,25 @@ const Documentation: React.FC = () => {
                 </button>
                 <h3 className={styles.docs__header}>All Schema Types</h3>
               </>
-            ) : (
-              <>
-                <button
-                  onClick={() => handleBtnClick(el.name)}
-                  className={styles.docs__query}
-                >
-                  {el.name}
-                </button>
-              </>
-            )}
+            ) : ( */}
+            <>
+              <button
+                onClick={() => handleBtnClick(el.name)}
+                className={styles.docs__query}
+              >
+                <p>{el.name}</p>
+                {
+                  breadCrumb.length > 1 && <p>{el.description}</p>
+
+                  // {el.fields.map(e => {
+                  //   e.
+                  // })
+
+                  // }
+                }
+              </button>
+            </>
+            {/* )} */}
           </div>
         );
       })}

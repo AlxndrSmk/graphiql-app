@@ -149,10 +149,6 @@ export type TDocType = {
   name: string;
   description: string;
   fields: TDocField[] | null;
-  inputFields: null;
-  interfaces: [] | null;
-  enumValues: null | [];
-  possibleTypes?: null;
 };
 
 type TDocField = {
@@ -160,14 +156,11 @@ type TDocField = {
   description: string;
   args: TDocArgs[];
   type: TDocOfType | null;
-  isDeprecated: boolean;
-  deprecationReason: null;
 };
 
 export type TDocOfType = {
   kind: string;
   name: string | null;
-  ofType: TDocOfType | null;
 };
 
 type TDocArgs = {
@@ -176,8 +169,6 @@ type TDocArgs = {
   type: {
     kind: string;
     name: string | null;
-    ofType: TDocOfType;
-    defaultValue?: null;
   };
 };
 
@@ -190,7 +181,6 @@ export type TDoc = {
       mutationType?: null;
       subscriptionType?: null;
       types: TDocType[];
-      // directives: [];
     };
   };
 };
