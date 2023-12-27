@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { LangContext } from '@/types/types';
 import LanguageContext from '@/context/langContext';
 import { NextRouter, useRouter } from 'next/router';

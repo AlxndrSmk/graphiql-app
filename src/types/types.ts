@@ -27,6 +27,11 @@ export interface AuthButtonProps {
   type?: string;
   isLoading?: boolean;
   isDisabled?: boolean;
+  icon?: {
+    alt: string;
+    size: number;
+    src: string;
+  };
 }
 
 export interface EmailAndPasswordProps {
@@ -143,6 +148,20 @@ export interface ErrorBoundaryState {
   hasError: boolean;
   error: null | Error;
 }
+
+export interface LinkButtonProps {
+  alt: string;
+  size: number;
+  src: string;
+  href: string;
+  text: string;
+  isVisible?: boolean;
+}
+
+export type BurgerButtonProps = {
+  open: boolean;
+  setOpen: (v: boolean) => void;
+};
 
 export type TDocType = {
   kind: string;

@@ -1,6 +1,6 @@
 const ruFooter = {
   altLogo: 'RSSchool лого',
-  textCreated: 'Дата создания',
+  textCreated: 'Все права защищены.',
 };
 
 export default ruFooter;

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { LangContext, TeamData } from '@/types/types';
@@ -31,9 +31,9 @@ const Footer: React.FC = () => {
         )}
       </div>
       <div className={styles.footer__created}>
-        <span className={styles['footer__created-text']}>{`${
+        <span className={styles['footer__created-text']}>{`© 2023 ${
           context.getConstants().textCreated
-        } 2023`}</span>
+        }`}</span>
       </div>
       <div className={styles.footer__logo}>
         <Link href="https://rs.school/react/" target="blank">

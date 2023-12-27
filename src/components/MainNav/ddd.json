@@ -558,7 +558,7 @@
           "ofType": null
         }
       }
-    ],
+    ]
   },
   {
     "kind": "SCALAR",
@@ -802,7 +802,7 @@
           "kind": "OBJECT",
           "name": "Info",
           "ofType": null
-        },
+        }
       },
       {
         "name": "results",
