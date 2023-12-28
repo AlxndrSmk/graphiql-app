@@ -1,109 +1,62 @@
-// import { TDoc, TDocType } from '../../types/types';
-
-import styles from './Documentation.module.scss';
-import Image from 'next/image';
-
-import res from '../MainNav/ddd.json';
 import { useEffect, useState } from 'react';
+import { BreadCrumbsMaker } from './BreadcrumbsMaker';
+import { TDocType } from '../../types/types';
+import { res } from '../MainNav/ddd';
+import { ObjectType } from './objectType';
+import styles from './Documentation.module.scss';
 
 const Documentation: React.FC = () => {
-  // const rr = dat.data.__schema.types;
-  const [data, setQueryData] = useState(res);
-  const [breadCrumb, setBreadCrumb] = useState(['Docs']);
+  const types: TDocType[] = res.data.__schema.types;
+  const [data, setQueryData] = useState<TDocType[]>(types);
+  const [breadCrumb, setBreadCrumb] = useState<string[]>(['Docs']);
 
   useEffect(() => {
-    const filter = res.filter((el) => !el.name.startsWith('_'));
+    const filter: TDocType[] = types.filter((el) => !el.name.startsWith('_'));
     setQueryData(filter);
   }, []);
 
-  const handleBreadCrumbsBtn = (ind: number, el: string) => {
-    const arr = breadCrumb.slice(0, ind + 1);
-
-    setBreadCrumb(arr);
-    if (el !== 'Docs') {
-      filterData(el);
-    } else {
-      const filter = res.filter((el) => !el.name.startsWith('_'));
-      setQueryData(filter);
+  const handleBtnClick = (title: string) => {
+    if (breadCrumb[breadCrumb.length - 1] !== title) {
+      setBreadCrumb((prev) => [...prev, title]);
+      filterData(title);
     }
   };
 
-  const handleBtnClick = (title: string) => {
-    setBreadCrumb((prev) => [...prev, title]);
-    filterData(title);
-  };
-
   const filterData = (key: string) => {
-    const filtered = res.filter((el) => el.name === key);
-    // console.log(res);
+    const filtered: TDocType[] = types.filter((el) => el.name === key);
     setQueryData(filtered);
   };
 
-  const breadCrumbsMaker = () => {
-    return breadCrumb.map((el, ind) => {
-      if (ind === 0) {
-        return (
-          <button
-            className={styles.docs__bread}
-            onClick={() => handleBreadCrumbsBtn(ind, el)}
-            key={ind}
-          >
-            {el}
-          </button>
-        );
-      } else {
-        return (
-          <button
-            className={styles.docs__bread}
-            onClick={() => handleBreadCrumbsBtn(ind, el)}
-            key={ind}
-          >
-            <Image src="/less.svg" width={15} height={15} alt="back" />
-            <span>{el}</span>
-          </button>
-        );
-      }
-    });
-  };
-
-  // console.log(data);
   return (
     <div className={styles.docs}>
-      <div className={styles.docs__title}>{breadCrumbsMaker()}</div>
+      <div className={styles.docs__breads}>
+        <BreadCrumbsMaker
+          breadCrumb={breadCrumb}
+          types={types}
+          setBreadCrumb={setBreadCrumb}
+          setQueryData={setQueryData}
+        />
+      </div>
 
       {data.map((el, ind) => {
         return (
           <div key={el.description + ind}>
-            {/* {el.name === 'Query' ? (
-              <>
-                <h3 className={styles.docs__header}>Root types</h3>
-                <button
-                  onClick={() => handleBtnClick(el.name)}
-                  className={styles.docs__query}
-                >
-                  {el.name}
-                </button>
-                <h3 className={styles.docs__header}>All Schema Types</h3>
-              </>
-            ) : ( */}
             <>
               <button
                 onClick={() => handleBtnClick(el.name)}
                 className={styles.docs__query}
+                disabled={breadCrumb[breadCrumb.length - 1] === el.name}
               >
                 <p>{el.name}</p>
-                {
-                  breadCrumb.length > 1 && <p>{el.description}</p>
-
-                  // {el.fields.map(e => {
-                  //   e.
-                  // })
-
-                  // }
-                }
               </button>
+              {breadCrumb.length > 1 && el.kind === 'OBJECT' && (
+                <ObjectType el={el} handleBtnClick={handleBtnClick} />
+              )}
+
+              {breadCrumb.length > 1 && el.kind !== 'OBJECT' && (
+                <p className={styles.docs__desc}>{el.description}</p>
+              )}
             </>
-            {/* )} */}
           </div>
         );
       })}

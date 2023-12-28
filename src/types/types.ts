@@ -168,6 +168,17 @@ export type TDocType = {
   name: string;
   description: string;
   fields: TDocField[] | null;
+  inputFields: TDocArgs[] | null;
+  interfaces: [];
+  enumValues: null | TEnum[];
+  possibleTypes: null;
+};
+
+type TEnum = {
+  name: string;
+  description: string;
+  isDeprecated: boolean;
+  deprecationReason: null;
 };
 
 type TDocField = {
@@ -175,20 +186,25 @@ type TDocField = {
   description: string;
   args: TDocArgs[];
   type: TDocOfType | null;
+  isDeprecated: boolean;
+  deprecationReason: null;
 };
 
 export type TDocOfType = {
   kind: string;
   name: string | null;
+  ofType: null | TDocOfType;
 };
 
-type TDocArgs = {
+export type TDocArgs = {
   name: string;
   description: string;
   type: {
     kind: string;
     name: string | null;
+    ofType: TDocOfType | null;
   };
+  defaultValue: string | null;
 };
 
 export type TDoc = {
@@ -200,6 +216,19 @@ export type TDoc = {
       mutationType?: null;
       subscriptionType?: null;
       types: TDocType[];
+      // directives: [];
     };
   };
+};
+
+export type TObjectTypeProps = {
+  el: TDocType;
+  handleBtnClick: (str: string) => void;
+};
+
+export type TBreadCrumbProps = {
+  breadCrumb: string[];
+  types: TDocType[];
+  setBreadCrumb: Dispatch<SetStateAction<string[]>>;
+  setQueryData: Dispatch<SetStateAction<TDocType[]>>;
 };
