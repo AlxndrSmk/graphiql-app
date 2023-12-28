@@ -1,5 +1,9 @@
-import { ActionCreatorWithPayload, createAction } from '@reduxjs/toolkit';
+import { createAction, PayloadActionCreator } from '@reduxjs/toolkit';
+import { URLStore } from '@/types/types';
 
-const urlAction: ActionCreatorWithPayload<string, 'add'> = createAction('add');
+const urlAction: PayloadActionCreator<URLStore, 'add'> = createAction<
+  URLStore,
+  'add'
+>('add');
 
 export default urlAction;

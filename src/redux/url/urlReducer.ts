@@ -3,20 +3,25 @@ import {
   createReducer,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import urlAction from './urlAction';
-import { ReducerWithInitialState } from '@reduxjs/toolkit/dist/createReducer';
+import urlStoreInit from '@/constants/urlStoreInit';
+import urlAction from '@/redux/url/urlAction';
+import { URLStore } from '@/types/types';
+import { WritableDraft } from 'immer/src/types/types-external';
+import { ReducerWithInitialState } from '@reduxjs/toolkit/src/createReducer';
 
-const initURL: string = 'https://rickandmortyapi.com/graphql';
-
-const urlReducer: ReducerWithInitialState<string> = createReducer(
-  initURL,
-  (builder: ActionReducerMapBuilder<string>): void => {
+const urlReducer: ReducerWithInitialState<URLStore> = createReducer(
+  urlStoreInit,
+  (builder: ActionReducerMapBuilder<URLStore>) => {
     builder.addCase(
       urlAction,
-      (_state: string, action: PayloadAction<string>): string => {
-        if (!action.payload) return initURL;
-
-        return action.payload;
+      (
+        state: WritableDraft<URLStore>,
+        action: PayloadAction<URLStore, 'add'>
+      ): URLStore => {
+        return {
+          ...state,
+          url: action.payload.url,
+        };
       }
     );
   }

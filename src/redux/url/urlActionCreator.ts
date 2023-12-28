@@ -1,5 +1,5 @@
-import urlSlice from './urlSlice';
+import urlSlice from '@/redux/url/urlSlice';
 
-const { setURL } = urlSlice.actions;
+const setUrlAction = urlSlice.actions.urlAct;
 
-export default setURL;
+export default setUrlAction;

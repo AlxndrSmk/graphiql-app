@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { CMCType, PrettierArgs, TEditor, TEditorHOC } from '@/types/types';
+import {
+  CMCType,
+  JsonEditor,
+  PrettierArgs,
+  QueryEditor,
+  TEditor,
+} from '@/types/types';
 import Image from 'next/image';
 import Button from '@/components/Button/Button';
 import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
@@ -10,17 +16,20 @@ import { useSelector } from 'react-redux';
 import StoreType from '@/redux/store/store-type';
 import { useLazyGetGQLResponseQuery } from '@/redux/rtk-query/fetchApI';
 import styles from '@/components/Editor/Editor.module.scss';
+import Endpoint from '@/components/Enpoint/Endpoint';
 
 const Editor = (
   EditorComponent: React.FC<CMCType>,
   props: TEditor
-): React.FC<TEditorHOC> => {
+): React.FC<QueryEditor> => {
   const { type } = props;
-  const QueryEditor: React.FC<TEditorHOC> = ({
+  const QueryEditor: React.FC<QueryEditor> = ({
     setStateData,
     setShow,
     isShow,
     isTablet,
+    isShowEndpoint,
+    setShowEndpoint,
   }) => {
     const [stateInput, setStateInput] = useState(
       'query getCharacters {\n' +
@@ -38,7 +47,7 @@ const Editor = (
     const [variables, setVariables] = useState<string>('');
     const [headers, setHeaders] = useState<string>('');
 
-    const urlFromStore = useSelector((state: StoreType) => state.url);
+    const urlFromStore = useSelector((state: StoreType) => state.url.url);
     const [fetchGQL] = useLazyGetGQLResponseQuery();
 
     const handleEditorChange = (value: string): void => {
@@ -59,7 +68,7 @@ const Editor = (
       if (args.errors) {
         setStateData(`errors:\n ${args.errors!.join('\n')}`);
       } else {
-        fetchGQL(args.args, true).then(({ data, error, isSuccess }) => {
+        fetchGQL(args.args, true).then(({ data, error, isSuccess }): void => {
           const result: string = isSuccess
             ? prettify(JSON.stringify(data))
             : prettify(JSON.stringify(error));
@@ -69,12 +78,16 @@ const Editor = (
     };
 
     const openNext = (): void => {
-      setShow((prev) => !prev);
+      setShow((prev: boolean) => !prev);
     };
 
     return (
       <div className={`${styles.editor} ${isShow && styles.open}`}>
         <div className={styles.editor__text}>
+          <Endpoint
+            isShowEndpoint={isShowEndpoint}
+            setShowEndpoint={setShowEndpoint}
+          />
           <EditorComponent
             valueView={stateInput}
             readOnly={false}
@@ -116,7 +129,7 @@ const Editor = (
     );
   };
 
-  const JsonEditor: React.FC<TEditorHOC> = ({
+  const JsonEditor: React.FC<JsonEditor> = ({
     stateData,
     setShow,
     isShow,

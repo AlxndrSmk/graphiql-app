@@ -180,12 +180,28 @@ export type TEditor = {
   type: 'json' | 'query';
 };
 
-export interface TEditorHOC {
-  setStateData: Dispatch<SetStateAction<string>>;
-  stateData: string;
-  isTablet: boolean;
+export interface MainNavProp {
+  setShowEndpoint: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface EndpointProp extends MainNavProp {
+  isShowEndpoint: boolean;
+}
+
+export interface JsonEditor {
   setShow: Dispatch<SetStateAction<boolean>>;
   isShow: boolean;
+  isTablet: boolean;
+  stateData: string;
+}
+interface TEditorHOC extends EndpointProp {
+  setStateData: Dispatch<SetStateAction<string>>;
+}
+
+export interface QueryEditor extends TEditorHOC, JsonEditor {}
+
+export interface URLStore {
+  url: string;
 }
 
 //TODO for restore old version

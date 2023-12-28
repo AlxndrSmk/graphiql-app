@@ -9,7 +9,9 @@ const storeApp = () => {
       [graphQLApi.reducerPath]: graphQLApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(graphQLApi.middleware),
+      getDefaultMiddleware({
+        serializableCheck: true,
+      }).concat(graphQLApi.middleware),
   });
 };
 
