@@ -13,16 +13,6 @@ export type TButton = {
   className?: string;
 };
 
-export type TEditorOld = {
-  type: 'json' | 'query';
-  showRight: boolean;
-  setShowRight: Dispatch<SetStateAction<boolean>>;
-  responseText?: string;
-  setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
-  operation(args?: PrettierArgs): void;
-  response: string;
-};
-
 export interface AuthButtonProps {
   text: string;
   onClick?: () => void;
@@ -170,16 +160,6 @@ export interface TabsProps {
   setHeaders: Dispatch<SetStateAction<string>>;
 }
 
-export interface CMCType {
-  valueView: string;
-  readOnly: boolean;
-  eventOnChange?(value: string): void;
-}
-
-export type TEditor = {
-  type: 'json' | 'query';
-};
-
 export interface MainNavProp {
   setShowEndpoint: Dispatch<SetStateAction<boolean>>;
 }
@@ -188,29 +168,13 @@ export interface EndpointProp extends MainNavProp {
   isShowEndpoint: boolean;
 }
 
-export interface JsonEditor {
-  setShow: Dispatch<SetStateAction<boolean>>;
+export type TEditorOld = {
+  type: 'json' | 'query';
   isShow: boolean;
   isTablet: boolean;
-  stateData: string;
-}
-interface TEditorHOC extends EndpointProp {
+  setShow: Dispatch<SetStateAction<boolean>>;
   setStateData: Dispatch<SetStateAction<string>>;
-}
-
-export interface QueryEditor extends TEditorHOC, JsonEditor {}
-
-export interface URLStore {
-  url: string;
-}
-
-//TODO for restore old version
-// export type TEditor = {
-//   type: 'json' | 'query';
-//   showRight: boolean;
-//   setShowRight: Dispatch<SetStateAction<boolean>>;
-//   responseText?: string;
-//   setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
-//   operation(args?: PrettierArgs): void;
-//   response: string;
-// };
+  stateData: string;
+  isShowEndpoint: boolean;
+  setShowEndpoint: Dispatch<SetStateAction<boolean>>;
+};

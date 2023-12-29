@@ -8,6 +8,7 @@ import StoreType from '@/redux/store/store-type';
 
 const MainNav: React.FC<MainNavProp> = ({ setShowEndpoint }: MainNavProp) => {
   const selector = useSelector((state: StoreType) => state.url);
+  //TODO must be delete after!!!!!
   console.log(selector);
 
   const docImg = (
