@@ -1,30 +1,8 @@
-import {
-  ActionReducerMapBuilder,
-  createReducer,
-  PayloadAction,
-} from '@reduxjs/toolkit';
-import urlStoreInit from '@/constants/urlStoreInit';
-import urlAction from '@/redux/url/urlAction';
-import { URLStore } from '@/types/types';
-import { WritableDraft } from 'immer/src/types/types-external';
-import { ReducerWithInitialState } from '@reduxjs/toolkit/src/createReducer';
+import { PayloadAction } from '@reduxjs/toolkit';
 
-const urlReducer: ReducerWithInitialState<URLStore> = createReducer(
-  urlStoreInit,
-  (builder: ActionReducerMapBuilder<URLStore>) => {
-    builder.addCase(
-      urlAction,
-      (
-        state: WritableDraft<URLStore>,
-        action: PayloadAction<URLStore, 'add'>
-      ): URLStore => {
-        return {
-          ...state,
-          url: action.payload.url,
-        };
-      }
-    );
-  }
-);
+const urlReducer = (state: string, action: PayloadAction<string>): string => {
+  console.log(state);
+  return action.payload;
+};
 
 export default urlReducer;

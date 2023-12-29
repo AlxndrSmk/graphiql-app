@@ -1,7 +1,3 @@
-import { URLStore } from '@/types/types';
-
-const urlStoreInit: URLStore = {
-  url: 'https://rickandmortyapi.com/graphql',
-};
+const urlStoreInit: string = 'https://rickandmortyapi.com/graphql';
 
 export default urlStoreInit;

@@ -1,16 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { graphQLApi } from '../rtk-query/fetchApI';
-import urlSlice from '../url/urlSlice';
+import urlSlice from '@/redux/url/urlSlice';
 
 const storeApp = () => {
   return configureStore({
     reducer: {
-      [urlSlice.reducerPath]: urlSlice.reducer,
       [graphQLApi.reducerPath]: graphQLApi.reducer,
+      [urlSlice.name]: urlSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
-        serializableCheck: true,
+        serializableCheck: false,
       }).concat(graphQLApi.middleware),
   });
 };

@@ -7,8 +7,9 @@ import { useSelector } from 'react-redux';
 import StoreType from '@/redux/store/store-type';
 
 const MainNav: React.FC<MainNavProp> = ({ setShowEndpoint }: MainNavProp) => {
-  const selector = useSelector((state: StoreType) => state.url.url);
+  const selector = useSelector((state: StoreType) => state.url);
   console.log(selector);
+
   const docImg = (
     <Image src="/document.svg" alt="documentation" width="20" height="20" />
   );

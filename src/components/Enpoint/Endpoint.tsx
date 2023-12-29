@@ -13,7 +13,7 @@ const Endpoint: React.FC<EndpointProp> = ({
 }: EndpointProp) => {
   const input: React.LegacyRef<HTMLInputElement> = useRef(null);
 
-  const urlEndpoint = useSelector((state: StoreType) => state.url.url);
+  const urlEndpoint = useSelector((state: StoreType) => state.url);
   const dispatcher: StoreDispatcher = useDispatch();
 
   const onClickHandler = (): void => {
@@ -21,9 +21,10 @@ const Endpoint: React.FC<EndpointProp> = ({
       input.current!.value = 'https://rickandmortyapi.com/graphql';
     }
 
-    dispatcher(setUrlAction());
+    dispatcher(setUrlAction(input.current!.value));
     setShowEndpoint(false);
   };
+
   return (
     <label
       className={`${styles.endpoint} ${

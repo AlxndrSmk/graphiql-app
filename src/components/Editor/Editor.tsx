@@ -47,7 +47,7 @@ const Editor = (
     const [variables, setVariables] = useState<string>('');
     const [headers, setHeaders] = useState<string>('');
 
-    const urlFromStore = useSelector((state: StoreType) => state.url.url);
+    const urlFromStore = useSelector((state: StoreType) => state.url);
     const [fetchGQL] = useLazyGetGQLResponseQuery();
 
     const handleEditorChange = (value: string): void => {

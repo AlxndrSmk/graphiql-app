@@ -1,21 +1,13 @@
-import { createSlice, Slice, SliceSelectors } from '@reduxjs/toolkit';
-import urlReducer from '@/redux/url/urlReducer';
+import { createSlice } from '@reduxjs/toolkit';
 import urlStoreInit from '@/constants/urlStoreInit';
-import { URLStore } from '@/types/types';
-import { ReducerWithInitialState } from '@reduxjs/toolkit/src/createReducer';
+import urlReducer from '@/redux/url/urlReducer';
 
-const urlSlice: Slice<
-  URLStore,
-  { urlAct: ReducerWithInitialState<URLStore> },
-  'url',
-  'url',
-  SliceSelectors<URLStore>
-> = createSlice({
+const urlSlice = createSlice({
   initialState: urlStoreInit,
   name: 'url',
   reducerPath: 'url',
   reducers: {
-    urlAct: urlReducer,
+    setURL: urlReducer,
   },
 });
 
