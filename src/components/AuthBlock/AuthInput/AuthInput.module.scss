@@ -15,6 +15,10 @@
     margin-bottom: 20px;
     position: relative;
     width: 100%;
+
+    @media screen and (max-width: 400px) {
+      margin-bottom: 10px;
+    }
   }
 
   &__input {
@@ -27,6 +31,12 @@
     outline: 0;
     padding: 0 20px;
     width: 100%;
+
+    @media screen and (max-width: 400px) {
+      font-size: 0.9em;
+      height: 40px;
+      padding: 0 10px;
+    }
 
     &[type='password'] {
       font: small-caption;
@@ -44,6 +54,11 @@
     position: absolute;
     top: 14px;
     transition: all 200ms;
+
+    @media screen and (max-width: 400px) {
+      font-size: 0.9em;
+      top: 11px;
+    }
   }
 
   &__error {
@@ -54,6 +69,10 @@
     &-block {
       display: flex;
       flex-direction: column;
+    }
+
+    @media screen and (max-width: 400px) {
+      font-size: 0.9em;
     }
   }
 
@@ -70,6 +89,10 @@
       background-color: rgba(128, 128, 128, 0.5);
       cursor: pointer;
     }
+
+    @media screen and (max-width: 400px) {
+      top: 2px;
+    }
   }
 }
 
@@ -78,4 +101,8 @@
   font-size: 0.9em;
   left: 4px;
   top: -25px;
+
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
 }

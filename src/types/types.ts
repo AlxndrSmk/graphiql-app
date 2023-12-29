@@ -1,12 +1,12 @@
 import * as Yup from 'yup';
 import { User, UserCredential } from 'firebase/auth';
 import { schema } from '@/validation/validationSchema';
-import { Dispatch, ReactNode, SetStateAction, SyntheticEvent } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 export type TButton = {
   text?: string;
-  onClick(e: SyntheticEvent): void;
-  img?: ReactNode;
+  onClick: () => void;
+  img?: JSX.Element;
   onHoverText?: string;
   isTooltip?: boolean;
   isDisabled?: boolean;
@@ -19,6 +19,11 @@ export interface AuthButtonProps {
   type?: string;
   isLoading?: boolean;
   isDisabled?: boolean;
+  icon?: {
+    alt: string;
+    size: number;
+    src: string;
+  };
 }
 
 export interface EmailAndPasswordProps {
@@ -130,6 +135,20 @@ export interface ErrorBoundaryState {
   hasError: boolean;
   error: null | Error;
 }
+
+export interface LinkButtonProps {
+  alt: string;
+  size: number;
+  src: string;
+  href: string;
+  text: string;
+  isVisible?: boolean;
+}
+
+export type BurgerButtonProps = {
+  open: boolean;
+  setOpen: (v: boolean) => void;
+};
 
 export interface CustomHeaders {
   [key: string]: string;
