@@ -181,7 +181,7 @@ type TEnum = {
   deprecationReason: null;
 };
 
-type TDocField = {
+export type TDocField = {
   name: string;
   description: string;
   args: TDocArgs[];
@@ -222,7 +222,7 @@ export type TDoc = {
 };
 
 export type TObjectTypeProps = {
-  el: TDocType;
+  types: TDocType;
   handleBtnClick: (str: string) => void;
 };
 

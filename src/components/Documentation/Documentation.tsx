@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { BreadCrumbsMaker } from './BreadcrumbsMaker';
 import { TDocType } from '../../types/types';
 import { res } from '../MainNav/ddd';
-import { ObjectType } from './objectType';
+import { ObjectType } from './ObjectType';
+import { removeSymbols } from '../../utils/removeSymbols';
 import styles from './Documentation.module.scss';
 
 const Documentation: React.FC = () => {
@@ -16,15 +17,51 @@ const Documentation: React.FC = () => {
   }, []);
 
   const handleBtnClick = (title: string) => {
-    if (breadCrumb[breadCrumb.length - 1] !== title) {
-      setBreadCrumb((prev) => [...prev, title]);
-      filterData(title);
+    const withoutSym = removeSymbols(title);
+    if (breadCrumb[breadCrumb.length - 1] !== withoutSym) {
+      setBreadCrumb((prev) => [...prev, withoutSym]);
+      filterData(withoutSym);
     }
   };
 
   const filterData = (key: string) => {
-    const filtered: TDocType[] = types.filter((el) => el.name === key);
+    const filtered: TDocType[] = types.filter(
+      (el) => el.name === removeSymbols(key)
+    );
     setQueryData(filtered);
+  };
+
+  const inputFields = (field: TDocType) => {
+    return (
+      <>
+        <h2 className={styles.docs__title}>Fields</h2>
+        {field.inputFields.map((field) => (
+          <>
+            <span>{field.name}</span>:{' '}
+            <button
+              onClick={() => handleBtnClick(field.type.name)}
+              className={styles.docs__arg_type}
+            >
+              {field.type.name}
+            </button>
+            <br />
+          </>
+        ))}
+      </>
+    );
+  };
+
+  const enumFiled = (el: TDocType) => {
+    return (
+      <>
+        <h2 className={styles.docs__title}>Enum Values</h2>
+        {el.enumValues.map((value, ind) => (
+          <span className={styles.docs__enum} key={value.name + ind}>
+            {value.name}
+          </span>
+        ))}
+      </>
+    );
   };
 
   return (
@@ -50,12 +87,18 @@ const Documentation: React.FC = () => {
                 <p>{el.name}</p>
               </button>
               {breadCrumb.length > 1 && el.kind === 'OBJECT' && (
-                <ObjectType el={el} handleBtnClick={handleBtnClick} />
+                <ObjectType types={el} handleBtnClick={handleBtnClick} />
               )}
 
               {breadCrumb.length > 1 && el.kind !== 'OBJECT' && (
                 <p className={styles.docs__desc}>{el.description}</p>
               )}
+
+              {breadCrumb.length > 1 &&
+                el.kind === 'INPUT_OBJECT' &&
+                inputFields(el)}
+
+              {breadCrumb.length > 1 && el.kind === 'ENUM' && enumFiled(el)}
             </>
           </div>
         );
