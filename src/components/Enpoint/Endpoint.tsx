@@ -11,6 +11,7 @@ const Endpoint: React.FC<EndpointProp> = ({
   isShowEndpoint,
   setShowEndpoint,
 }: EndpointProp) => {
+  const isStart: React.MutableRefObject<boolean> = useRef(false);
   const input: React.LegacyRef<HTMLInputElement> = useRef(null);
 
   const urlEndpoint = useSelector((state: StoreType) => state.url);
@@ -25,11 +26,20 @@ const Endpoint: React.FC<EndpointProp> = ({
     setShowEndpoint(false);
   };
 
+  if (!isStart.current) {
+    if (isShowEndpoint) {
+      isStart.current = true;
+    }
+    return <div></div>;
+  }
+
   return (
     <label
-      className={`${styles.endpoint} ${
-        isShowEndpoint ? styles['endpoint_open'] : styles['endpoint_close']
-      }`}
+      className={
+        isShowEndpoint
+          ? `${styles['endpoint']} ${styles['endpoint_open']}`
+          : `${styles['endpoint']} ${styles['endpoint_close']}`
+      }
       htmlFor="endpoint"
     >
       <input
