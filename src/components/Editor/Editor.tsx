@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import Tabs from '@/components/Tabs/Tabs';
 import Button from '@/components/Button/Button';
-import { PrettierArgs, TEditorOld } from '@/types/types';
+import { PrettierArgs, TEditor } from '@/types/types';
 import { prettify } from '@/utils/prettify';
 import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
 
@@ -17,7 +17,7 @@ import { useLazyGetGQLResponseQuery } from '@/redux/rtk-query/fetchApI';
 import startQueryRequest from '@/constants/startQueryRequest';
 import Endpoint from '@/components/Enpoint/Endpoint';
 
-const EditorOld: React.FC<TEditorOld> = ({
+const EditorOld: React.FC<TEditor> = ({
   type,
   isShow,
   isTablet,

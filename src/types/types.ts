@@ -187,7 +187,7 @@ export interface EndpointProp extends MainNavProp {
   isShowEndpoint: boolean;
 }
 
-export type TEditorOld = {
+export type TEditor = {
   type: 'json' | 'query';
   isShow: boolean;
   isTablet: boolean;
