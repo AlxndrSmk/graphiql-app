@@ -9,9 +9,12 @@
   padding: 20px;
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow-x: visible;
 
   @media (max-width: 800px) {
+    padding: 5px;
+    overflow-x: hidden;
+
     .show_next {
       position: absolute;
       right: 20px;
@@ -38,7 +41,7 @@
       }
     }
 
-    &.open ~ & {
+    &.open~& {
       max-width: 86%;
       visibility: visible;
       opacity: 1;
@@ -73,3 +76,4 @@
     top: 0;
   }
 }
+

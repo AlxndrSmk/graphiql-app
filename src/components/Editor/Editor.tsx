@@ -10,6 +10,7 @@ import { prettify } from '@/utils/prettify';
 import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
 import { DEFAULT_REQUEST } from '@/constants/DefaultRequest';
 import { tablet } from '@/utils/constants';
+import { EditorView } from '@codemirror/view';
 
 import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
 import styles from './Editor.module.scss';
@@ -41,6 +42,7 @@ const Editor: React.FC<TEditor> = ({ type, showRight, setShowRight }) => {
           onChange={handleEditorChange}
           theme={codeMirrorTheme}
           readOnly={!isQueryEditor}
+          extensions={[EditorView.lineWrapping]}
         />
       </div>
       {isTablet && (

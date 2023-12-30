@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { BreadCrumbsMaker } from './BreadcrumbsMaker';
 import { TDocType } from '../../types/types';
 import { res } from '../MainNav/res';
@@ -35,8 +35,8 @@ const Documentation: React.FC = () => {
     return (
       <>
         <h2 className={styles.docs__title}>Fields</h2>
-        {field.inputFields.map((field) => (
-          <>
+        {field.inputFields.map((field, ind) => (
+          <Fragment key={field.description + ind}>
             <span>{field.name}</span>:{' '}
             <button
               onClick={() => handleBtnClick(field.type.name)}
@@ -45,7 +45,7 @@ const Documentation: React.FC = () => {
               {field.type.name}
             </button>
             <br />
-          </>
+          </Fragment>
         ))}
       </>
     );
