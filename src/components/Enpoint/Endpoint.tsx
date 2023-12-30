@@ -2,15 +2,15 @@ import React, { useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import StoreType, { StoreDispatcher } from '@/redux/store/store-type';
-import { EndpointProp } from '@/types/types';
+import { EndpointProps } from '@/types/types';
 
 import styles from './Endpoint.module.scss';
 import setUrlAction from '@/redux/url/urlActionCreator';
 
-const Endpoint: React.FC<EndpointProp> = ({
+const Endpoint: React.FC<EndpointProps> = ({
   isShowEndpoint,
   setShowEndpoint,
-}: EndpointProp) => {
+}: EndpointProps) => {
   const isStart: React.MutableRefObject<boolean> = useRef(false);
   const input: React.LegacyRef<HTMLInputElement> = useRef(null);
 

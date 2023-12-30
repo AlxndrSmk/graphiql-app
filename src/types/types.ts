@@ -179,11 +179,11 @@ export interface TabsProps {
   setHeaders: Dispatch<SetStateAction<string>>;
 }
 
-export interface MainNavProp {
+export interface MainNavProps {
   setShowEndpoint: Dispatch<SetStateAction<boolean>>;
 }
 
-export interface EndpointProp extends MainNavProp {
+export interface EndpointProps extends MainNavProps {
   isShowEndpoint: boolean;
 }
 

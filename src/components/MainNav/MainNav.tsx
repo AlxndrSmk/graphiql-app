@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
-import { MainNavProp } from '@/types/types';
+import { MainNavProps } from '@/types/types';
 import Button from '@/components/Button/Button';
 import styles from './MainNav.module.scss';
 
-const MainNav: React.FC<MainNavProp> = ({ setShowEndpoint }: MainNavProp) => {
+const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
   const docImg = (
     <Image src="/document.svg" alt="documentation" width="20" height="20" />
   );
