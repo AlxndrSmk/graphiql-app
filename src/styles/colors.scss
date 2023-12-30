@@ -1,0 +1,43 @@
+$buttonColors: (
+  'sign-in': #0cc96d,
+  'sign-up': #0c64c9,
+  'to-main': #6cbd0a,
+  'btn-shadow': 2px -3px 5px #563203,
+  'btn-shadow-active': 1px -2px 2px #563203,
+  'btn-text': #2a023f,
+);
+
+$footerColors: (
+  'ft-background': #000000,
+  'names': #ffffff,
+  'names-hover': #018a8a,
+  'names-active': #176288,
+  'created': #ffffff,
+);
+
+$headerColors: (
+  'ordinary': #000000,
+  'sticky': #000000,
+  'link': #ffffff,
+  'link-hover': #018a8a,
+  'link-active': #176288,
+);
+
+$sand-dollar: #e7d6c0;
+$blue-gray: #7491a0;
+$forest-green: #364e51;
+$cognac: #be9685;
+$grey: #a0a0a0;
+
+$dark_blue-color: #068ecb;
+$blue-color: $blue-gray;
+$white-color: #ffffff;
+$pink-color: #bc324cd1;
+$black-color: #000000;
+$grey-color: #787878;
+$link-color: #ffc75f;
+$error-color: #d32f2f;
+
+$background-color: $forest-green;
+$button-disabled: $grey;
+$disable-text-color: $grey-color;

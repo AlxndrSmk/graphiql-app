@@ -1,0 +1,123 @@
+@use 'sass:map';
+
+@mixin animateButton {
+  @keyframes buttonAnimation {
+    0% {
+      transform: scale(1.2, 0.8);
+    }
+    50% {
+      transform: scale(0.8, 1.2);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+}
+
+@mixin buttonShadow {
+  box-shadow: map.get($buttonColors, 'btn-shadow');
+  &:hover {
+    animation: buttonAnimation 200ms 50ms linear forwards;
+  }
+
+  &:active {
+    width: 68px;
+    height: 28px;
+    box-shadow: map.get($buttonColors, 'btn-shadow-active');
+  }
+}
+
+@mixin buttonStyle($type) {
+  flex: 0 0 70px;
+  display: flex;
+  width: 70px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+
+  @if ($type == sign-in) {
+    background: map.get($buttonColors, 'sign-in');
+  }
+  @if ($type == sign-up) {
+    background: map.get($buttonColors, 'sign-up');
+  }
+
+  @if ($type == to-main) {
+    background: map.get($buttonColors, 'to-main');
+  }
+
+  @include buttonShadow;
+  @include animateButton;
+}
+
+@mixin animating {
+  @keyframes clickImg {
+    0% {
+      transform: scale(1.2, 0.8);
+    }
+    50% {
+      transform: scale(0.8, 1.2);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+
+  @keyframes shakeImg {
+    0% {
+      transform: rotate(10deg);
+    }
+    50% {
+      transform: rotate(-10deg);
+    }
+    100% {
+      transform: rotate(0);
+    }
+  }
+}
+
+@mixin divDisplay($position) {
+  display: flex;
+  @if ($position == centered) {
+    justify-content: center;
+    align-items: center;
+  }
+  @if ($position == spaced) {
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@mixin headerStyle($widthParam, $background, $heightParam) {
+  display: flex;
+  z-index: 1;
+  box-sizing: border-box;
+  height: $heightParam;
+  margin: 0 auto;
+  padding: 5px 25px;
+  justify-content: space-between;
+  align-items: center;
+  background: $background;
+}
+
+@mixin animateHeader {
+  @keyframes showHeader {
+    0% {
+      transform: translate(0, -80px);
+    }
+    50% {
+      transform: translate(0, -40px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+@mixin headerPosition {
+  position: sticky;
+  top: 0;
+  animation: showHeader 500ms linear forwards;
+}

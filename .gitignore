@@ -1,0 +1,18 @@
+# Webstorm
+/.idea/.gitignore
+/.idea/modules.xml
+/.idea/REACT2023Q4.iml
+/.idea/vcs.xml
+/.idea/*
+/.idea
+
+#Node modules
+node_modules
+
+#Dist folder
+.next
+.env*.local
+.nyc_output
+.coverage
+.DS_Store
+/.env

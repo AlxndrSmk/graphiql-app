@@ -1,0 +1,57 @@
+@use 'sass:map';
+@import '@/styles/mixins';
+@import '@/styles/colors';
+
+.header {
+  position: relative;
+  @include animateHeader;
+
+  @media screen and (max-width: 675px) {
+    padding: 5px 50px 5px 25px !important;
+  }
+
+  &_ordinary {
+    @include headerStyle(100%, map.get($headerColors, ordinary), 80px);
+  }
+
+  &_sticky {
+    @include headerPosition;
+    @include headerStyle(90%, map.get($headerColors, sticky), 80px);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(0, 0, 0, 1) 31%
+    );
+  }
+
+  &__link {
+    border: 1px solid $white-color;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px;
+
+    transition: 0.3s ease;
+
+    &:hover {
+      transform: scale(103%);
+    }
+  }
+
+  &__container {
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    height: 80px;
+    justify-content: space-evenly;
+
+    &-buttons {
+      align-items: center;
+      display: flex;
+      gap: 15px;
+
+      @media screen and (max-width: 675px) {
+        display: none;
+      }
+    }
+  }
+}
