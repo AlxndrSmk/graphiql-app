@@ -41,7 +41,7 @@
       }
     }
 
-    &.open~& {
+    &.open ~ & {
       max-width: 86%;
       visibility: visible;
       opacity: 1;
@@ -76,4 +76,3 @@
     top: 0;
   }
 }
-

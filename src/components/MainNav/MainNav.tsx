@@ -1,12 +1,14 @@
+import React from 'react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { MainNavProps } from '@/types/types';
 import Button from '@/components/Button/Button';
 import Documentation from '../Documentation/Documentation';
 // import res from './fakeResponse.json';
 // import { TDoc, TDocType } from '../../types/types';
 import styles from './MainNav.module.scss';
 
-const MainNav: React.FC = () => {
+const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
   const [isShowDoc, setIsShowDoc] = useState<boolean>(false);
   // const [response, setResponse] = useState<>();
 
@@ -36,6 +38,10 @@ const MainNav: React.FC = () => {
     setIsShowDoc((prev) => !prev);
   };
 
+  const onEndpointHandler = (): void => {
+    setShowEndpoint((prev: boolean) => !prev);
+  };
+
   return (
     <>
       <div className={styles.main_nav}>
@@ -51,7 +57,7 @@ const MainNav: React.FC = () => {
         {/* } */}
         <Button
           img={queryImg}
-          onClick={() => console.log('change')}
+          onClick={onEndpointHandler}
           onHoverText="Change endpoint"
           isTooltip={true}
         />
