@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { TButton } from '@/types/types';
 import styles from './Button.module.scss';
 

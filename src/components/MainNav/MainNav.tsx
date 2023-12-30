@@ -1,8 +1,31 @@
+import React from 'react';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { MainNavProps } from '@/types/types';
 import Button from '@/components/Button/Button';
+import Documentation from '../Documentation/Documentation';
+// import res from './fakeResponse.json';
+// import { TDoc, TDocType } from '../../types/types';
 import styles from './MainNav.module.scss';
 
-const MainNav: React.FC = () => {
+const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
+  const [isShowDoc, setIsShowDoc] = useState<boolean>(false);
+  // const [response, setResponse] = useState<>();
+
+  const getResponse = async () => {
+    try {
+      // const res = fetch('');
+      // setResponse(res);
+    } catch (er) {
+      console.log(er);
+      // setResponse(null);
+    }
+  };
+
+  useEffect(() => {
+    getResponse();
+  }, []);
+
   const docImg = (
     <Image src="/document.svg" alt="documentation" width="20" height="20" />
   );
@@ -11,22 +34,40 @@ const MainNav: React.FC = () => {
     <Image src="/edit.svg" alt="change endpoint" width="20" height="20" />
   );
 
-  return (
-    <div className={styles.main_nav}>
-      <Button
-        img={docImg}
-        onClick={() => console.log('doc')}
-        onHoverText="Documentation"
-        isTooltip={true}
-      />
+  const handleDocButton = () => {
+    setIsShowDoc((prev) => !prev);
+  };
 
-      <Button
-        img={queryImg}
-        onClick={() => console.log('change')}
-        onHoverText="Change endpoint"
-        isTooltip={true}
-      />
-    </div>
+  const onEndpointHandler = (): void => {
+    setShowEndpoint((prev: boolean) => !prev);
+  };
+
+  return (
+    <>
+      <div className={styles.main_nav}>
+        {/* {response && */}
+        {/* ( */}
+        <Button
+          img={docImg}
+          onClick={handleDocButton}
+          onHoverText="Documentation"
+          isTooltip={true}
+        />
+        {/* ) */}
+        {/* } */}
+        <Button
+          img={queryImg}
+          onClick={onEndpointHandler}
+          onHoverText="Change endpoint"
+          isTooltip={true}
+        />
+      </div>
+      {isShowDoc && (
+        <Documentation
+        // data={response}
+        />
+      )}
+    </>
   );
 };
 

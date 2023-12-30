@@ -1,0 +1,59 @@
+@keyframes openWnd {
+  from {
+    height: 0;
+  }
+  50% {
+    height: 25px;
+  }
+  to {
+    height: 50px;
+  }
+}
+
+@keyframes closeWnd {
+  from {
+    height: 50px;
+  }
+  50% {
+    height: 25px;
+  }
+  to {
+    height: 0;
+  }
+}
+
+.endpoint {
+  display: flex;
+  box-sizing: border-box;
+  width: 90%;
+  min-width: 300px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+
+  &_open {
+    animation: openWnd 1s forwards linear;
+  }
+
+  &_close {
+    animation: closeWnd 1s forwards linear;
+  }
+
+  &__input {
+    width: calc(100% - 120px);
+    height: 30px;
+    box-sizing: border-box;
+    padding: 3px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+  }
+
+  &__button {
+    width: 80px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+  }
+}

@@ -13,14 +13,6 @@ export type TButton = {
   className?: string;
 };
 
-export type TEditor = {
-  type: 'json' | 'query';
-  showRight: boolean;
-  setShowRight: Dispatch<SetStateAction<boolean>>;
-  responseText?: string;
-  setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
-};
-
 export interface AuthButtonProps {
   text: string;
   onClick?: () => void;
@@ -47,11 +39,6 @@ export interface CustomError {
 export interface AuthViewProps {
   authCallback: (email: string, password: string) => Promise<UserCredential>;
   page?: 'SIGN_IN' | 'SIGN_UP';
-}
-
-export interface CustomError {
-  code: string;
-  message: string;
 }
 
 export type schemaType = Yup.InferType<typeof schema>;
@@ -161,4 +148,122 @@ export interface LinkButtonProps {
 export type BurgerButtonProps = {
   open: boolean;
   setOpen: (v: boolean) => void;
+};
+
+export interface CustomHeaders {
+  [key: string]: string;
+}
+
+export interface Variables extends CustomHeaders {}
+
+export interface GQLQueryBody {
+  operationName: string | null;
+  variables: Variables | object;
+  query: string;
+}
+export interface GQLArguments {
+  url: string;
+  headers?: CustomHeaders;
+  body: GQLQueryBody;
+}
+
+export interface PrettierArgs {
+  args: GQLArguments;
+  errors: Array<string> | null;
+}
+
+export interface TabsProps {
+  variables: string;
+  headers: string;
+  setVariables: Dispatch<SetStateAction<string>>;
+  setHeaders: Dispatch<SetStateAction<string>>;
+}
+
+export interface MainNavProps {
+  setShowEndpoint: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface EndpointProps extends MainNavProps {
+  isShowEndpoint: boolean;
+}
+
+export type TEditor = {
+  type: 'json' | 'query';
+  isShow: boolean;
+  isTablet: boolean;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  setStateData: Dispatch<SetStateAction<string>>;
+  stateData: string;
+  isShowEndpoint: boolean;
+  setShowEndpoint: Dispatch<SetStateAction<boolean>>;
+};
+
+export type TDocType = {
+  kind: string;
+  name: string;
+  description: string;
+  fields: TDocField[] | null;
+  inputFields: TDocArgs[] | null;
+  interfaces: [];
+  enumValues: null | TEnum[];
+  possibleTypes: null;
+};
+
+type TEnum = {
+  name: string;
+  description: string;
+  isDeprecated: boolean;
+  deprecationReason: null;
+};
+
+export type TDocField = {
+  name: string;
+  description: string;
+  args: TDocArgs[];
+  type: TDocOfType | null;
+  isDeprecated: boolean;
+  deprecationReason: null;
+};
+
+export type TDocOfType = {
+  kind: string;
+  name: string | null;
+  ofType: null | TDocOfType;
+};
+
+export type TDocArgs = {
+  name: string;
+  description: string;
+  type: {
+    kind: string;
+    name: string | null;
+    ofType: TDocOfType | null;
+  };
+  defaultValue: string | null;
+};
+
+export type TDoc = {
+  data: {
+    __schema: {
+      queryType: {
+        name: string;
+      };
+      mutationType?: null;
+      subscriptionType?: null;
+      types: TDocType[];
+      // directives: [];
+    };
+  };
+};
+
+export type TObjectTypeProps = {
+  types: TDocType;
+  handleBtnClick: (str: string) => void;
+};
+
+export type TBreadCrumbProps = {
+  breadCrumb: string[];
+  types: TDocType[];
+  setBreadCrumb: Dispatch<SetStateAction<string[]>>;
+  setQueryData: Dispatch<SetStateAction<TDocType[]>>;
 };
