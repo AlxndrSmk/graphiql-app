@@ -16,7 +16,6 @@
 
     gap: 5px;
     margin-bottom: 10px;
-    // padding: 5p/;
 
     &__bread {
       background-color: transparent;
@@ -29,6 +28,7 @@
       padding-top: 5px;
       padding-bottom: 5px;
       transition: 0.3s ease;
+      opacity: 0.8;
 
       &:hover {
         opacity: 0.5;
@@ -66,6 +66,11 @@
 
     &:disabled {
       cursor: default;
+
+      p {
+        font-size: 20px;
+        color: $link-color;
+      }
     }
 
     &_btn {
@@ -95,6 +100,7 @@
     font-family: monospace;
     opacity: 0.7;
     line-height: 130%;
+    margin-bottom: 20px;
   }
 
   &__arg {
@@ -110,7 +116,6 @@
       &:hover {
         text-decoration: underline;
       }
-
     }
   }
 
@@ -124,7 +129,6 @@
     &:hover {
       text-decoration: underline;
     }
-
   }
 
   &__enum {
@@ -136,6 +140,6 @@
   &__title {
     font-size: 16px;
     color: $blue-gray;
-    margin-bottom: 10px;;
+    margin-bottom: 10px;
   }
 }
