@@ -16,7 +16,7 @@ import { useLazyGetGQLResponseQuery } from '@/redux/rtk-query/fetchApI';
 import startQueryRequest from '@/constants/startQueryRequest';
 import Endpoint from '@/components/Enpoint/Endpoint';
 
-const EditorOld: React.FC<TEditor> = ({
+const Editor: React.FC<TEditor> = ({
   type,
   isShow,
   isTablet,
@@ -121,4 +121,4 @@ const EditorOld: React.FC<TEditor> = ({
   );
 };
 
-export default EditorOld;
+export default Editor;
