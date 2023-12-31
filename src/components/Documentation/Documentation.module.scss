@@ -8,6 +8,17 @@
   overflow-x: hidden;
   position: relative;
 
+  @media (max-width: 800px) {
+    position: absolute;
+    padding-left: 15px;
+    width: calc(100% - 64px);
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-color: rgb(33, 42, 59);
+    z-index: 5;
+  }
+
   &__breads {
     font-size: 1.5em;
     display: flex;
