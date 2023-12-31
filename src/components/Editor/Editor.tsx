@@ -6,7 +6,11 @@ import Tabs from '@/components/Tabs/Tabs';
 import Button from '@/components/Button/Button';
 import { PrettierArgs, TEditor } from '@/types/types';
 import { prettify } from '@/utils/prettify';
-import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
+import {
+  CLEAN_IMAGE,
+  PLAY_IMAGE,
+  LOADER_IMAGE,
+} from '@/constants/buttonsImages';
 import { EditorView } from '@codemirror/view';
 
 import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
@@ -31,6 +35,7 @@ const EditorOld: React.FC<TEditor> = ({
   const [stateInput, setStateInput] = useState<string>(startQueryRequest);
   const [variables, setVariables] = useState<string>('');
   const [headers, setHeaders] = useState<string>('');
+  const [isDisabledBtn, setIsDisabledBtn] = useState<boolean>(false);
 
   const urlFromStore = useSelector((state: StoreType) => state.url);
   const [fetchGQL] = useLazyGetGQLResponseQuery();
@@ -45,6 +50,8 @@ const EditorOld: React.FC<TEditor> = ({
     setStateInput(prettify(stateInput));
   };
   const handleExecute = (): void => {
+    setIsDisabledBtn(true);
+
     const args: PrettierArgs = createGQLArgs(
       stateInput,
       variables,
@@ -60,6 +67,7 @@ const EditorOld: React.FC<TEditor> = ({
           ? prettify(JSON.stringify(data))
           : prettify(JSON.stringify(error));
         setStateData(result);
+        setIsDisabledBtn(false);
       });
     }
   };
@@ -105,11 +113,12 @@ const EditorOld: React.FC<TEditor> = ({
               onClick={handlePrettifyClick}
             />
             <Button
-              img={PLAY_IMAGE}
+              img={isDisabledBtn ? LOADER_IMAGE : PLAY_IMAGE}
               isTooltip={true}
               onHoverText="Execute query"
               onClick={handleExecute}
               className="execute_btn"
+              isDisabled={isDisabledBtn}
             />
           </div>
           <Tabs

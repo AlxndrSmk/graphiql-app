@@ -1,12 +1,13 @@
 import { Fragment, useEffect, useState } from 'react';
 import { BreadCrumbsMaker } from './BreadcrumbsMaker';
 import { TDocType } from '../../types/types';
-import { res } from '../MainNav/res';
+// import { res } from '../MainNav/res';
 import { ObjectType } from './ObjectType';
 import { removeSymbols } from '../../utils/removeSymbols';
+import { TDocProp } from '../../types/types';
 import styles from './Documentation.module.scss';
 
-const Documentation: React.FC = () => {
+const Documentation: React.FC<TDocProp> = ({ res }) => {
   const types: TDocType[] = res.data.__schema.types;
   const [data, setQueryData] = useState<TDocType[]>(types);
   const [breadCrumb, setBreadCrumb] = useState<string[]>(['Docs']);
@@ -35,11 +36,11 @@ const Documentation: React.FC = () => {
     return (
       <>
         <h2 className={styles.docs__title}>Fields</h2>
-        {field.inputFields.map((field, ind) => (
+        {field.inputFields?.map((field, ind) => (
           <Fragment key={field.description + ind}>
             <span>{field.name}</span>:{' '}
             <button
-              onClick={() => handleBtnClick(field.type.name)}
+              onClick={() => handleBtnClick(field.type.name || '')}
               className={styles.docs__arg_type}
             >
               {field.type.name}
@@ -55,7 +56,7 @@ const Documentation: React.FC = () => {
     return (
       <>
         <h2 className={styles.docs__title}>Enum Values</h2>
-        {el.enumValues.map((value, ind) => (
+        {el.enumValues?.map((value, ind) => (
           <span className={styles.docs__enum} key={value.name + ind}>
             {value.name}
           </span>

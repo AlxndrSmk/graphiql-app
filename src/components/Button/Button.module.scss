@@ -38,6 +38,15 @@
   &.execute_btn {
     background-color: green;
     border: none;
+
+    &:disabled {
+
+      img {
+        animation-name: loader;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+      }
+    }
   }
 
   &__tooltip {
@@ -70,5 +79,16 @@
       opacity: 1;
       visibility: visible;
     }
+  }
+}
+
+
+@keyframes loader {
+  from {
+    transform: rotate(0)
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }

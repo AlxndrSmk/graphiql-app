@@ -267,3 +267,7 @@ export type TBreadCrumbProps = {
   setBreadCrumb: Dispatch<SetStateAction<string[]>>;
   setQueryData: Dispatch<SetStateAction<TDocType[]>>;
 };
+
+export type TDocProp = {
+  res: TDoc;
+};

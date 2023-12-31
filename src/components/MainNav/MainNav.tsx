@@ -1,29 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { MainNavProps } from '@/types/types';
 import Button from '@/components/Button/Button';
 import Documentation from '../Documentation/Documentation';
-// import res from './fakeResponse.json';
-// import { TDoc, TDocType } from '../../types/types';
+import { TDoc } from '../../types/types';
 import styles from './MainNav.module.scss';
+import { useGetIntrospectionQuery } from '@/redux/rtk-query/fetchApI';
+import { useSelector } from 'react-redux';
+import StoreType from '@/redux/store/store-type';
 
 const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
   const [isShowDoc, setIsShowDoc] = useState<boolean>(false);
-  // const [response, setResponse] = useState<>();
+  const [response, setResponse] = useState<TDoc | null>(null);
 
-  const getResponse = async () => {
-    try {
-      // const res = fetch('');
-      // setResponse(res);
-    } catch (er) {
-      console.log(er);
-      // setResponse(null);
-    }
-  };
+  const urlFromStore = useSelector((state: StoreType) => state.url);
+  const data = useGetIntrospectionQuery(urlFromStore);
 
   useEffect(() => {
-    getResponse();
+    if (data) {
+      setResponse(data.data);
+    }
   }, []);
 
   const docImg = (
@@ -45,16 +42,14 @@ const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
   return (
     <>
       <div className={styles.main_nav}>
-        {/* {response && */}
-        {/* ( */}
-        <Button
-          img={docImg}
-          onClick={handleDocButton}
-          onHoverText="Documentation"
-          isTooltip={true}
-        />
-        {/* ) */}
-        {/* } */}
+        {response && (
+          <Button
+            img={docImg}
+            onClick={handleDocButton}
+            onHoverText="Documentation"
+            isTooltip={true}
+          />
+        )}
         <Button
           img={queryImg}
           onClick={onEndpointHandler}
@@ -62,11 +57,7 @@ const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
           isTooltip={true}
         />
       </div>
-      {isShowDoc && (
-        <Documentation
-        // data={response}
-        />
-      )}
+      {response && isShowDoc && <Documentation res={response} />}
     </>
   );
 };
