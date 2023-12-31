@@ -40,7 +40,6 @@
     border: none;
 
     &:disabled {
-
       img {
         animation-name: loader;
         animation-duration: 1s;
@@ -82,10 +81,9 @@
   }
 }
 
-
 @keyframes loader {
   from {
-    transform: rotate(0)
+    transform: rotate(0);
   }
 
   to {

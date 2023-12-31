@@ -12,15 +12,17 @@ import StoreType from '@/redux/store/store-type';
 
 const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
   const [isShowDoc, setIsShowDoc] = useState<boolean>(false);
-  const [response, setResponse] = useState<TDoc | null>(null);
-
   const urlFromStore = useSelector((state: StoreType) => state.url);
+  const [response, setResponse] = useState<TDoc | null>(
+    useGetIntrospectionQuery(urlFromStore).data
+  );
+
   const data = useGetIntrospectionQuery(urlFromStore);
 
   useEffect(() => {
-    if (data) {
-      setResponse(data.data);
-    }
+    // if (data) {
+    setResponse(data.data);
+    // }
   }, []);
 
   const docImg = (
