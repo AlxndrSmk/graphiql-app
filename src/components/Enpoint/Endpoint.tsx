@@ -1,8 +1,7 @@
 import React, { useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import StoreType, { StoreDispatcher } from '@/redux/store/store-type';
-import { EndpointProps } from '@/types/types';
+import { EndpointProps, StoreType, StoreDispatcher } from '@/types/types';
 
 import styles from './Endpoint.module.scss';
 import setUrlAction from '@/redux/url/urlActionCreator';

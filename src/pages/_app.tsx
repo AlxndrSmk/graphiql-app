@@ -8,7 +8,7 @@ import '@/styles/globals.scss';
 import React, { useRef } from 'react';
 import { Provider } from 'react-redux';
 import storeApp from '../redux/store/store';
-import { StoreMaker } from '@/redux/store/store-type';
+import { StoreMaker } from '@/types/types';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const storeRef = useRef<StoreMaker>();

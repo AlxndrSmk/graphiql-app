@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { User, UserCredential } from 'firebase/auth';
 import { schema } from '@/validation/validationSchema';
 import { Dispatch, SetStateAction } from 'react';
+import storeApp from '@/redux/store/store';
 
 export type TButton = {
   text?: string;
@@ -197,3 +198,9 @@ export type TEditor = {
   isShowEndpoint: boolean;
   setShowEndpoint: Dispatch<SetStateAction<boolean>>;
 };
+
+export type StoreMaker = ReturnType<typeof storeApp>;
+
+export type StoreDispatcher = StoreMaker['dispatch'];
+
+export type StoreType = ReturnType<StoreMaker['getState']>;
