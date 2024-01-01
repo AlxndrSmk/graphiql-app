@@ -1,6 +1,6 @@
-import styles from './AuthButton.module.scss';
-import { AuthButtonProps } from '@/types/types';
 import Image from 'next/image';
+import { AuthButtonProps } from '@/types/types';
+import styles from './AuthButton.module.scss';
 
 const AuthButton: React.FC<AuthButtonProps> = ({
   isDisabled,

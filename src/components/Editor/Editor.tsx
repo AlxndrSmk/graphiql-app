@@ -10,7 +10,7 @@ import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
 
 import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
 import styles from './Editor.module.scss';
-import createGQLArgs from '../../utils/createGQLArgs';
+import createGQLArgs from '@/utils/createGQLArgs';
 import { useSelector } from 'react-redux';
 import { useLazyGetGQLResponseQuery } from '@/redux/rtk-query/fetchApI';
 import startQueryRequest from '@/constants/startQueryRequest';

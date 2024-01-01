@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
+import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react';
 import { User, UserCredential } from 'firebase/auth';
 import { schema } from '@/validation/validationSchema';
-import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react';
 import storeApp from '@/redux/store/store';
 
 export type TButton = {
