@@ -4,8 +4,8 @@ import PluginConfigOptions = Cypress.PluginConfigOptions;
 
 export default defineConfig({
   e2e: {
+    baseUrl: 'http://localhost:3000',
     setupNodeEvents(on: PluginEvents, config: PluginConfigOptions) {
-      // // implement node event listeners here
       require('@cypress/code-coverage/task')(on, config);
       config.env = {
         ...process.env,

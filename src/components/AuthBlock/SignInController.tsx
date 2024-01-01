@@ -53,7 +53,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
               {context.getConstants().signIn}
             </h3>
             {authError && (
-              <p className={styles['form__error']}>
+              <p className={styles['form__error']} data-testid="auth-error">
                 {context.getConstants().incorrect}
               </p>
             )}
@@ -102,6 +102,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
             type="submit"
             isLoading={loading}
             isDisabled={!isValid || loading}
+            dataTestId="signin-button"
           />
         </form>
       </div>

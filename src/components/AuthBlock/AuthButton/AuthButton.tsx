@@ -8,9 +8,15 @@ const AuthButton: React.FC<AuthButtonProps> = ({
   text,
   onClick,
   icon,
+  dataTestId,
 }) => {
   return (
-    <button className={styles.button} onClick={onClick} disabled={isDisabled}>
+    <button
+      className={styles.button}
+      onClick={onClick}
+      disabled={isDisabled}
+      data-testid={dataTestId}
+    >
       {icon && (
         <Image
           alt={icon.alt}
