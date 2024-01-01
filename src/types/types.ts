@@ -32,7 +32,7 @@ export interface AuthButtonProps {
     size: number;
     src: string;
   };
-  dataTestId: string;
+  dataTestId?: string;
 }
 
 export interface EmailAndPasswordProps {

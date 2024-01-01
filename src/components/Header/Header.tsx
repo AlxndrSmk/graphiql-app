@@ -85,12 +85,14 @@ const Header: React.FC = () => {
                 onClick={() =>
                   Router.push(ROUTES.SIGN_IN + `?lang=${checkedLang}`)
                 }
+                dataTestId="signin-button"
               />
               <AuthButton
                 text={context.getConstants().signUp}
                 onClick={() =>
                   Router.push(ROUTES.SIGN_UP + `?lang=${checkedLang}`)
                 }
+                dataTestId="signup-button"
               />
             </div>
           </>
