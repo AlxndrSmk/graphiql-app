@@ -96,7 +96,8 @@ export interface TeamData {
 }
 
 export interface TeamMember {
-  name: string;
+  firstName: string;
+  lastName: string;
   img: string;
   desc: string;
   github: string;
@@ -149,6 +150,15 @@ export type BurgerButtonProps = {
   open: boolean;
   setOpen: (v: boolean) => void;
 };
+
+export interface DeveloperCardProps {
+  firstName: string;
+  lastName: string;
+  github: string;
+  image: string;
+  description: string;
+  bgColor: string;
+}
 
 export interface CustomHeaders {
   [key: string]: string;

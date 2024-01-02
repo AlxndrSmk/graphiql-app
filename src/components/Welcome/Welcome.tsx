@@ -1,16 +1,22 @@
-import { team } from '@/constants/team';
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './Welcome.module.scss';
-import { LangContext, TeamData, TeamMember } from '@/types/types';
-import langContext from '@/context/langContext';
 import { useContext } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import langContext from '@/context/langContext';
+import DeveloperCard from '@/components/DeveloperCard/DeveloperCard';
+import { team } from '@/constants/team';
+import { getRandomColor } from '@/utils/getRandomColor';
+import { LangContext, TeamData, TeamMember } from '@/types/types';
+import styles from './Welcome.module.scss';
 
 const Welcome: React.FC = () => {
   const context: LangContext = useContext<LangContext>(langContext);
 
   return (
     <section className={styles.main}>
+      <div className={styles['big-image']}>
+        <Image src={'/pngegg.png'} alt={'Rick'} fill />
+      </div>
+
       <h1 className={styles.main__title}>{context.getConstants().title}</h1>
       <div className={styles.main__desc}>
         {context.getConstants().desc}{' '}
@@ -24,18 +30,19 @@ const Welcome: React.FC = () => {
         {context.getConstants().descRs}{' '}
         <a href="https://rs.school/">RS School</a>
       </div>
-      <ul className={styles.main__list}>
+      <section className={styles['card-section']}>
         {team[context.pageLang as keyof TeamData].map((el: TeamMember) => (
-          <li className={styles.main__list_item} key={el.name}>
-            <Link className={styles.main__list_item_link} href={el.github}>
-              <Image src="/github.svg" alt="github" width="30" height="30" />
-            </Link>
-            <Image src={el.img} alt={el.name} width="100" height="100" />
-            <p>{el.name}</p>
-            <p>{el.desc}</p>
-          </li>
+          <DeveloperCard
+            key={el.github}
+            firstName={el.firstName}
+            lastName={el.lastName}
+            github={el.github}
+            image={el.img}
+            description={el.desc}
+            bgColor={getRandomColor()}
+          />
         ))}
-      </ul>
+      </section>
     </section>
   );
 };
