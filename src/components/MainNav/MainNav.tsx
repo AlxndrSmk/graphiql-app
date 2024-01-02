@@ -17,13 +17,12 @@ const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
     useGetIntrospectionQuery(urlFromStore).data
   );
 
+  const { isSuccess } = useGetIntrospectionQuery(urlFromStore);
   const data = useGetIntrospectionQuery(urlFromStore);
 
   useEffect(() => {
-    // if (data) {
-    setResponse(data.data);
-    // }
-  }, []);
+    if (isSuccess) setResponse(data.data);
+  }, [isSuccess]);
 
   const docImg = (
     <Image src="/document.svg" alt="documentation" width="20" height="20" />

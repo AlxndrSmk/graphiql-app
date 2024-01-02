@@ -5,11 +5,11 @@ import { useAuth } from '@/context/AuthProvider';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import MainNav from '@/components/MainNav/MainNav';
-import styles from './mainLayout.module.scss';
-import { AuthContextProps } from '@/types/types';
 import Editor from '@/components/Editor/Editor';
 import useGetWindowDimensions from '@/utils/useGetWindowsDimensions';
+import { AuthContextProps } from '@/types/types';
 import { tablet } from '@/utils/constants';
+import styles from './mainLayout.module.scss';
 
 const Main: React.FC = () => {
   const [isShow, setShow] = useState<boolean>(false);

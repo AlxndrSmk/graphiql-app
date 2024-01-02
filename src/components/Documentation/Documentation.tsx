@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import { BreadCrumbsMaker } from './BreadcrumbsMaker';
 import { TDocType } from '../../types/types';
-// import { res } from '../MainNav/res';
 import { ObjectType } from './ObjectType';
 import { removeSymbols } from '../../utils/removeSymbols';
 import { TDocProp } from '../../types/types';
