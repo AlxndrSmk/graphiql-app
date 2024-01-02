@@ -11,6 +11,7 @@ export default defineConfig({
         ...process.env,
         ...config.env,
       };
+      return config;
     },
   },
 });
