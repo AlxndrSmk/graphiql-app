@@ -92,7 +92,7 @@
 
 @mixin headerStyle($widthParam, $background, $heightParam) {
   display: flex;
-  z-index: 1;
+  z-index: 10;
   box-sizing: border-box;
   height: $heightParam;
   margin: 0 auto;

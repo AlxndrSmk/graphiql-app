@@ -1,17 +1,17 @@
 @import '@/styles/colors.scss';
 
 .button {
-  background-color: transparent;
-  border: 1px solid #fff;
+  align-items: center;
+  background-color: $black-color;
+  border: 1px solid $white-color;
   color: $white-color;
   cursor: pointer;
+  display: flex;
   font-size: 20px;
+  gap: 10px;
   padding: 10px 20px;
   text-transform: uppercase;
   transition: 0.5s ease;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 
   @media screen and (max-width: 675px) {
     display: none;
@@ -19,6 +19,7 @@
 
   &:hover {
     background-color: $white-color;
+    border: 1px solid $black-color;
     color: $black-color;
 
     .logo {
@@ -27,7 +28,7 @@
   }
 
   .logo {
-    transition: 0.5s ease;
     filter: invert(1);
+    transition: 0.5s ease;
   }
 }

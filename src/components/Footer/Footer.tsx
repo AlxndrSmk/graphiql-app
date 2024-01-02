@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LangContext, TeamData } from '@/types/types';
+
 import LanguageContext from '@/context/langContext';
 import { team } from '@/constants/team';
 import logo from '@/public/rsschool.svg';
+import { LangContext, TeamData, TeamMember } from '@/types/types';
 import styles from './Footer.module.scss';
-import { TeamMember } from '@/types/types';
 
 const Footer: React.FC = () => {
   const context: LangContext = useContext<LangContext>(LanguageContext);
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
         className={styles['footer__authors-names']}
         href={member.github}
       >
-        {member.name}
+        {`${member.firstName} ${member.lastName}`}
       </Link>
     );
   };
