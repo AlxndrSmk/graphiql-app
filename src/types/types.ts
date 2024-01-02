@@ -269,5 +269,5 @@ export type TBreadCrumbProps = {
 };
 
 export type TDocProp = {
-  res: TDoc;
+  res: TDoc | undefined;
 };

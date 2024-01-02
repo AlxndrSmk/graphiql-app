@@ -1,20 +1,22 @@
 import { Fragment, useEffect, useState } from 'react';
 import { BreadCrumbsMaker } from './BreadcrumbsMaker';
-import { TDocType } from '../../types/types';
+import { TDocProp, TDocType } from '../../types/types';
 import { ObjectType } from './ObjectType';
 import { removeSymbols } from '../../utils/removeSymbols';
-import { TDocProp } from '../../types/types';
+
 import styles from './Documentation.module.scss';
 
 const Documentation: React.FC<TDocProp> = ({ res }) => {
-  const types: TDocType[] = res.data.__schema.types;
-  const [data, setQueryData] = useState<TDocType[]>(types);
+  const types = res?.data.__schema.types;
+  const [data, setQueryData] = useState<TDocType[] | null>(types);
   const [breadCrumb, setBreadCrumb] = useState<string[]>(['Docs']);
 
   useEffect(() => {
-    const filter: TDocType[] = types.filter((el) => !el.name.startsWith('_'));
-    setQueryData(filter);
-  }, []);
+    if (types !== undefined) {
+      const filter: TDocType[] = types.filter((el) => !el.name.startsWith('_'));
+      setQueryData(filter);
+    }
+  }, [types]);
 
   const handleBtnClick = (title: string): void => {
     const withoutSym: string = removeSymbols(title);
@@ -65,43 +67,47 @@ const Documentation: React.FC<TDocProp> = ({ res }) => {
   };
 
   return (
-    <div className={styles.docs}>
-      <div className={styles.docs__breads}>
-        <BreadCrumbsMaker
-          breadCrumb={breadCrumb}
-          types={types}
-          setBreadCrumb={setBreadCrumb}
-          setQueryData={setQueryData}
-        />
-      </div>
-
-      {data.map((el, ind) => {
-        return (
-          <div key={el.description + ind}>
-            <button
-              onClick={() => handleBtnClick(el.name)}
-              className={styles.docs__query}
-              disabled={breadCrumb[breadCrumb.length - 1] === el.name}
-            >
-              <p>{el.name}</p>
-            </button>
-            {breadCrumb.length > 1 && el.kind === 'OBJECT' && (
-              <ObjectType types={el} handleBtnClick={handleBtnClick} />
-            )}
-
-            {breadCrumb.length > 1 && el.kind !== 'OBJECT' && (
-              <p className={styles.docs__desc}>{el.description}</p>
-            )}
-
-            {breadCrumb.length > 1 &&
-              el.kind === 'INPUT_OBJECT' &&
-              inputFields(el)}
-
-            {breadCrumb.length > 1 && el.kind === 'ENUM' && enumFiled(el)}
+    <>
+      {res && (
+        <div className={styles.docs}>
+          <div className={styles.docs__breads}>
+            <BreadCrumbsMaker
+              breadCrumb={breadCrumb}
+              types={types}
+              setBreadCrumb={setBreadCrumb}
+              setQueryData={setQueryData}
+            />
           </div>
-        );
-      })}
-    </div>
+          {data &&
+            data.map((el, ind) => {
+              return (
+                <div key={el.description + ind}>
+                  <button
+                    onClick={() => handleBtnClick(el.name)}
+                    className={styles.docs__query}
+                    disabled={breadCrumb[breadCrumb.length - 1] === el.name}
+                  >
+                    <p>{el.name}</p>
+                  </button>
+                  {breadCrumb.length > 1 && el.kind === 'OBJECT' && (
+                    <ObjectType types={el} handleBtnClick={handleBtnClick} />
+                  )}
+
+                  {breadCrumb.length > 1 && el.kind !== 'OBJECT' && (
+                    <p className={styles.docs__desc}>{el.description}</p>
+                  )}
+
+                  {breadCrumb.length > 1 &&
+                    el.kind === 'INPUT_OBJECT' &&
+                    inputFields(el)}
+
+                  {breadCrumb.length > 1 && el.kind === 'ENUM' && enumFiled(el)}
+                </div>
+              );
+            })}
+        </div>
+      )}
+    </>
   );
 };
 
