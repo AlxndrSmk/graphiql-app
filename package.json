@@ -16,13 +16,9 @@
     "e2e:coverage": "npx start-server-and-test dev http://localhost:3000 \"cypress run --e2e\" && npx nyc report --reporter=text-summary"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.8",
-    "@codemirror/lang-json": "^6.0.1",
     "@reduxjs/toolkit": "^2.0.1",
     "@types/react-redux": "^7.1.33",
     "@uiw/react-codemirror": "^4.21.21",
-    "cm6-graphql": "0.0.12",
-    "codemirror-graphql": "^2.0.10",
     "firebase": "^10.7.1",
     "firebase-admin": "^11.11.1",
     "next": "14.0.3",
