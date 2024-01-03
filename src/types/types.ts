@@ -1,24 +1,17 @@
 import * as Yup from 'yup';
+import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react';
 import { User, UserCredential } from 'firebase/auth';
 import { schema } from '@/validation/validationSchema';
-import { Dispatch, SetStateAction } from 'react';
+import storeApp from '@/redux/store/store';
 
 export type TButton = {
   text?: string;
-  onClick: () => void;
-  img?: JSX.Element;
+  onClick: (event: SyntheticEvent) => void;
+  img?: React.ReactNode;
   onHoverText?: string;
   isTooltip?: boolean;
   isDisabled?: boolean;
   className?: string;
-};
-
-export type TEditor = {
-  type: 'json' | 'query';
-  showRight: boolean;
-  setShowRight: Dispatch<SetStateAction<boolean>>;
-  responseText?: string;
-  setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
 };
 
 export interface AuthButtonProps {
@@ -47,11 +40,6 @@ export interface CustomError {
 export interface AuthViewProps {
   authCallback: (email: string, password: string) => Promise<UserCredential>;
   page?: 'SIGN_IN' | 'SIGN_UP';
-}
-
-export interface CustomError {
-  code: string;
-  message: string;
 }
 
 export type schemaType = Yup.InferType<typeof schema>;
@@ -172,3 +160,57 @@ export interface DeveloperCardProps {
   description: string;
   bgColor: string;
 }
+
+export interface CustomHeaders {
+  [key: string]: string;
+}
+
+export interface Variables extends CustomHeaders {}
+
+export interface GQLQueryBody {
+  operationName: string | null;
+  variables: Variables | object;
+  query: string;
+}
+export interface GQLArguments {
+  url: string;
+  headers?: CustomHeaders;
+  body: GQLQueryBody;
+}
+
+export interface PrettierArgs {
+  args: GQLArguments;
+  errors: Array<string> | null;
+}
+
+export interface TabsProps {
+  variables: string;
+  headers: string;
+  setVariables: Dispatch<SetStateAction<string>>;
+  setHeaders: Dispatch<SetStateAction<string>>;
+}
+
+export interface MainNavProps {
+  setShowEndpoint: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface EndpointProps extends MainNavProps {
+  isShowEndpoint: boolean;
+}
+
+export type TEditor = {
+  type: 'json' | 'query';
+  isShow: boolean;
+  isTablet: boolean;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  setStateData: Dispatch<SetStateAction<string>>;
+  stateData: string;
+  isShowEndpoint: boolean;
+  setShowEndpoint: Dispatch<SetStateAction<boolean>>;
+};
+
+export type StoreMaker = ReturnType<typeof storeApp>;
+
+export type StoreDispatcher = StoreMaker['dispatch'];
+
+export type StoreType = ReturnType<StoreMaker['getState']>;

@@ -2,42 +2,81 @@ import React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
-import useGetWindowDimensions from '@/utils/useGetWindowsDimensions';
 import Tabs from '@/components/Tabs/Tabs';
 import Button from '@/components/Button/Button';
-import { TEditor } from '@/types/types';
+import { PrettierArgs, TEditor, StoreType } from '@/types/types';
 import { prettify } from '@/utils/prettify';
 import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
-import { DEFAULT_REQUEST } from '@/constants/DefaultRequest';
-import { tablet } from '@/utils/constants';
 
 import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
 import styles from './Editor.module.scss';
+import createGQLArgs from '@/utils/createGQLArgs';
+import { useSelector } from 'react-redux';
+import { useLazyGetGQLResponseQuery } from '@/redux/rtk-query/fetchApI';
+import startQueryRequest from '@/constants/startQueryRequest';
+import Endpoint from '@/components/Enpoint/Endpoint';
 
-const Editor: React.FC<TEditor> = ({ type, showRight, setShowRight }) => {
-  const [editorValue, setEditorValue] = useState<string>(DEFAULT_REQUEST);
-  const [responseValue] = useState<string>('');
+const Editor: React.FC<TEditor> = ({
+  type,
+  isShow,
+  isTablet,
+  setShow,
+  setStateData,
+  stateData,
+  isShowEndpoint,
+  setShowEndpoint,
+}) => {
+  const [stateInput, setStateInput] = useState<string>(startQueryRequest);
+  const [variables, setVariables] = useState<string>('');
+  const [headers, setHeaders] = useState<string>('');
+
+  const urlFromStore = useSelector((state: StoreType) => state.url);
+  const [fetchGQL] = useLazyGetGQLResponseQuery();
+
   const isQueryEditor = type === 'query';
-  const { width } = useGetWindowDimensions();
-  const isTablet = width < tablet;
 
-  const openNext = () => {
-    setShowRight((prev) => !prev);
+  const handleEditorChange = (value: string): void => {
+    setStateInput(value);
   };
 
-  const handleEditorChange = React.useCallback((value: string) => {
-    setEditorValue(value);
-  }, []);
+  const handlePrettifyClick = (): void => {
+    setStateInput(prettify(stateInput));
+  };
+  const handleExecute = (): void => {
+    const args: PrettierArgs = createGQLArgs(
+      stateInput,
+      variables,
+      headers,
+      urlFromStore
+    );
 
-  const handlePrettifyClick = () => {
-    setEditorValue(prettify(editorValue));
+    if (args.errors) {
+      setStateData(`errors:\n ${args.errors!.join('\n')}`);
+    } else {
+      fetchGQL(args.args, true).then(({ data, error, isSuccess }): void => {
+        const result: string = isSuccess
+          ? prettify(JSON.stringify(data))
+          : prettify(JSON.stringify(error));
+        setStateData(result);
+      });
+    }
+  };
+
+  const openNext = (): void => {
+    setShow((prev: boolean) => !prev);
   };
 
   return (
-    <div className={`${styles.editor} ${showRight && styles.open}`}>
+    <div className={`${styles.editor} ${isShow && styles.open}`}>
       <div className={styles.editor__text}>
+        {isQueryEditor && (
+          <Endpoint
+            isShowEndpoint={isShowEndpoint}
+            setShowEndpoint={setShowEndpoint}
+          />
+        )}
         <CodeMirror
-          value={isQueryEditor ? editorValue : responseValue}
+          value={isQueryEditor ? stateInput : stateData}
           onChange={handleEditorChange}
           theme={codeMirrorTheme}
           readOnly={!isQueryEditor}
@@ -66,11 +105,16 @@ const Editor: React.FC<TEditor> = ({ type, showRight, setShowRight }) => {
               img={PLAY_IMAGE}
               isTooltip={true}
               onHoverText="Execute query"
-              onClick={() => console.log('Execute query')}
+              onClick={handleExecute}
               className="execute_btn"
             />
           </div>
-          <Tabs />
+          <Tabs
+            headers={headers}
+            setHeaders={setHeaders}
+            variables={variables}
+            setVariables={setVariables}
+          />
         </>
       )}
     </div>
