@@ -30,5 +30,5 @@ export const graphQLApi = createApi({
   }),
 });
 
-export const { useGetIntrospectionQuery, useLazyGetGQLResponseQuery } =
+export const { useLazyGetIntrospectionQuery, useLazyGetGQLResponseQuery } =
   graphQLApi;

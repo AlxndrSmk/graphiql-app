@@ -214,3 +214,77 @@ export type StoreMaker = ReturnType<typeof storeApp>;
 export type StoreDispatcher = StoreMaker['dispatch'];
 
 export type StoreType = ReturnType<StoreMaker['getState']>;
+
+export type TDocType = {
+  kind: string;
+  name: string;
+  description: string;
+  fields: TDocField[] | null;
+  inputFields: TDocArgs[] | null;
+  interfaces: [];
+  enumValues: null | TEnum[];
+  possibleTypes: null;
+};
+
+type TEnum = {
+  name: string;
+  description: string;
+  isDeprecated: boolean;
+  deprecationReason: null;
+};
+
+export type TDocField = {
+  name: string;
+  description: string;
+  args: TDocArgs[];
+  type: TDocOfType | null;
+  isDeprecated: boolean;
+  deprecationReason: null;
+};
+
+export type TDocOfType = {
+  kind: string;
+  name: string | null;
+  ofType: null | TDocOfType;
+};
+
+export type TDocArgs = {
+  name: string;
+  description: string;
+  type: {
+    kind: string;
+    name: string | null;
+    ofType: TDocOfType | null;
+  };
+  defaultValue: string | null;
+};
+
+export type TDoc = {
+  data: {
+    __schema: {
+      queryType: {
+        name: string;
+      };
+      mutationType?: null;
+      subscriptionType?: null;
+      types: TDocType[];
+      // directives: [];
+    };
+  };
+};
+
+export type TObjectTypeProps = {
+  types: TDocType;
+  handleBtnClick: (str: string) => void;
+};
+
+export type TBreadCrumbProps = {
+  breadCrumb: string[];
+  types: TDocType[];
+  setBreadCrumb: Dispatch<SetStateAction<string[]>>;
+  setQueryData: Dispatch<SetStateAction<TDocType[]>>;
+};
+
+export type TDocProp = {
+  res: TDoc | undefined;
+};
