@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { graphQLApi } from '../rtk-query/fetchApI';
+import { graphQLApi } from '@/redux/rtk-query/fetchApI';
 import urlSlice from '@/redux/url/urlSlice';
 
 const storeApp = () => {

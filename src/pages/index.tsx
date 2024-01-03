@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import { Inter } from 'next/font/google';
-import Welcome from '../components/Welcome/Welcome';
-import styles from '../styles/Home.module.scss';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
+import Welcome from '@/components/Welcome/Welcome';
+import styles from '@/styles/Home.module.scss';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 

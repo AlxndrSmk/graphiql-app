@@ -1,12 +1,13 @@
 import * as Yup from 'yup';
+import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react';
 import { User, UserCredential } from 'firebase/auth';
 import { schema } from '@/validation/validationSchema';
-import { Dispatch, SetStateAction } from 'react';
+import storeApp from '@/redux/store/store';
 
 export type TButton = {
   text?: string;
-  onClick: () => void;
-  img?: JSX.Element;
+  onClick: (event: SyntheticEvent) => void;
+  img?: React.ReactNode;
   onHoverText?: string;
   isTooltip?: boolean;
   isDisabled?: boolean;
@@ -207,6 +208,12 @@ export type TEditor = {
   isShowEndpoint: boolean;
   setShowEndpoint: Dispatch<SetStateAction<boolean>>;
 };
+
+export type StoreMaker = ReturnType<typeof storeApp>;
+
+export type StoreDispatcher = StoreMaker['dispatch'];
+
+export type StoreType = ReturnType<StoreMaker['getState']>;
 
 export type TDocType = {
   kind: string;

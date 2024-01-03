@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import Tabs from '@/components/Tabs/Tabs';
 import Button from '@/components/Button/Button';
-import { PrettierArgs, TEditor } from '@/types/types';
+import { PrettierArgs, TEditor, StoreType } from '@/types/types';
 import { prettify } from '@/utils/prettify';
 import {
   CLEAN_IMAGE,
@@ -15,14 +15,13 @@ import { EditorView } from '@codemirror/view';
 
 import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
 import styles from './Editor.module.scss';
-import createGQLArgs from '../../utils/createGQLArgs';
+import createGQLArgs from '@/utils/createGQLArgs';
 import { useSelector } from 'react-redux';
-import StoreType from '../../redux/store/store-type';
 import { useLazyGetGQLResponseQuery } from '@/redux/rtk-query/fetchApI';
 import startQueryRequest from '@/constants/startQueryRequest';
 import Endpoint from '@/components/Enpoint/Endpoint';
 
-const EditorOld: React.FC<TEditor> = ({
+const Editor: React.FC<TEditor> = ({
   type,
   isShow,
   isTablet,
@@ -133,4 +132,4 @@ const EditorOld: React.FC<TEditor> = ({
   );
 };
 
-export default EditorOld;
+export default Editor;
