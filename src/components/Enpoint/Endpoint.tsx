@@ -1,10 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { EndpointProps, StoreType, StoreDispatcher } from '@/types/types';
+import {
+  EndpointProps,
+  StoreType,
+  StoreDispatcher,
+  LangContext,
+} from '@/types/types';
 
 import styles from './Endpoint.module.scss';
 import setUrlAction from '@/redux/url/urlActionCreator';
+import langContext from '@/context/langContext';
 
 const Endpoint: React.FC<EndpointProps> = ({
   isShowEndpoint,
@@ -12,6 +18,7 @@ const Endpoint: React.FC<EndpointProps> = ({
 }: EndpointProps) => {
   const isStart: React.MutableRefObject<boolean> = useRef(false);
   const input: React.LegacyRef<HTMLInputElement> = useRef(null);
+  const context = useContext<LangContext>(langContext);
 
   const urlEndpoint = useSelector((state: StoreType) => state.url);
   const dispatcher: StoreDispatcher = useDispatch();
@@ -54,7 +61,7 @@ const Endpoint: React.FC<EndpointProps> = ({
         className={styles['endpoint__button']}
         onClick={onClickHandler}
       >
-        Set
+        {context.getConstants().setBtn}
       </button>
     </label>
   );

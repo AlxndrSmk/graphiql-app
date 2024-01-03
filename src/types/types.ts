@@ -82,6 +82,14 @@ export interface LangConstants {
   passwordLetter: string;
   passwordCharacters: string;
   details: string;
+  prettify: string;
+  run: string;
+  doc: string;
+  docErr: string;
+  endpoint: string;
+  setBtn: string;
+  variables: string;
+  headers: string;
 }
 
 export interface LangContext {
