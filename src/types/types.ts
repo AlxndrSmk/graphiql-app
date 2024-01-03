@@ -81,6 +81,7 @@ export interface LangConstants {
   passwordDigit: string;
   passwordLetter: string;
   passwordCharacters: string;
+  details: string;
 }
 
 export interface LangContext {
