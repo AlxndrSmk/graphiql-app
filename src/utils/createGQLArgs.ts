@@ -1,4 +1,4 @@
-import { GQLArguments, GQLQueryBody, PrettierArgs } from '../types/types';
+import { GQLArguments, GQLQueryBody, PrettierArgs } from '@/types/types';
 import { prettify } from './prettify';
 
 const stringPrepareToParse = (value: string): string => {
