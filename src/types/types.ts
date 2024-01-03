@@ -73,6 +73,8 @@ export interface LangConstants {
   desc: string;
   descGrLink: string;
   descRs: string;
+  linkRSS: string;
+  descEnd: string;
   emailRequired: string;
   emailValid: string;
   emailDomain: string;
