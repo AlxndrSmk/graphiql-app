@@ -12,15 +12,14 @@ import {
   LOADER_IMAGE,
 } from '@/constants/buttonsImages';
 import { EditorView } from '@codemirror/view';
-
 import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
-import styles from './Editor.module.scss';
 import createGQLArgs from '@/utils/createGQLArgs';
 import { useSelector } from 'react-redux';
 import { useLazyGetGQLResponseQuery } from '@/redux/rtk-query/fetchApI';
-import startQueryRequest from '@/constants/startQueryRequest';
 import Endpoint from '@/components/Enpoint/Endpoint';
 import langContext from '@/context/langContext';
+import DEFAULT_REQUEST from '@/constants/DefaultRequest';
+import styles from './Editor.module.scss';
 
 const Editor: React.FC<TEditor> = ({
   type,
@@ -32,7 +31,7 @@ const Editor: React.FC<TEditor> = ({
   isShowEndpoint,
   setShowEndpoint,
 }) => {
-  const [stateInput, setStateInput] = useState<string>(startQueryRequest);
+  const [stateInput, setStateInput] = useState<string>(DEFAULT_REQUEST);
   const [variables, setVariables] = useState<string>('');
   const [headers, setHeaders] = useState<string>('');
   const [isDisabledBtn, setIsDisabledBtn] = useState<boolean>(false);
