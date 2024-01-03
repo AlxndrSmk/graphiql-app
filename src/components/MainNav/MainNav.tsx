@@ -65,7 +65,7 @@ const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
               ? context.getConstants().docErr
               : context.getConstants().doc
           }
-          disabled={dataRes === undefined}
+          isDisabled={dataRes === undefined}
           isTooltip={true}
         />
         <Button

@@ -6,7 +6,7 @@ import storeApp from '@/redux/store/store';
 
 export type TButton = {
   text?: string;
-  onClick: (event: SyntheticEvent) => void;
+  onClick?: (event: SyntheticEvent) => void;
   img?: React.ReactNode;
   onHoverText?: string;
   isTooltip?: boolean;
@@ -293,9 +293,9 @@ export type TBreadCrumbProps = {
   breadCrumb: string[];
   types: TDocType[];
   setBreadCrumb: Dispatch<SetStateAction<string[]>>;
-  setQueryData: Dispatch<SetStateAction<TDocType[]>>;
+  setQueryData: Dispatch<SetStateAction<TDocType[] | null>>;
 };
 
 export type TDocProp = {
-  res: TDoc | undefined;
+  res: TDoc | undefined | null;
 };
