@@ -89,7 +89,7 @@ const Documentation: React.FC<TDocProp> = ({ res }) => {
                     className={styles.docs__query}
                     disabled={breadCrumb[breadCrumb.length - 1] === el.name}
                   >
-                    <p>{el.name}</p>
+                    <p style={{ wordBreak: 'break-word' }}>{el.name}</p>
                   </button>
                   {breadCrumb.length > 1 && el.kind === 'OBJECT' && (
                     <ObjectType types={el} handleBtnClick={handleBtnClick} />

@@ -17,6 +17,10 @@
     color: #fff;
     transition: 0.3s ease;
     opacity: 0.5;
+
+    @media (max-width: 1000px) {
+      font-size: 16px;
+    }
   }
 
   &.tab__btns_btn_dis {
@@ -30,7 +34,7 @@
     transform: rotate(180deg);
     transition: 0.3s ease;
 
-    @media (max-width: 380px) {
+    @media (max-width: 800px) {
       position: absolute;
       top: -35px;
       left: 0;
