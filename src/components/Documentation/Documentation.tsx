@@ -1,8 +1,8 @@
 import { Fragment, useEffect, useState } from 'react';
 import { BreadCrumbsMaker } from './BreadcrumbsMaker';
-import { TDocProp, TDocType } from '../../types/types';
+import { TDocProp, TDocType } from '@/types/types';
 import { ObjectType } from './ObjectType';
-import { removeSymbols } from '../../utils/removeSymbols';
+import { removeSymbols } from '@/utils/removeSymbols';
 
 import styles from './Documentation.module.scss';
 

@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { MainNavProps } from '@/types/types';
 import Button from '@/components/Button/Button';
-import { LOADER_IMAGE } from '../../constants/buttonsImages';
-import StoreType from '../../redux/store/store-type';
-import { useLazyGetIntrospectionQuery } from '../../redux/rtk-query/fetchApI';
+import { LOADER_IMAGE } from '@/constants/buttonsImages';
+import StoreType from '@/redux/store/store-type';
+import { useLazyGetIntrospectionQuery } from '@/redux/rtk-query/fetchApI';
 import styles from './MainNav.module.scss';
 
 const Documentation = lazy(() => import('../Documentation/Documentation'));

@@ -29,6 +29,12 @@
     margin-left: auto;
     transform: rotate(180deg);
     transition: 0.3s ease;
+
+    @media(max-width: 380px) {
+      position: absolute;
+      top: -35px;
+      left: 0;
+    }
   }
 
   &__tab_btn_open {
