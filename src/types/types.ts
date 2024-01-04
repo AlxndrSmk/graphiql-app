@@ -6,7 +6,7 @@ import storeApp from '@/redux/store/store';
 
 export type TButton = {
   text?: string;
-  onClick: (event: SyntheticEvent) => void;
+  onClick?: (event: SyntheticEvent) => void;
   img?: React.ReactNode;
   onHoverText?: string;
   isTooltip?: boolean;
@@ -73,6 +73,8 @@ export interface LangConstants {
   desc: string;
   descGrLink: string;
   descRs: string;
+  linkRSS: string;
+  descEnd: string;
   emailRequired: string;
   emailValid: string;
   emailDomain: string;
@@ -81,6 +83,15 @@ export interface LangConstants {
   passwordDigit: string;
   passwordLetter: string;
   passwordCharacters: string;
+  details: string;
+  prettify: string;
+  run: string;
+  doc: string;
+  docErr: string;
+  endpoint: string;
+  setBtn: string;
+  variables: string;
+  headers: string;
 }
 
 export interface LangContext {
@@ -282,9 +293,9 @@ export type TBreadCrumbProps = {
   breadCrumb: string[];
   types: TDocType[];
   setBreadCrumb: Dispatch<SetStateAction<string[]>>;
-  setQueryData: Dispatch<SetStateAction<TDocType[]>>;
+  setQueryData: Dispatch<SetStateAction<TDocType[] | null>>;
 };
 
 export type TDocProp = {
-  res: TDoc | undefined;
+  res: TDoc | undefined | null;
 };

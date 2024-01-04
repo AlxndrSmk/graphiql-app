@@ -1,9 +1,12 @@
 import Image from 'next/image';
 import LinkButton from '@/components/LinkButton/LinkButton';
-import { DeveloperCardProps } from '@/types/types';
+import { DeveloperCardProps, LangContext } from '@/types/types';
 import styles from './DeveloperCard.module.scss';
+import { useContext } from 'react';
+import langContext from '@/context/langContext';
 
 const DeveloperCard: React.FC<DeveloperCardProps> = (props) => {
+  const context = useContext<LangContext>(langContext);
   const { bgColor, firstName, lastName, github, image, description } = props;
 
   return (
@@ -23,7 +26,9 @@ const DeveloperCard: React.FC<DeveloperCardProps> = (props) => {
               </div>
 
               <div className={styles['card-front__bottom']}>
-                <p className={styles['card-front__text-view']}>Details</p>
+                <p className={styles['card-front__text-view']}>
+                  {context.getConstants().details}
+                </p>
               </div>
             </div>
 

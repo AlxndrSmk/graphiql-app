@@ -1,14 +1,16 @@
 import { Fragment, useEffect, useState } from 'react';
 import { BreadCrumbsMaker } from './BreadcrumbsMaker';
-import { TDocProp, TDocType } from '../../types/types';
+import { TDocProp, TDocType } from '@/types/types';
 import { ObjectType } from './ObjectType';
-import { removeSymbols } from '../../utils/removeSymbols';
+import { removeSymbols } from '@/utils/removeSymbols';
 
 import styles from './Documentation.module.scss';
 
 const Documentation: React.FC<TDocProp> = ({ res }) => {
   const types = res?.data.__schema.types;
-  const [data, setQueryData] = useState<TDocType[] | null>(types);
+  const [data, setQueryData] = useState<TDocType[] | null>(
+    types as TDocType[] | null
+  );
   const [breadCrumb, setBreadCrumb] = useState<string[]>(['Docs']);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const Documentation: React.FC<TDocProp> = ({ res }) => {
   };
 
   const filterData = (key: string): void => {
-    const filtered: TDocType[] = types.filter(
+    const filtered: TDocType[] = types!.filter(
       (el) => el.name === removeSymbols(key)
     );
     setQueryData(filtered);
@@ -73,7 +75,7 @@ const Documentation: React.FC<TDocProp> = ({ res }) => {
           <div className={styles.docs__breads}>
             <BreadCrumbsMaker
               breadCrumb={breadCrumb}
-              types={types}
+              types={types!}
               setBreadCrumb={setBreadCrumb}
               setQueryData={setQueryData}
             />

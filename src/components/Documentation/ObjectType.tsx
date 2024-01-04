@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { TObjectTypeProps, TDocField, TDocOfType } from '../../types/types';
+import { TObjectTypeProps, TDocField, TDocOfType } from '@/types/types';
 import styles from './Documentation.module.scss';
 
 export const ObjectType: React.FC<TObjectTypeProps> = ({

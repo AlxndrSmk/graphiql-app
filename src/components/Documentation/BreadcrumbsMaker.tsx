@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styles from './Documentation.module.scss';
-import { TDocType, TBreadCrumbProps } from '../../types/types';
+import { TDocType, TBreadCrumbProps } from '@/types/types';
 import { Dispatch, SetStateAction } from 'react';
 
 export const BreadCrumbsMaker: React.FC<TBreadCrumbProps> = ({
@@ -42,7 +42,7 @@ const handleBreadCrumbsBtn = (
   breadCrumb: string[],
   types: TDocType[],
   setBreadCrumb: Dispatch<SetStateAction<string[]>>,
-  setQueryData: Dispatch<SetStateAction<TDocType[]>>
+  setQueryData: Dispatch<SetStateAction<TDocType[] | null>>
 ) => {
   const arr = breadCrumb.slice(0, ind + 1);
 
