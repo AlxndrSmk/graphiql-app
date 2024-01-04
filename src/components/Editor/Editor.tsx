@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import Tabs from '@/components/Tabs/Tabs';
 import Button from '@/components/Button/Button';
-import { PrettierArgs, TEditor, StoreType } from '@/types/types';
+import { PrettierArgs, TEditor, StoreType, LangContext } from '@/types/types';
 import { prettify } from '@/utils/prettify';
 import {
   CLEAN_IMAGE,
@@ -12,14 +12,14 @@ import {
   LOADER_IMAGE,
 } from '@/constants/buttonsImages';
 import { EditorView } from '@codemirror/view';
-
 import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
-import styles from './Editor.module.scss';
 import createGQLArgs from '@/utils/createGQLArgs';
 import { useSelector } from 'react-redux';
 import { useLazyGetGQLResponseQuery } from '@/redux/rtk-query/fetchApI';
-import startQueryRequest from '@/constants/startQueryRequest';
 import Endpoint from '@/components/Enpoint/Endpoint';
+import langContext from '@/context/langContext';
+import DEFAULT_REQUEST from '@/constants/DefaultRequest';
+import styles from './Editor.module.scss';
 
 const Editor: React.FC<TEditor> = ({
   type,
@@ -31,10 +31,11 @@ const Editor: React.FC<TEditor> = ({
   isShowEndpoint,
   setShowEndpoint,
 }) => {
-  const [stateInput, setStateInput] = useState<string>(startQueryRequest);
+  const [stateInput, setStateInput] = useState<string>(DEFAULT_REQUEST);
   const [variables, setVariables] = useState<string>('');
   const [headers, setHeaders] = useState<string>('');
   const [isDisabledBtn, setIsDisabledBtn] = useState<boolean>(false);
+  const context = useContext<LangContext>(langContext);
 
   const urlFromStore = useSelector((state: StoreType) => state.url);
   const [fetchGQL] = useLazyGetGQLResponseQuery();
@@ -108,13 +109,13 @@ const Editor: React.FC<TEditor> = ({
             <Button
               img={CLEAN_IMAGE}
               isTooltip={true}
-              onHoverText="Prettify"
+              onHoverText={context.getConstants().prettify}
               onClick={handlePrettifyClick}
             />
             <Button
               img={isDisabledBtn ? LOADER_IMAGE : PLAY_IMAGE}
               isTooltip={true}
-              onHoverText="Execute query"
+              onHoverText={context.getConstants().run}
               onClick={handleExecute}
               className="execute_btn"
               isDisabled={isDisabledBtn}

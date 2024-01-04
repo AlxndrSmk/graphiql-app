@@ -1,7 +1,7 @@
+@use 'sass:map';
 @import '@/styles/colors.scss';
 
 .main {
-  align-items: center;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -68,6 +68,26 @@
       font:
         700 35px Raleway,
         sans-serif;
+    }
+  }
+
+  &__desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3px;
+  }
+
+  &__links {
+    color: map.get($headerColors, 'link-hover');
+
+    &:hover {
+      color: map.get($headerColors, 'link');
+    }
+
+    &:active {
+      color: map.get($headerColors, 'link-active');
     }
   }
 }

@@ -17,18 +17,31 @@ const Welcome: React.FC = () => {
         <Image src={'/pngegg.png'} alt={'Rick'} fill />
       </div>
 
-      <h1 className={styles.main__title}>{context.getConstants().title}</h1>
-      <div className={styles.main__desc}>
-        {context.getConstants().desc}{' '}
-        <Link
-          href="https://rickandmortyapi.com/documentation/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          {context.getConstants().descGrLink}{' '}
-        </Link>
-        {context.getConstants().descRs}{' '}
-        <a href="https://rs.school/">RS School</a>
+      <h1 className={styles['main__title']}>{context.getConstants().title}</h1>
+      <div className={styles['main__desc']}>
+        <p>
+          {context.getConstants().desc}{' '}
+          <Link
+            className={styles['main__links']}
+            href="https://rickandmortyapi.com/documentation/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {context.getConstants().descGrLink}{' '}
+          </Link>
+        </p>
+        <p>
+          {context.getConstants().descRs}{' '}
+          <Link
+            className={styles['main__links']}
+            href="https://rs.school/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {context.getConstants().linkRSS}
+          </Link>
+          {context.getConstants().descEnd}
+        </p>
       </div>
       <section className={styles['card-section']}>
         {team[context.pageLang as keyof TeamData].map((el: TeamMember) => (

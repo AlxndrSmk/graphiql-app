@@ -1,8 +1,16 @@
 import Image from 'next/image';
-import { ChangeEvent, FC, SyntheticEvent, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  FC,
+  SyntheticEvent,
+  useContext,
+  useRef,
+  useState,
+} from 'react';
 import Button from '@/components/Button/Button';
 import styles from './Tabs.module.scss';
-import { TabsProps } from '@/types/types';
+import { LangContext, TabsProps } from '@/types/types';
+import langContext from '@/context/langContext';
 
 const Tabs: FC<TabsProps> = ({
   variables,
@@ -14,6 +22,7 @@ const Tabs: FC<TabsProps> = ({
     'Variables'
   );
   const [openTab, setOpenTab] = useState<boolean>(false);
+  const context = useContext<LangContext>(langContext);
 
   const ref = useRef<HTMLTextAreaElement>(null);
 
@@ -47,14 +56,14 @@ const Tabs: FC<TabsProps> = ({
     <>
       <div className={styles.tabs__btns}>
         <Button
-          text="Variables"
+          text={context.getConstants().variables}
           onClick={handleTabClick}
           className={!isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
           isDisabled={isVariable}
         />
 
         <Button
-          text="Headers"
+          text={context.getConstants().headers}
           onClick={handleTabClick}
           className={isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
           isDisabled={!isVariable}

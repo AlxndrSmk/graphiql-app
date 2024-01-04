@@ -1,19 +1,26 @@
-import React, { Suspense, lazy, startTransition, useEffect } from 'react';
+import React, {
+  Suspense,
+  lazy,
+  startTransition,
+  useEffect,
+  useContext,
+} from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { MainNavProps } from '@/types/types';
+import { LangContext, MainNavProps, StoreType } from '@/types/types';
 import Button from '@/components/Button/Button';
 import { LOADER_IMAGE } from '@/constants/buttonsImages';
-import StoreType from '@/redux/store/store-type';
 import { useLazyGetIntrospectionQuery } from '@/redux/rtk-query/fetchApI';
 import styles from './MainNav.module.scss';
+import langContext from '@/context/langContext';
 
 const Documentation = lazy(() => import('../Documentation/Documentation'));
 
 const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
   const [isShowDoc, setIsShowDoc] = useState<boolean>(false);
   const [dataRes, setDataRes] = useState(null);
+  const context = useContext<LangContext>(langContext);
   const urlFromStore = useSelector((state: StoreType) => state.url);
   const [fetchFunction] = useLazyGetIntrospectionQuery();
 
@@ -55,16 +62,16 @@ const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
           onClick={handleDocButton}
           onHoverText={
             dataRes === undefined
-              ? 'smth went wrong, please check endpoint'
-              : 'Documentation'
+              ? context.getConstants().docErr
+              : context.getConstants().doc
           }
-          disabled={dataRes === undefined}
+          isDisabled={dataRes === undefined}
           isTooltip={true}
         />
         <Button
           img={queryImg}
           onClick={onEndpointHandler}
-          onHoverText="Change endpoint"
+          onHoverText={context.getConstants().endpoint}
           isTooltip={true}
         />
       </div>
