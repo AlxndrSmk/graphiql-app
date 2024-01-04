@@ -44,7 +44,6 @@
 
   &_open {
     animation: openWnd 1s forwards linear;
-
   }
 
   &_close {
@@ -69,7 +68,7 @@
     border-radius: 5px;
     background-color: transparent;
     cursor: pointer;
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
 
     @media (max-width: 800px) {
       width: 18%;

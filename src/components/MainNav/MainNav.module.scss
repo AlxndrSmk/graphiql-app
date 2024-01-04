@@ -1,6 +1,55 @@
+@import '@/styles/colors.scss';
+
+
 .main_nav {
+  position: relative;
   padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 40px;
+
+  &_loader {
+    img {
+      animation: loader 1s ease infinite;
+    }
+  }
+
+  &_error {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s ease;
+    z-index: 15;
+
+    div {
+      padding: 20px;
+      border-radius: 20px;
+      background-color: $blue-gray;
+      color: $sand-dollar;
+      font-size: 25px;
+
+      @media (max-width: 800px) {
+        font-size: 14px;
+        padding: 10px;
+        text-align: center;
+      } 
+
+    }
+
+  }
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

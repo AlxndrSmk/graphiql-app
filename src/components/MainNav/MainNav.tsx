@@ -1,16 +1,9 @@
-import React, {
-  Suspense,
-  lazy,
-  startTransition,
-  useEffect,
-  useContext,
-} from 'react';
+import React, { Suspense, lazy, startTransition, useContext } from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { LangContext, MainNavProps, StoreType } from '@/types/types';
 import Button from '@/components/Button/Button';
-import { LOADER_IMAGE } from '@/constants/buttonsImages';
 import { useLazyGetIntrospectionQuery } from '@/redux/rtk-query/fetchApI';
 import styles from './MainNav.module.scss';
 import langContext from '@/context/langContext';
@@ -20,7 +13,10 @@ const Documentation = lazy(() => import('../Documentation/Documentation'));
 const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
   const [isShowDoc, setIsShowDoc] = useState<boolean>(false);
   const [dataRes, setDataRes] = useState(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
   const context = useContext<LangContext>(langContext);
+
   const urlFromStore = useSelector((state: StoreType) => state.url);
   const [fetchFunction] = useLazyGetIntrospectionQuery();
 
@@ -32,22 +28,28 @@ const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
     <Image src="/edit.svg" alt="change endpoint" width="20" height="20" />
   );
 
-  useEffect(() => {
-    fetchFunction(urlFromStore).then((res) => {
-      const { data } = res;
-      setDataRes(data);
-      setIsShowDoc(false);
-    });
-  }, [urlFromStore]);
-
   const handleDocButton = () => {
-    startTransition(() => {
-      fetchFunction(urlFromStore).then((res) => {
-        const { data } = res;
-        setDataRes(data);
-        setIsShowDoc((prev) => !prev);
+    if (isShowDoc) {
+      setIsShowDoc(false);
+    } else {
+      setIsLoading(true);
+      startTransition(() => {
+        fetchFunction(urlFromStore).then((res) => {
+          const { data, isSuccess, isError } = res;
+          if (isSuccess) {
+            setDataRes(data);
+            setIsShowDoc((prev) => !prev);
+          }
+          if (isError) {
+            setIsError(true);
+            setTimeout(() => {
+              setIsError(false);
+            }, 3000);
+          }
+          setIsLoading(false);
+        });
       });
-    });
+    }
   };
 
   const onEndpointHandler = (): void => {
@@ -57,15 +59,17 @@ const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
   return (
     <>
       <div className={styles.main_nav}>
+        {isError && (
+          <div className={styles.main_nav_error}>
+            <div>{context.getConstants().docErr}</div>
+          </div>
+        )}
         <Button
           img={docImg}
           onClick={handleDocButton}
-          onHoverText={
-            dataRes === undefined
-              ? context.getConstants().docErr
-              : context.getConstants().doc
-          }
-          isDisabled={dataRes === undefined}
+          className={`${isLoading && 'loader'}`}
+          onHoverText={context.getConstants().doc}
+          isDisabled={isLoading}
           isTooltip={true}
         />
         <Button
@@ -75,9 +79,7 @@ const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
           isTooltip={true}
         />
       </div>
-      <Suspense fallback={<Button img={LOADER_IMAGE} isDisabled={true} />}>
-        {isShowDoc && <Documentation res={dataRes} />}
-      </Suspense>
+      <Suspense>{isShowDoc && <Documentation res={dataRes} />}</Suspense>
     </>
   );
 };
