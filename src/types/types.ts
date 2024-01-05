@@ -1,24 +1,17 @@
 import * as Yup from 'yup';
+import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react';
 import { User, UserCredential } from 'firebase/auth';
 import { schema } from '@/validation/validationSchema';
-import { Dispatch, SetStateAction } from 'react';
+import storeApp from '@/redux/store/store';
 
 export type TButton = {
   text?: string;
-  onClick: () => void;
-  img?: JSX.Element;
+  onClick?: (event: SyntheticEvent) => void;
+  img?: React.ReactNode;
   onHoverText?: string;
   isTooltip?: boolean;
   isDisabled?: boolean;
   className?: string;
-};
-
-export type TEditor = {
-  type: 'json' | 'query';
-  showRight: boolean;
-  setShowRight: Dispatch<SetStateAction<boolean>>;
-  responseText?: string;
-  setEditorValue?: Dispatch<SetStateAction<string | undefined>>;
 };
 
 export interface AuthButtonProps {
@@ -48,11 +41,6 @@ export interface CustomError {
 export interface AuthViewProps {
   authCallback: (email: string, password: string) => Promise<UserCredential>;
   page?: 'SIGN_IN' | 'SIGN_UP';
-}
-
-export interface CustomError {
-  code: string;
-  message: string;
 }
 
 export type schemaType = Yup.InferType<typeof schema>;
@@ -86,6 +74,8 @@ export interface LangConstants {
   desc: string;
   descGrLink: string;
   descRs: string;
+  linkRSS: string;
+  descEnd: string;
   emailRequired: string;
   emailValid: string;
   emailDomain: string;
@@ -94,6 +84,15 @@ export interface LangConstants {
   passwordDigit: string;
   passwordLetter: string;
   passwordCharacters: string;
+  details: string;
+  prettify: string;
+  run: string;
+  doc: string;
+  docErr: string;
+  endpoint: string;
+  setBtn: string;
+  variables: string;
+  headers: string;
 }
 
 export interface LangContext {
@@ -110,7 +109,8 @@ export interface TeamData {
 }
 
 export interface TeamMember {
-  name: string;
+  firstName: string;
+  lastName: string;
   img: string;
   desc: string;
   github: string;
@@ -162,4 +162,141 @@ export interface LinkButtonProps {
 export type BurgerButtonProps = {
   open: boolean;
   setOpen: (v: boolean) => void;
+};
+
+export interface DeveloperCardProps {
+  firstName: string;
+  lastName: string;
+  github: string;
+  image: string;
+  description: string;
+  bgColor: string;
+}
+
+export interface CustomHeaders {
+  [key: string]: string;
+}
+
+export interface Variables extends CustomHeaders {}
+
+export interface GQLQueryBody {
+  operationName: string | null;
+  variables: Variables | object;
+  query: string;
+}
+export interface GQLArguments {
+  url: string;
+  headers?: CustomHeaders;
+  body: GQLQueryBody;
+}
+
+export interface PrettierArgs {
+  args: GQLArguments;
+  errors: Array<string> | null;
+}
+
+export interface TabsProps {
+  variables: string;
+  headers: string;
+  setVariables: Dispatch<SetStateAction<string>>;
+  setHeaders: Dispatch<SetStateAction<string>>;
+}
+
+export interface MainNavProps {
+  setShowEndpoint: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface EndpointProps extends MainNavProps {
+  isShowEndpoint: boolean;
+}
+
+export type TEditor = {
+  type: 'json' | 'query';
+  isShow: boolean;
+  isTablet: boolean;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  setStateData: Dispatch<SetStateAction<string>>;
+  stateData: string;
+  isShowEndpoint: boolean;
+  setShowEndpoint: Dispatch<SetStateAction<boolean>>;
+};
+
+export type StoreMaker = ReturnType<typeof storeApp>;
+
+export type StoreDispatcher = StoreMaker['dispatch'];
+
+export type StoreType = ReturnType<StoreMaker['getState']>;
+
+export type TDocType = {
+  kind: string;
+  name: string;
+  description: string;
+  fields: TDocField[] | null;
+  inputFields: TDocArgs[] | null;
+  interfaces: [];
+  enumValues: null | TEnum[];
+  possibleTypes: null;
+};
+
+type TEnum = {
+  name: string;
+  description: string;
+  isDeprecated: boolean;
+  deprecationReason: null;
+};
+
+export type TDocField = {
+  name: string;
+  description: string;
+  args: TDocArgs[];
+  type: TDocOfType | null;
+  isDeprecated: boolean;
+  deprecationReason: null;
+};
+
+export type TDocOfType = {
+  kind: string;
+  name: string | null;
+  ofType: null | TDocOfType;
+};
+
+export type TDocArgs = {
+  name: string;
+  description: string;
+  type: {
+    kind: string;
+    name: string | null;
+    ofType: TDocOfType | null;
+  };
+  defaultValue: string | null;
+};
+
+export type TDoc = {
+  data: {
+    __schema: {
+      queryType: {
+        name: string;
+      };
+      mutationType?: null;
+      subscriptionType?: null;
+      types: TDocType[];
+      // directives: [];
+    };
+  };
+};
+
+export type TObjectTypeProps = {
+  types: TDocType;
+  handleBtnClick: (str: string) => void;
+};
+
+export type TBreadCrumbProps = {
+  breadCrumb: string[];
+  types: TDocType[];
+  setBreadCrumb: Dispatch<SetStateAction<string[]>>;
+  setQueryData: Dispatch<SetStateAction<TDocType[] | null>>;
+};
+
+export type TDocProp = {
+  res: TDoc | undefined | null;
 };

@@ -9,15 +9,19 @@
   padding: 20px;
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow-x: visible;
 
   @media (max-width: 800px) {
+    padding: 5px;
+    overflow-x: hidden;
+
     .show_next {
       position: absolute;
       right: 20px;
       top: 38%;
       background-color: transparent;
       border: none;
+      cursor: pointer;
     }
 
     max-width: 86%;

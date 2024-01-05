@@ -1,10 +1,9 @@
 import Image from 'next/image';
 import { LangContext, SignInFieldProps } from '@/types/types';
-
-import styles from './AuthInput.module.scss';
 import { useContext } from 'react';
 import langContext from '@/context/langContext';
 import errorLocalization from '@/utils/errorLocalization';
+import styles from './AuthInput.module.scss';
 
 const AuthInput: React.FC<SignInFieldProps> = ({
   label,

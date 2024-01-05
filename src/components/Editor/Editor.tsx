@@ -1,46 +1,96 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
-import useGetWindowDimensions from '@/utils/useGetWindowsDimensions';
 import Tabs from '@/components/Tabs/Tabs';
 import Button from '@/components/Button/Button';
-import { TEditor } from '@/types/types';
+import { PrettierArgs, TEditor, StoreType, LangContext } from '@/types/types';
 import { prettify } from '@/utils/prettify';
-import { CLEAN_IMAGE, PLAY_IMAGE } from '@/constants/buttonsImages';
-import { DEFAULT_REQUEST } from '@/constants/DefaultRequest';
-import { tablet } from '@/utils/constants';
-
+import {
+  CLEAN_IMAGE,
+  PLAY_IMAGE,
+  LOADER_IMAGE,
+} from '@/constants/buttonsImages';
+import { EditorView } from '@codemirror/view';
 import { codeMirrorTheme } from '@/styles/codeMirrorTheme';
+import createGQLArgs from '@/utils/createGQLArgs';
+import { useSelector } from 'react-redux';
+import { useLazyGetGQLResponseQuery } from '@/redux/rtk-query/fetchApI';
+import Endpoint from '@/components/Enpoint/Endpoint';
+import langContext from '@/context/langContext';
+import DEFAULT_REQUEST from '@/constants/DefaultRequest';
 import styles from './Editor.module.scss';
 
-const Editor: React.FC<TEditor> = ({ type, showRight, setShowRight }) => {
-  const [editorValue, setEditorValue] = useState<string>(DEFAULT_REQUEST);
-  const [responseValue] = useState<string>('');
-  const isQueryEditor = type === 'query';
-  const { width } = useGetWindowDimensions();
-  const isTablet = width < tablet;
+const Editor: React.FC<TEditor> = ({
+  type,
+  isShow,
+  isTablet,
+  setShow,
+  setStateData,
+  stateData,
+  isShowEndpoint,
+  setShowEndpoint,
+}) => {
+  const [stateInput, setStateInput] = useState<string>(DEFAULT_REQUEST);
+  const [variables, setVariables] = useState<string>('');
+  const [headers, setHeaders] = useState<string>('');
+  const [isDisabledBtn, setIsDisabledBtn] = useState<boolean>(false);
+  const context = useContext<LangContext>(langContext);
 
-  const openNext = () => {
-    setShowRight((prev) => !prev);
+  const urlFromStore = useSelector((state: StoreType) => state.url);
+  const [fetchGQL] = useLazyGetGQLResponseQuery();
+
+  const isQueryEditor = type === 'query';
+
+  const handleEditorChange = (value: string): void => {
+    setStateInput(value);
   };
 
-  const handleEditorChange = React.useCallback((value: string) => {
-    setEditorValue(value);
-  }, []);
+  const handlePrettifyClick = (): void => {
+    setStateInput(prettify(stateInput));
+  };
+  const handleExecute = (): void => {
+    setIsDisabledBtn(true);
 
-  const handlePrettifyClick = () => {
-    setEditorValue(prettify(editorValue));
+    const args: PrettierArgs = createGQLArgs(
+      stateInput,
+      variables,
+      headers,
+      urlFromStore
+    );
+
+    if (args.errors) {
+      setStateData(`errors:\n ${args.errors!.join('\n')}`);
+    } else {
+      fetchGQL(args.args, true).then(({ data, error, isSuccess }): void => {
+        const result: string = isSuccess
+          ? prettify(JSON.stringify(data))
+          : prettify(JSON.stringify(error));
+        setStateData(result);
+        setIsDisabledBtn(false);
+      });
+    }
+  };
+
+  const openNext = (): void => {
+    setShow((prev: boolean) => !prev);
   };
 
   return (
-    <div className={`${styles.editor} ${showRight && styles.open}`}>
+    <div className={`${styles.editor} ${isShow && styles.open}`}>
       <div className={styles.editor__text}>
+        {isQueryEditor && (
+          <Endpoint
+            isShowEndpoint={isShowEndpoint}
+            setShowEndpoint={setShowEndpoint}
+          />
+        )}
         <CodeMirror
-          value={isQueryEditor ? editorValue : responseValue}
+          value={isQueryEditor ? stateInput : stateData}
           onChange={handleEditorChange}
           theme={codeMirrorTheme}
           readOnly={!isQueryEditor}
+          extensions={[EditorView.lineWrapping]}
         />
       </div>
       {isTablet && (
@@ -59,18 +109,24 @@ const Editor: React.FC<TEditor> = ({ type, showRight, setShowRight }) => {
             <Button
               img={CLEAN_IMAGE}
               isTooltip={true}
-              onHoverText="Prettify"
+              onHoverText={context.getConstants().prettify}
               onClick={handlePrettifyClick}
             />
             <Button
-              img={PLAY_IMAGE}
+              img={isDisabledBtn ? LOADER_IMAGE : PLAY_IMAGE}
               isTooltip={true}
-              onHoverText="Execute query"
-              onClick={() => console.log('Execute query')}
+              onHoverText={context.getConstants().run}
+              onClick={handleExecute}
               className="execute_btn"
+              isDisabled={isDisabledBtn}
             />
           </div>
-          <Tabs />
+          <Tabs
+            headers={headers}
+            setHeaders={setHeaders}
+            variables={variables}
+            setVariables={setVariables}
+          />
         </>
       )}
     </div>
