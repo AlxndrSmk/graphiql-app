@@ -61,6 +61,7 @@ const Editor: React.FC<TEditor> = ({
 
     if (args.errors) {
       setStateData(`errors:\n ${args.errors!.join('\n')}`);
+      setIsDisabledBtn(false);
     } else {
       fetchGQL(args.args, true).then(({ data, error, isSuccess }): void => {
         const result: string = isSuccess
