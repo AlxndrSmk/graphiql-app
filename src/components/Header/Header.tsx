@@ -24,7 +24,6 @@ const Header: React.FC = () => {
   const context: LangContext = useContext<LangContext>(LanguageContext);
   const checkedLang = langChecker(Router, context);
   const pathname = usePathname();
-  console.log(pathname === '/main');
 
   const handleSignOut = (): void => {
     logout();
