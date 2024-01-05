@@ -1,13 +1,10 @@
 import Head from 'next/head';
-import { Inter } from 'next/font/google';
 import Welcome from '@/components/Welcome/Welcome';
 import styles from '@/styles/Home.module.scss';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 
-const inter = Inter({ subsets: ['latin'] });
-
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <>
       <Head>
@@ -17,10 +14,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={`${styles.main}`}>
         <Welcome />
       </main>
       <Footer />
     </>
   );
-}
+};
+
+export default Home;

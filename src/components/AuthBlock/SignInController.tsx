@@ -61,6 +61,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
           <p className={styles['form__account']}>
             {context.getConstants().haveAccount}{' '}
             <Link
+              data-testid="sign-up-link"
               className={styles['form__link']}
               href={ROUTES.SIGN_UP + `?lang=${checkedLang}`}
             >
@@ -69,6 +70,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
             <br />
             {context.getConstants().signOr}{' '}
             <Link
+              data-testid="welcome-link"
               className={styles['form__link']}
               href={ROUTES.WELCOME + `?lang=${checkedLang}`}
             >
@@ -79,6 +81,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
             className={`${styles['form__controls']} ${styles['form__controls_signin']}`}
           >
             <AuthInput
+              data-testid="email"
               id="email"
               type="text"
               register={register('email')}
@@ -87,6 +90,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
               placeholder={''}
             />
             <AuthInput
+              data-testid="password"
               id="password"
               type={isVisible ? 'text' : 'password'}
               register={register('password')}
