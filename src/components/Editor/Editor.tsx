@@ -91,6 +91,9 @@ const Editor: React.FC<TEditor> = ({
           theme={codeMirrorTheme}
           readOnly={!isQueryEditor}
           extensions={[EditorView.lineWrapping]}
+          basicSetup={{
+            lineNumbers: type !== 'json',
+          }}
         />
       </div>
       {isTablet && (
