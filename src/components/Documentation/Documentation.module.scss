@@ -155,4 +155,8 @@
     color: $blue-gray;
     margin-bottom: 10px;
   }
+
+  &_list {
+    word-break: break-word;
+  }
 }

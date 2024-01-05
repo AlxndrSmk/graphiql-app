@@ -1,6 +1,5 @@
 @import '@/styles/colors.scss';
 
-
 .main_nav {
   position: relative;
   padding: 10px;
@@ -23,7 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: .3s ease;
+    transition: 0.3s ease;
     z-index: 15;
 
     div {
@@ -37,10 +36,8 @@
         font-size: 14px;
         padding: 10px;
         text-align: center;
-      } 
-
+      }
     }
-
   }
 }
 

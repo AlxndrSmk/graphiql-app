@@ -16,7 +16,6 @@ const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const context = useContext<LangContext>(langContext);
-
   const urlFromStore = useSelector((state: StoreType) => state.url);
   const [fetchFunction] = useLazyGetIntrospectionQuery();
 

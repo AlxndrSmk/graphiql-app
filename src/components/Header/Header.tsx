@@ -1,3 +1,4 @@
+import { usePathname } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
@@ -22,6 +23,8 @@ const Header: React.FC = () => {
   const Router: NextRouter = useRouter();
   const context: LangContext = useContext<LangContext>(LanguageContext);
   const checkedLang = langChecker(Router, context);
+  const pathname = usePathname();
+  console.log(pathname === '/main');
 
   const handleSignOut = (): void => {
     logout();
@@ -64,13 +67,15 @@ const Header: React.FC = () => {
         {user ? (
           <>
             <div className={styles['header__container-buttons']}>
-              <LinkButton
-                alt={'To main page'}
-                size={24}
-                src={'/home.svg'}
-                href={`/main?lang=${checkedLang}`}
-                text={context.getConstants().mainPageLink}
-              />
+              {pathname !== '/main' && (
+                <LinkButton
+                  alt={'To main page'}
+                  size={24}
+                  src={'/home.svg'}
+                  href={`/main?lang=${checkedLang}`}
+                  text={context.getConstants().mainPageLink}
+                />
+              )}
               <AuthButton
                 text={context.getConstants().signOut}
                 onClick={handleSignOut}
