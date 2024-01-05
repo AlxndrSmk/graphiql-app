@@ -1,3 +1,6 @@
+@import '@/styles/colors.scss';
+
+
 .btn {
   position: relative;
   background-color: transparent;
@@ -50,6 +53,9 @@
     border: none;
 
     &:disabled {
+      cursor: auto;
+      background-color: $button-disabled;
+
       img {
         animation-name: loader;
         animation-duration: 1s;
@@ -92,6 +98,9 @@
 
   &.loader {
     &:disabled {
+      cursor: auto;
+      background-color: $button-disabled;
+
       img {
         animation-name: loader;
         animation-duration: 1s;
