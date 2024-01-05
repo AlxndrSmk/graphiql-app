@@ -15,9 +15,9 @@ import langContext from '@/context/langContext';
 import langChecker from '@/utils/langChecker';
 
 const SignUpController = ({ authCallback }: AuthViewProps) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const [authError, setAuthError] = useState<string>('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const context = useContext<LangContext>(langContext);
   const Router = useRouter();
   const { user } = useAuth();

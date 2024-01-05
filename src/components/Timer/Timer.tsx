@@ -5,7 +5,7 @@ import { millisecondsToTime } from '@/utils/msToTime';
 import styles from './Timer.module.scss';
 
 const Timer: React.FC = () => {
-  const [timer, setTimer] = useState('00:00');
+  const [timer, setTimer] = useState<string>('00:00');
   const Ref = useRef<ReturnType<typeof setInterval> | null>(null);
   const { expirationTime } = useAuth();
   const humanReadableTime = millisecondsToTime(expirationTime);

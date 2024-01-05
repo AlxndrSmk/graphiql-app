@@ -2,7 +2,7 @@ import React, { Suspense, lazy, startTransition, useContext } from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { LangContext, MainNavProps, StoreType } from '@/types/types';
+import { LangContext, MainNavProps, StoreType, TDoc } from '@/types/types';
 import Button from '@/components/Button/Button';
 import { useLazyGetIntrospectionQuery } from '@/redux/rtk-query/fetchApI';
 import styles from './MainNav.module.scss';
@@ -12,7 +12,7 @@ const Documentation = lazy(() => import('../Documentation/Documentation'));
 
 const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
   const [isShowDoc, setIsShowDoc] = useState<boolean>(false);
-  const [dataRes, setDataRes] = useState(null);
+  const [dataRes, setDataRes] = useState<TDoc | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const context = useContext<LangContext>(langContext);
