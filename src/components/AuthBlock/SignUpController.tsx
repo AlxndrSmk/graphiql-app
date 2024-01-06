@@ -1,3 +1,8 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useContext, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+
 import { ROUTES } from '@/constants/routes';
 import { useAuth } from '@/context/AuthProvider';
 import langContext from '@/context/langContext';
@@ -6,10 +11,6 @@ import { getAuthError } from '@/utils/getAuthError';
 import langChecker from '@/utils/langChecker';
 import { schema } from '@/validation/validationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import AuthButton from './AuthButton/AuthButton';
 import AuthInput from './AuthInput/AuthInput';
 import styles from './style.module.scss';

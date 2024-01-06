@@ -1,16 +1,16 @@
 import React, { useContext, useRef } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
 import {
   EndpointProps,
-  StoreType,
-  StoreDispatcher,
   LangContext,
+  StoreDispatcher,
+  StoreType,
 } from '@/types/types';
+import { useDispatch, useSelector } from 'react-redux';
 
-import styles from './Endpoint.module.scss';
-import setUrlAction from '@/redux/url/urlActionCreator';
 import langContext from '@/context/langContext';
+import setUrlAction from '@/redux/url/urlActionCreator';
+import styles from './Endpoint.module.scss';
 
 const Endpoint: React.FC<EndpointProps> = ({
   isShowEndpoint,
@@ -47,6 +47,7 @@ const Endpoint: React.FC<EndpointProps> = ({
           : `${styles['endpoint']} ${styles['endpoint_close']}`
       }
       htmlFor="endpoint"
+      data-testid="endpoint-label"
     >
       <input
         id="enpoint"
@@ -55,11 +56,13 @@ const Endpoint: React.FC<EndpointProps> = ({
         className={styles['endpoint__input']}
         ref={input}
         defaultValue={urlEndpoint}
+        data-testid="endpoint-input"
       />
       <button
         type="button"
         className={styles['endpoint__button']}
         onClick={onClickHandler}
+        data-testid="set-endpoint-button"
       >
         {context.getConstants().setBtn}
       </button>

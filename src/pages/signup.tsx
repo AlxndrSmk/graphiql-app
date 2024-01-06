@@ -1,13 +1,13 @@
-import nookies from 'nookies';
-import { GetServerSidePropsContext } from 'next';
 import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
+import { GetServerSidePropsContext } from 'next';
+import nookies from 'nookies';
 
-import { registerWithEmailAndPassword } from '@/firebase/firebaseClient';
-import { firebaseAdmin } from '@/firebase/firebaseAdmin';
-import { UserCredential } from 'firebase/auth';
-import { ROUTES } from '@/constants/routes';
-import { Cookies } from '@/types/types';
 import SignUpController from '@/components/AuthBlock/SignUpController';
+import { ROUTES } from '@/constants/routes';
+import { firebaseAdmin } from '@/firebase/firebaseAdmin';
+import { registerWithEmailAndPassword } from '@/firebase/firebaseClient';
+import { Cookies } from '@/types/types';
+import { UserCredential } from 'firebase/auth';
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   try {

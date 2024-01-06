@@ -1,18 +1,18 @@
+import Link from 'next/link';
+import Router from 'next/router';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Router from 'next/router';
-import Link from 'next/link';
+
+import { ROUTES } from '@/constants/routes';
+import langContext from '@/context/langContext';
+import { AuthViewProps, LangContext, schemaType } from '@/types/types';
+import { getAuthError } from '@/utils/getAuthError';
+import langChecker from '@/utils/langChecker';
 import { schema } from '@/validation/validationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { getAuthError } from '@/utils/getAuthError';
-import { ROUTES } from '@/constants/routes';
-import AuthInput from './AuthInput/AuthInput';
 import AuthButton from './AuthButton/AuthButton';
-import { AuthViewProps, LangContext, schemaType } from '@/types/types';
-
+import AuthInput from './AuthInput/AuthInput';
 import styles from './style.module.scss';
-import langContext from '@/context/langContext';
-import langChecker from '@/utils/langChecker';
 
 const SignInController = ({ authCallback }: AuthViewProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -81,16 +81,15 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
             className={`${styles['form__controls']} ${styles['form__controls_signin']}`}
           >
             <AuthInput
-              data-testid="email"
               id="email"
               type="text"
               register={register('email')}
               label={context.getConstants().email}
               error={errors.email?.message}
               placeholder={''}
+              dataTestId="email"
             />
             <AuthInput
-              data-testid="password"
               id="password"
               type={isVisible ? 'text' : 'password'}
               register={register('password')}
@@ -99,6 +98,7 @@ const SignInController = ({ authCallback }: AuthViewProps) => {
               placeholder={''}
               isVisible={isVisible}
               handlePasswordVisibility={handlePasswordVisibility}
+              dataTestId="password"
             />
           </div>
           <AuthButton

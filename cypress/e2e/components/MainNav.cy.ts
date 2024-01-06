@@ -3,8 +3,8 @@
 describe('MainNav Component', () => {
   beforeEach(() => {
     cy.visit('/signin');
-    cy.get('[name="email"]').type('voprosy262@gmail.com');
-    cy.get('[name="password"]').type('voprosy262@gmail.com');
+    cy.get('[data-testid="email"]').type('voprosy262@gmail.com');
+    cy.get('[data-testid="password"]').type('voprosy262@gmail.com');
     cy.get('[data-testid="signin-button"]').click();
     cy.url().should('include', '/main');
   });

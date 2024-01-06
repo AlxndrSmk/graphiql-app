@@ -130,7 +130,7 @@ export interface Cookies {
   [key: string]: string;
 }
 
-export interface SignInFieldProps {
+export interface AuthInputProps {
   id: string;
   label: string;
   type: string;
@@ -139,6 +139,7 @@ export interface SignInFieldProps {
   error: string | undefined;
   handlePasswordVisibility?: () => void;
   isVisible?: boolean;
+  dataTestId?: string;
 }
 
 export type TSize = {

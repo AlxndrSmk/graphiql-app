@@ -1,6 +1,6 @@
 import { millisecondsToTime } from '../../src/utils/msToTime';
 
-describe('Test of helper function', () => {
+describe('Test of millisecondsToTime helper function', () => {
   it('converts milliseconds to MM:SS format', () => {
     expect(millisecondsToTime(6000)).to.equal('00:06');
     expect(millisecondsToTime(5000)).to.equal('00:05');
