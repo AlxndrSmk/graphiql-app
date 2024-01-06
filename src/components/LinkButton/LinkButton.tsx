@@ -9,9 +9,10 @@ const LinkButton: React.FC<LinkButtonProps> = ({
   src,
   href,
   text,
+  dataTestId,
 }) => {
   return (
-    <Link className={styles.button} href={href}>
+    <Link data-testid={dataTestId} className={styles.button} href={href}>
       <Image
         alt={alt}
         height={size}

@@ -29,6 +29,7 @@ const BurgerMenu: React.FC = () => {
     <div ref={node}>
       <nav
         className={`${styles.menu} ${isOpen ? styles.visible : styles.hidden}`}
+        data-testid="burger-nav"
       >
         {user ? (
           <>

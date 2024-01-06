@@ -5,7 +5,11 @@ const BurgerButton: React.FC<BurgerButtonProps> = (props) => {
   const { isOpen, setIsOpen } = props;
 
   return (
-    <button className={styles.button} onClick={() => setIsOpen(!isOpen)}>
+    <button
+      className={styles.button}
+      onClick={() => setIsOpen(!isOpen)}
+      data-testid="burger-button"
+    >
       <div
         className={`${styles.first} ${isOpen ? styles.open : styles.closed}`}
       />

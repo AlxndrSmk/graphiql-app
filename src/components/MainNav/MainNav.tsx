@@ -1,12 +1,17 @@
-import React, { Suspense, lazy, startTransition, useContext } from 'react';
-import Image from 'next/image';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { LangContext, MainNavProps, StoreType, TDoc } from '@/types/types';
 import Button from '@/components/Button/Button';
-import { useLazyGetIntrospectionQuery } from '@/redux/rtk-query/fetchApI';
-import styles from './MainNav.module.scss';
 import langContext from '@/context/langContext';
+import { useLazyGetIntrospectionQuery } from '@/redux/rtk-query/fetchApI';
+import { LangContext, MainNavProps, StoreType, TDoc } from '@/types/types';
+import Image from 'next/image';
+import React, {
+  Suspense,
+  lazy,
+  startTransition,
+  useContext,
+  useState,
+} from 'react';
+import { useSelector } from 'react-redux';
+import styles from './MainNav.module.scss';
 
 const Documentation = lazy(() => import('../Documentation/Documentation'));
 
@@ -57,13 +62,14 @@ const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
 
   return (
     <>
-      <div className={styles.main_nav}>
+      <div className={styles.main_nav} data-testid="main_nav">
         {isError && (
           <div className={styles.main_nav_error}>
             <div>{context.getConstants().docErr}</div>
           </div>
         )}
         <Button
+          dataTestId="doc-button"
           img={docImg}
           onClick={handleDocButton}
           className={`${isLoading && 'loader'}`}
@@ -72,6 +78,7 @@ const MainNav: React.FC<MainNavProps> = ({ setShowEndpoint }: MainNavProps) => {
           isTooltip={true}
         />
         <Button
+          dataTestId="endpoint-button"
           img={queryImg}
           onClick={onEndpointHandler}
           onHoverText={context.getConstants().endpoint}

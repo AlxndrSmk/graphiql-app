@@ -1,18 +1,18 @@
-import { useContext, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { ROUTES } from '@/constants/routes';
+import { useAuth } from '@/context/AuthProvider';
+import langContext from '@/context/langContext';
+import { AuthViewProps, LangContext, schemaType } from '@/types/types';
+import { getAuthError } from '@/utils/getAuthError';
+import langChecker from '@/utils/langChecker';
 import { schema } from '@/validation/validationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { getAuthError } from '@/utils/getAuthError';
-import { useAuth } from '@/context/AuthProvider';
-import { ROUTES } from '@/constants/routes';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useContext, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import AuthButton from './AuthButton/AuthButton';
 import AuthInput from './AuthInput/AuthInput';
-import { AuthViewProps, LangContext, schemaType } from '@/types/types';
 import styles from './style.module.scss';
-import langContext from '@/context/langContext';
-import langChecker from '@/utils/langChecker';
 
 const SignUpController = ({ authCallback }: AuthViewProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -61,7 +61,7 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
               {context.getConstants().signUpTitle}
             </h3>
             {authError && (
-              <p className={styles['form__error']}>
+              <p className={styles['form__error']} data-testid="auth-error">
                 {context.getConstants().alreadyExists}
               </p>
             )}
@@ -71,6 +71,7 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
             <Link
               className={styles['form__link']}
               href={ROUTES.SIGN_IN + `?lang=${checkedLang}`}
+              data-testid="sign-in-link"
             >
               {context.getConstants().signInHere}
             </Link>
@@ -79,6 +80,7 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
             <Link
               className={styles['form__link']}
               href={ROUTES.WELCOME + `?lang=${checkedLang}`}
+              data-testid="welcome-link"
             >
               {context.getConstants().signToWelcome}
             </Link>
@@ -111,6 +113,7 @@ const SignUpController = ({ authCallback }: AuthViewProps) => {
             type="submit"
             isLoading={loading}
             isDisabled={!isValid || loading}
+            dataTestId="sign-up-button"
           />
         </form>
       </div>

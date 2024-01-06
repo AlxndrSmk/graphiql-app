@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '@/context/AuthProvider';
 import { millisecondsToTime } from '@/utils/msToTime';
+import { useEffect, useRef, useState } from 'react';
 
 import styles from './Timer.module.scss';
 
@@ -48,7 +48,11 @@ const Timer: React.FC = () => {
     clearTimer();
   }, []);
 
-  return <div className={styles.timer}>{timer}</div>;
+  return (
+    <div className={styles.timer} data-testid="timer">
+      {timer}
+    </div>
+  );
 };
 
 export default Timer;

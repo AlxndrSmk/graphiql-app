@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { TButton } from '@/types/types';
+import React, { useState } from 'react';
 import styles from './Button.module.scss';
 
 const Button: React.FC<TButton> = ({
@@ -10,6 +10,7 @@ const Button: React.FC<TButton> = ({
   isTooltip,
   className,
   isDisabled,
+  dataTestId,
 }) => {
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
   const onHoverFunc = () => setShowTooltip(true);
@@ -17,6 +18,7 @@ const Button: React.FC<TButton> = ({
 
   return (
     <button
+      data-testid={dataTestId}
       className={`${styles.btn} ${className && styles[className]}`}
       onClick={onClick}
       onMouseOver={onHoverFunc}

@@ -1,8 +1,8 @@
-import * as Yup from 'yup';
-import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react';
-import { User, UserCredential } from 'firebase/auth';
-import { schema } from '@/validation/validationSchema';
 import storeApp from '@/redux/store/store';
+import { schema } from '@/validation/validationSchema';
+import { User, UserCredential } from 'firebase/auth';
+import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react';
+import * as Yup from 'yup';
 
 export type TButton = {
   text?: string;
@@ -12,6 +12,7 @@ export type TButton = {
   isTooltip?: boolean;
   isDisabled?: boolean;
   className?: string;
+  dataTestId?: string;
 };
 
 export interface AuthButtonProps {
@@ -157,6 +158,7 @@ export interface LinkButtonProps {
   href: string;
   text: string;
   isVisible?: boolean;
+  dataTestId?: string;
 }
 
 export type BurgerButtonProps = {
