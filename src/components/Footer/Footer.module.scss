@@ -44,12 +44,16 @@
   }
 
   &__created {
-    left: 50%;
-    margin: auto 0;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    @include divDisplay(centered);
+
+    @media screen and (min-width: 900px) {
+      left: 50%;
+      margin: auto 0;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
 
     &-text {
       color: map.get($footerColors, 'created');
