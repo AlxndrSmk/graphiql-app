@@ -1,16 +1,21 @@
-import { StyledBurgerButton } from './BurgerButton.styled';
 import { BurgerButtonProps } from '@/types/types';
+import styles from './BurgerButton.module.scss';
 
 const BurgerButton: React.FC<BurgerButtonProps> = (props) => {
+  const { isOpen, setIsOpen } = props;
+
   return (
-    <StyledBurgerButton
-      open={props.open}
-      onClick={() => props.setOpen(!props.open)}
-    >
-      <div />
-      <div />
-      <div />
-    </StyledBurgerButton>
+    <button className={styles.button} onClick={() => setIsOpen(!isOpen)}>
+      <div
+        className={`${styles.first} ${isOpen ? styles.open : styles.closed}`}
+      />
+      <div
+        className={`${styles.second} ${isOpen ? styles.open : styles.closed}`}
+      />
+      <div
+        className={`${styles.third} ${isOpen ? styles.open : styles.closed}`}
+      />
+    </button>
   );
 };
 

@@ -160,8 +160,8 @@ export interface LinkButtonProps {
 }
 
 export type BurgerButtonProps = {
-  open: boolean;
-  setOpen: (v: boolean) => void;
+  isOpen: boolean;
+  setIsOpen: (v: boolean) => void;
 };
 
 export interface DeveloperCardProps {

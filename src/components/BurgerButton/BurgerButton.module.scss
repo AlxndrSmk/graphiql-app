@@ -1,0 +1,68 @@
+@import '@/styles/colors.scss';
+
+.button {
+  right: 25px;
+  display: none;
+  top: 25px;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  position: absolute;
+  background: transparent;
+
+  flex-direction: column;
+  justify-content: space-around;
+
+  border: none;
+  cursor: pointer;
+  outline: none;
+  z-index: 199;
+
+  @media (max-width: 675px) {
+    display: flex;
+  }
+}
+
+.first,
+.second,
+.third {
+  position: relative;
+  width: 2rem;
+  height: 0.25rem;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  transform-origin: 1px;
+  background-color: $white-color;
+}
+
+.first {
+  &.open {
+    transform: rotate(45deg);
+  }
+
+  &.closed {
+    transform: rotate(0);
+  }
+}
+
+.second {
+  &.open {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  &.closed {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.third {
+  &.open {
+    transform: rotate(-45deg);
+  }
+
+  &.closed {
+    transform: rotate(0);
+  }
+}
