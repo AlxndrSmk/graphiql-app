@@ -38,6 +38,7 @@
     transform: rotateY(180deg);
 
     &__photo {
+      position: relative;
       clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%);
       height: auto;
       min-height: 100%;
