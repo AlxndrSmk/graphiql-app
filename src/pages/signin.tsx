@@ -21,8 +21,6 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
       },
     };
   } catch (err) {
-    console.error('Error during authentication:', err);
-
     const stubData = {
       uid: '',
     };
