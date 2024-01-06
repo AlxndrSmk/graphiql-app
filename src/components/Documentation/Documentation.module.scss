@@ -12,6 +12,8 @@
     position: absolute;
     padding-left: 15px;
     width: calc(100% - 64px);
+    min-height: calc(100vh - 160px);
+    max-height: unset;
     height: 100%;
     top: 0;
     right: 0;
@@ -152,5 +154,9 @@
     font-size: 16px;
     color: $blue-gray;
     margin-bottom: 10px;
+  }
+
+  &_list {
+    word-break: break-word;
   }
 }

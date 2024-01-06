@@ -1,3 +1,6 @@
+@import '@/styles/colors.scss';
+
+
 .btn {
   position: relative;
   background-color: transparent;
@@ -17,6 +20,10 @@
     color: #fff;
     transition: 0.3s ease;
     opacity: 0.5;
+
+    @media (max-width: 1000px) {
+      font-size: 16px;
+    }
   }
 
   &.tab__btns_btn_dis {
@@ -29,6 +36,12 @@
     margin-left: auto;
     transform: rotate(180deg);
     transition: 0.3s ease;
+
+    @media (max-width: 800px) {
+      position: absolute;
+      top: -35px;
+      left: 0;
+    }
   }
 
   &__tab_btn_open {
@@ -40,6 +53,9 @@
     border: none;
 
     &:disabled {
+      cursor: auto;
+      background-color: $button-disabled;
+
       img {
         animation-name: loader;
         animation-duration: 1s;
@@ -77,6 +93,19 @@
     &.active {
       opacity: 1;
       visibility: visible;
+    }
+  }
+
+  &.loader {
+    &:disabled {
+      cursor: auto;
+      background-color: $button-disabled;
+
+      img {
+        animation-name: loader;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+      }
     }
   }
 }

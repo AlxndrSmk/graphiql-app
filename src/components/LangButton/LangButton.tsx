@@ -5,8 +5,8 @@ import { NextRouter, useRouter } from 'next/router';
 import styles from './LangButton.module.scss';
 
 const LangButton: React.FC = () => {
-  const [isClicked, setIsClicked] = useState(false);
-  const [language, setLanguage] = useState(false);
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [language, setLanguage] = useState<boolean>(false);
   const router: NextRouter = useRouter();
   const context: LangContext = useContext<LangContext>(LanguageContext);
 
