@@ -25,7 +25,7 @@ const Header: React.FC = () => {
 
   const handleSignOut = (): void => {
     logout();
-    Router.push(ROUTES.WELCOME);
+    // Router.push(ROUTES.WELCOME);
   };
 
   const handleScroll = (e: Event): void => {
