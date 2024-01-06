@@ -5,6 +5,11 @@
     gap: 30px;
     margin-top: auto;
     width: 100%;
+    position: relative;
+
+    @media (max-width: 1000px) {
+      gap: 15px;
+    }
   }
 
   &__content {

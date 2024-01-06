@@ -22,6 +22,10 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
+
+      @media (max-width: 800px) {
+        right: 10px;
+      }
     }
 
     max-width: 86%;
@@ -35,8 +39,6 @@
       max-height: 100vh;
 
       .show_next {
-        left: 20px;
-        right: unset;
         transform: rotate(180deg);
       }
     }
@@ -64,6 +66,14 @@
       border: none;
       outline: none;
     }
+
+    &:last-of-type {
+      padding-right: 10px;
+    }
+
+    @media (max-width: 800px) {
+      padding-right: 60px;
+    }
   }
 
   &__btns {
@@ -74,5 +84,9 @@
     position: absolute;
     right: 0;
     top: 0;
+
+    @media (max-width: 800px) {
+      padding: 20px 10px;
+    }
   }
 }

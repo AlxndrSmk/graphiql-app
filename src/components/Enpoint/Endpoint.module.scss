@@ -2,9 +2,11 @@
   from {
     height: 0;
   }
+
   50% {
     height: 25px;
   }
+
   to {
     height: 50px;
   }
@@ -14,9 +16,11 @@
   from {
     height: 50px;
   }
+
   50% {
     height: 25px;
   }
+
   to {
     height: 0;
   }
@@ -26,11 +30,17 @@
   display: flex;
   box-sizing: border-box;
   width: 90%;
+  gap: 10px;
   min-width: 300px;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   overflow: hidden;
+
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    min-width: 250px;
+  }
 
   &_open {
     animation: openWnd 1s forwards linear;
@@ -52,21 +62,29 @@
   }
 
   &__button {
-    width: 80px;
+    width: 21%;
     height: 30px;
     border: 1px solid grey;
     border-radius: 5px;
     background-color: transparent;
     cursor: pointer;
+    transition: transform 0.3s ease;
+
+    @media (max-width: 800px) {
+      width: 18%;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 10px;
+      width: 45px;
+    }
   }
 
   &__button:hover {
-    width: 82px;
-    height: 32px;
+    transform: scale(1.05);
   }
 
   &__button:active {
-    width: 80px;
-    height: 30px;
+    transform: scale(1.05);
   }
 }

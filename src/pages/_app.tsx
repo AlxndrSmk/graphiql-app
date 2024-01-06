@@ -1,14 +1,13 @@
-import { AuthProvider } from '@/context/AuthProvider';
+import React, { useRef } from 'react';
+import { Provider } from 'react-redux';
 import type { AppProps } from 'next/app';
+import storeApp from '@/redux/store/store';
+import { AuthProvider } from '@/context/AuthProvider';
 import LanguageContext from '@/context/langContext';
 import langContextInit from '@/utils/langContextInit';
 import ErrorBoundary from '@/components/ErrorBoundary/ErrorBoundary';
-
-import '@/styles/globals.scss';
-import React, { useRef } from 'react';
-import { Provider } from 'react-redux';
-import storeApp from '@/redux/store/store';
 import { StoreMaker } from '@/types/types';
+import '@/styles/globals.scss';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const storeRef = useRef<StoreMaker>();
