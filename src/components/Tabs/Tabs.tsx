@@ -56,6 +56,7 @@ const Tabs: FC<TabsProps> = ({
     <>
       <div className={styles.tabs__btns}>
         <Button
+          dataTestId="tab__btns_btn"
           text={context.getConstants().variables}
           onClick={handleTabClick}
           className={!isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
@@ -63,12 +64,14 @@ const Tabs: FC<TabsProps> = ({
         />
 
         <Button
+          dataTestId="tab__btns_btn"
           text={context.getConstants().headers}
           onClick={handleTabClick}
           className={isVariable ? 'tab__btns_btn' : 'tab__btns_btn_dis'}
           isDisabled={!isVariable}
         />
         <Button
+          dataTestId="btn__tab_btn_open"
           onClick={openTabs}
           img={TabArrow}
           className={openTab ? 'btn__tab_btn' : 'btn__tab_btn_open'}
@@ -76,11 +79,13 @@ const Tabs: FC<TabsProps> = ({
       </div>
 
       <div
+        data-testid="tabs__content_open"
         className={`${styles.tabs__content} ${
           openTab && styles.tabs__content_open
         }`}
       >
         <textarea
+          data-testid="tabs__content_input"
           className={styles.tabs__content_input}
           ref={ref}
           onChange={changeHandler}

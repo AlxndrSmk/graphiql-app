@@ -283,7 +283,6 @@ export type TDoc = {
       mutationType?: null;
       subscriptionType?: null;
       types: TDocType[];
-      // directives: [];
     };
   };
 };

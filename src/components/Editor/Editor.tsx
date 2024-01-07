@@ -87,6 +87,7 @@ const Editor: React.FC<TEditor> = ({
           />
         )}
         <CodeMirror
+          data-testid="editor-text"
           value={isQueryEditor ? stateInput : stateData}
           onChange={handleEditorChange}
           theme={codeMirrorTheme}
@@ -111,6 +112,7 @@ const Editor: React.FC<TEditor> = ({
         <>
           <div className={styles.editor__btns}>
             <Button
+              dataTestId="prettify-btn"
               img={CLEAN_IMAGE}
               isTooltip={true}
               onHoverText={context.getConstants().prettify}
