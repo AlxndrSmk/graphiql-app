@@ -4,7 +4,7 @@
 
 _GraphiQL App is a playground and interactive development environment (IDE) for exploring and querying any open GraphQL API._
 
-Deployment Link: TBD
+Deployment Link: [GraphiQL by RSHeroes](https://rsheroes-graphiql.vercel.app/)
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -106,6 +106,14 @@ To run tests, use the following command:
    npm run test
 ```
 
+If you want to open the Cypress Test Runner for End-to-End Testing directly in Chrome (for tests debugging), use this command:
+
+```
+   npm run cy:open
+```
+
+:exclamation: Note, that before running ``` npm run test ``` or ```npm run cy:open``` you should start dev server using command ``` npm run dev ```
+
 To see test coverage, use the following command:
 
 ```
@@ -131,7 +139,7 @@ To preview the build and see how the application works in production mode, use t
 
 ## Available Commands
 
-In the BUYIT application, there are also other commands available that can be useful
+In the GraphiQL application, there are also other commands available that can be useful
 
 - `npm run lint`: To check Prettier formatting for TypeScript, JSX, and JSON files.
 - `npm run prettier`: To check ESLint errors for TypeScript and JSX files.
