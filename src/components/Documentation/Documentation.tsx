@@ -1,8 +1,9 @@
+import { Fragment, useEffect, useState } from 'react';
+
 import { TDocProp, TDocType } from '@/types/types';
 import { removeSymbols } from '@/utils/removeSymbols';
-import { Fragment, useEffect, useState } from 'react';
 import BreadCrumbsMaker from './BreadcrumbsMaker';
-import { ObjectType } from './ObjectType';
+import ObjectType from './ObjectType';
 
 import styles from './Documentation.module.scss';
 
@@ -21,9 +22,7 @@ const Documentation: React.FC<TDocProp> = ({ res }) => {
   }, [types]);
 
   const handleBtnClick = (title: string): void => {
-    console.log(title);
     const withoutSym: string = removeSymbols(title);
-    console.log(withoutSym);
     if (breadCrumb[breadCrumb.length - 1] !== withoutSym) {
       setBreadCrumb((prev) => [...prev, withoutSym]);
       filterData(withoutSym);
