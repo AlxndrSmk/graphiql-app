@@ -1,8 +1,8 @@
-import * as Yup from 'yup';
-import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react';
-import { User, UserCredential } from 'firebase/auth';
-import { schema } from '@/validation/validationSchema';
 import storeApp from '@/redux/store/store';
+import { schema } from '@/validation/validationSchema';
+import { User, UserCredential } from 'firebase/auth';
+import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react';
+import * as Yup from 'yup';
 
 export type TButton = {
   text?: string;
@@ -12,6 +12,7 @@ export type TButton = {
   isTooltip?: boolean;
   isDisabled?: boolean;
   className?: string;
+  dataTestId?: string;
 };
 
 export interface AuthButtonProps {
@@ -25,6 +26,7 @@ export interface AuthButtonProps {
     size: number;
     src: string;
   };
+  dataTestId?: string;
 }
 
 export interface EmailAndPasswordProps {
@@ -128,7 +130,7 @@ export interface Cookies {
   [key: string]: string;
 }
 
-export interface SignInFieldProps {
+export interface AuthInputProps {
   id: string;
   label: string;
   type: string;
@@ -137,6 +139,7 @@ export interface SignInFieldProps {
   error: string | undefined;
   handlePasswordVisibility?: () => void;
   isVisible?: boolean;
+  dataTestId?: string;
 }
 
 export type TSize = {
@@ -156,11 +159,12 @@ export interface LinkButtonProps {
   href: string;
   text: string;
   isVisible?: boolean;
+  dataTestId?: string;
 }
 
 export type BurgerButtonProps = {
-  open: boolean;
-  setOpen: (v: boolean) => void;
+  isOpen: boolean;
+  setIsOpen: (v: boolean) => void;
 };
 
 export interface DeveloperCardProps {
@@ -279,7 +283,6 @@ export type TDoc = {
       mutationType?: null;
       subscriptionType?: null;
       types: TDocType[];
-      // directives: [];
     };
   };
 };

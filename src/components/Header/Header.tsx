@@ -1,20 +1,20 @@
-import { usePathname } from 'next/navigation';
-import { useContext, useEffect, useState } from 'react';
-import { NextRouter, useRouter } from 'next/router';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { NextRouter, useRouter } from 'next/router';
+import { useContext, useEffect, useState } from 'react';
 
-import LanguageContext from '@/context/langContext';
-import { useAuth } from '@/context/AuthProvider';
-import { logout } from '@/firebase/firebaseClient';
-import langChecker from '@/utils/langChecker';
-import { ROUTES } from '@/constants/routes';
 import AuthButton from '@/components/AuthBlock/AuthButton/AuthButton';
-import LinkButton from '@/components/LinkButton/LinkButton';
 import BurgerMenu from '@/components/BurgerMenu/BurgerMenu';
-import Timer from '@/components/Timer/Timer';
 import LangButton from '@/components/LangButton/LangButton';
+import LinkButton from '@/components/LinkButton/LinkButton';
+import Timer from '@/components/Timer/Timer';
+import { ROUTES } from '@/constants/routes';
+import { useAuth } from '@/context/AuthProvider';
+import LanguageContext from '@/context/langContext';
+import { logout } from '@/firebase/firebaseClient';
 import { AuthContextProps, LangContext } from '@/types/types';
+import langChecker from '@/utils/langChecker';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
@@ -27,7 +27,6 @@ const Header: React.FC = () => {
 
   const handleSignOut = (): void => {
     logout();
-    Router.push(ROUTES.WELCOME);
   };
 
   const handleScroll = (e: Event): void => {
@@ -47,25 +46,30 @@ const Header: React.FC = () => {
 
   return (
     <header
+      data-testid="header-sticky"
       className={
         isHeaderSticky
           ? styles.header + ' ' + styles.header_sticky
           : styles.header + ' ' + styles.header_ordinary
       }
     >
-      <Link href={`.?lang=${checkedLang}`}>
+      <Link href={`.?lang=${checkedLang}`} data-testid="welcome-link">
         <Image
           className={styles.header__link}
           src="/rick-logo.png"
           alt="To welcome page"
           width={50}
           height={50}
+          data-testid="header-logo"
         />
       </Link>
       <div className={styles.header__container}>
         {user ? (
           <>
-            <div className={styles['header__container-buttons']}>
+            <div
+              className={styles['header__container-buttons']}
+              data-testid="buttons-container"
+            >
               {pathname !== '/main' && (
                 <LinkButton
                   alt={'To main page'}
@@ -73,28 +77,35 @@ const Header: React.FC = () => {
                   src={'/home.svg'}
                   href={`/main?lang=${checkedLang}`}
                   text={context.getConstants().mainPageLink}
+                  dataTestId="to-main-button"
                 />
               )}
               <AuthButton
                 text={context.getConstants().signOut}
                 onClick={handleSignOut}
+                dataTestId="sign-out-button"
               />
             </div>
           </>
         ) : (
           <>
-            <div className={styles['header__container-buttons']}>
+            <div
+              className={styles['header__container-buttons']}
+              data-testid="buttons-container"
+            >
               <AuthButton
                 text={context.getConstants().signIn}
                 onClick={() =>
                   Router.push(ROUTES.SIGN_IN + `?lang=${checkedLang}`)
                 }
+                dataTestId="signin-button"
               />
               <AuthButton
                 text={context.getConstants().signUp}
                 onClick={() =>
                   Router.push(ROUTES.SIGN_UP + `?lang=${checkedLang}`)
                 }
+                dataTestId="signup-button"
               />
             </div>
           </>

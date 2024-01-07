@@ -13,7 +13,7 @@ node_modules
 .next
 .env*.local
 .nyc_output
-.coverage
 .DS_Store
 .env
 tsconfig.tsbuildinfo
+coverage

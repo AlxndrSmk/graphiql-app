@@ -1,8 +1,8 @@
-import { Fragment, useEffect, useState } from 'react';
-import { BreadCrumbsMaker } from './BreadcrumbsMaker';
 import { TDocProp, TDocType } from '@/types/types';
-import { ObjectType } from './ObjectType';
 import { removeSymbols } from '@/utils/removeSymbols';
+import { Fragment, useEffect, useState } from 'react';
+import BreadCrumbsMaker from './BreadcrumbsMaker';
+import ObjectType from './ObjectType';
 
 import styles from './Documentation.module.scss';
 
@@ -43,6 +43,7 @@ const Documentation: React.FC<TDocProp> = ({ res }) => {
           <Fragment key={field.description + ind}>
             <span>{field.name}</span>:{' '}
             <button
+              data-testid="docs__arg_type"
               onClick={() => handleBtnClick(field.type.name || '')}
               className={styles.docs__arg_type}
             >
@@ -58,7 +59,9 @@ const Documentation: React.FC<TDocProp> = ({ res }) => {
   const enumFiled = (el: TDocType): JSX.Element => {
     return (
       <>
-        <h2 className={styles.docs__title}>Enum Values</h2>
+        <h2 data-testid="docs__title" className={styles.docs__title}>
+          Enum Values
+        </h2>
         {el.enumValues?.map((value, ind) => (
           <span className={styles.docs__enum} key={value.name + ind}>
             {value.name}
@@ -71,8 +74,8 @@ const Documentation: React.FC<TDocProp> = ({ res }) => {
   return (
     <>
       {res && (
-        <div className={styles.docs}>
-          <div className={styles.docs__breads}>
+        <div data-testid="documentation-tab" className={styles.docs}>
+          <div data-testid="docs__breads" className={styles.docs__breads}>
             <BreadCrumbsMaker
               breadCrumb={breadCrumb}
               types={types!}
@@ -83,8 +86,9 @@ const Documentation: React.FC<TDocProp> = ({ res }) => {
           {data &&
             data.map((el, ind) => {
               return (
-                <div key={el.description + ind}>
+                <div data-testid={ind} key={el.description + ind}>
                   <button
+                    data-testid="docs__query"
                     onClick={() => handleBtnClick(el.name)}
                     className={styles.docs__query}
                     disabled={breadCrumb[breadCrumb.length - 1] === el.name}

@@ -4,11 +4,12 @@
 
 .footer {
   @include divDisplay(spaced);
-  width: 100%;
-  box-sizing: border-box;
-  padding: 15px 20px 20px 20px;
-  gap: 10px;
   background: map.get($footerColors, 'ft-background');
+  box-sizing: border-box;
+  gap: 10px;
+  padding: 15px 20px 20px 20px;
+  position: relative;
+  width: 100%;
 
   @media screen and (max-width: 675px) {
     display: flex;
@@ -18,19 +19,19 @@
 
   &__authors {
     @include divDisplay(spaced);
-    width: 300px;
     gap: 10px;
+    width: 300px;
 
     @media screen and (max-width: 675px) {
       width: 80%;
     }
 
     &-names {
-      text-decoration: none;
-      text-align: center;
-      font-weight: 100;
       color: map.get($footerColors, 'names');
       cursor: pointer;
+      font-weight: 100;
+      text-align: center;
+      text-decoration: none;
 
       &:hover {
         color: map.get($footerColors, 'names-hover');
@@ -45,10 +46,19 @@
   &__created {
     @include divDisplay(centered);
 
+    @media screen and (min-width: 900px) {
+      left: 50%;
+      margin: auto 0;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
     &-text {
+      color: map.get($footerColors, 'created');
       font-size: 1.1em;
       font-weight: 200;
-      color: map.get($footerColors, 'created');
     }
   }
 

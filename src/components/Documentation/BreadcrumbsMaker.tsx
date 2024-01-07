@@ -1,16 +1,37 @@
 import Image from 'next/image';
-import styles from './Documentation.module.scss';
-import { TDocType, TBreadCrumbProps } from '@/types/types';
 import { Dispatch, SetStateAction } from 'react';
 
-export const BreadCrumbsMaker: React.FC<TBreadCrumbProps> = ({
+import { TBreadCrumbProps, TDocType } from '@/types/types';
+import styles from './Documentation.module.scss';
+
+const BreadCrumbsMaker: React.FC<TBreadCrumbProps> = ({
   breadCrumb,
   types,
   setBreadCrumb,
   setQueryData,
 }) => {
+  const handleBreadCrumbsBtn = (
+    ind: number,
+    element: string,
+    breadCrumb: string[],
+    types: TDocType[],
+    setBreadCrumb: Dispatch<SetStateAction<string[]>>,
+    setQueryData: Dispatch<SetStateAction<TDocType[] | null>>
+  ) => {
+    const arr = breadCrumb.slice(0, ind + 1);
+
+    setBreadCrumb(arr);
+    if (element !== 'Docs') {
+      const filtered = types.filter((el) => el.name === element);
+      setQueryData(filtered);
+    } else {
+      const filter = types.filter((el) => !el.name.startsWith('_'));
+      setQueryData(filter);
+    }
+  };
+
   return (
-    <>
+    <div data-testid="breadcrumbs">
       {breadCrumb.map((breadName, ind) => (
         <button
           className={styles.docs__breads__bread}
@@ -32,26 +53,8 @@ export const BreadCrumbsMaker: React.FC<TBreadCrumbProps> = ({
           <span>{breadName}</span>
         </button>
       ))}
-    </>
+    </div>
   );
 };
 
-const handleBreadCrumbsBtn = (
-  ind: number,
-  element: string,
-  breadCrumb: string[],
-  types: TDocType[],
-  setBreadCrumb: Dispatch<SetStateAction<string[]>>,
-  setQueryData: Dispatch<SetStateAction<TDocType[] | null>>
-) => {
-  const arr = breadCrumb.slice(0, ind + 1);
-
-  setBreadCrumb(arr);
-  if (element !== 'Docs') {
-    const filtered = types.filter((el) => el.name === element);
-    setQueryData(filtered);
-  } else {
-    const filter = types.filter((el) => !el.name.startsWith('_'));
-    setQueryData(filter);
-  }
-};
+export default BreadCrumbsMaker;

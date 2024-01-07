@@ -1,11 +1,12 @@
 import Image from 'next/image';
-import { LangContext, SignInFieldProps } from '@/types/types';
 import { useContext } from 'react';
+
 import langContext from '@/context/langContext';
+import { AuthInputProps, LangContext } from '@/types/types';
 import errorLocalization from '@/utils/errorLocalization';
 import styles from './AuthInput.module.scss';
 
-const AuthInput: React.FC<SignInFieldProps> = ({
+const AuthInput: React.FC<AuthInputProps> = ({
   label,
   type,
   register,
@@ -14,6 +15,7 @@ const AuthInput: React.FC<SignInFieldProps> = ({
   id,
   handlePasswordVisibility,
   isVisible,
+  dataTestId,
 }) => {
   const context = useContext<LangContext>(langContext);
 
@@ -45,6 +47,7 @@ const AuthInput: React.FC<SignInFieldProps> = ({
           type={type}
           {...register}
           placeholder={placeholder}
+          data-testid={dataTestId}
         />
         <label htmlFor={id} className={styles['form__label']}>
           {label}

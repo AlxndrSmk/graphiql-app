@@ -1,11 +1,8 @@
+import { TDocField, TDocOfType, TObjectTypeProps } from '@/types/types';
 import { Fragment } from 'react';
-import { TObjectTypeProps, TDocField, TDocOfType } from '@/types/types';
 import styles from './Documentation.module.scss';
 
-export const ObjectType: React.FC<TObjectTypeProps> = ({
-  types,
-  handleBtnClick,
-}) => {
+const ObjectType: React.FC<TObjectTypeProps> = ({ types, handleBtnClick }) => {
   const handleArrKind = (arr: TDocOfType) => {
     if (arr.kind === 'LIST' && arr.ofType?.ofType !== null) {
       return arr.ofType?.ofType.name + '[ ]';
@@ -86,3 +83,5 @@ export const ObjectType: React.FC<TObjectTypeProps> = ({
     </>
   );
 };
+
+export default ObjectType;

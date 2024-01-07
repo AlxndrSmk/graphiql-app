@@ -34,7 +34,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = (props) => {
 
             <div className={styles['card-back']}>
               <div className={styles['card-back__photo']}>
-                <Image alt={firstName} src={image} fill={true} />
+                <Image alt={firstName} src={image} fill sizes="100px" />
               </div>
             </div>
           </div>

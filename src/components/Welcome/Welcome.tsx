@@ -14,7 +14,7 @@ const Welcome: React.FC = () => {
   return (
     <section className={styles.main}>
       <div className={styles['big-image']}>
-        <Image src={'/pngegg.png'} alt={'Rick'} fill />
+        <Image src={'/big-rick.png'} alt={'Rick'} fill sizes="100px" />
       </div>
 
       <h1 className={styles['main__title']}>{context.getConstants().title}</h1>
