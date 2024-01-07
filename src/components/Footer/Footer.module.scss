@@ -1,0 +1,82 @@
+@use 'sass:map';
+@import '@/styles/mixins';
+@import '@/styles/colors';
+
+.footer {
+  @include divDisplay(spaced);
+  background: map.get($footerColors, 'ft-background');
+  box-sizing: border-box;
+  gap: 10px;
+  padding: 15px 20px 20px 20px;
+  position: relative;
+  width: 100%;
+
+  @media screen and (max-width: 675px) {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &__authors {
+    @include divDisplay(spaced);
+    gap: 10px;
+    width: 300px;
+
+    @media screen and (max-width: 675px) {
+      width: 80%;
+    }
+
+    &-names {
+      color: map.get($footerColors, 'names');
+      cursor: pointer;
+      font-weight: 100;
+      text-align: center;
+      text-decoration: none;
+
+      &:hover {
+        color: map.get($footerColors, 'names-hover');
+      }
+
+      &:active {
+        color: map.get($footerColors, 'names-active');
+      }
+    }
+  }
+
+  &__created {
+    @include divDisplay(centered);
+
+    @media screen and (min-width: 900px) {
+      left: 50%;
+      margin: auto 0;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &-text {
+      color: map.get($footerColors, 'created');
+      font-size: 1.1em;
+      font-weight: 200;
+    }
+  }
+
+  &__logo {
+    @include divDisplay(centered);
+
+    &-school {
+      @include animating;
+      cursor: pointer;
+      &:hover {
+        animation: shakeImg 500ms ease-in-out forwards;
+      }
+
+      &:active {
+        animation: clickImg 250ms ease-in-out forwards;
+      }
+    }
+
+    filter: invert(1);
+  }
+}
