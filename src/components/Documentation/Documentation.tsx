@@ -21,9 +21,7 @@ const Documentation: React.FC<TDocProp> = ({ res }) => {
   }, [types]);
 
   const handleBtnClick = (title: string): void => {
-    console.log(title);
     const withoutSym: string = removeSymbols(title);
-    console.log(withoutSym);
     if (breadCrumb[breadCrumb.length - 1] !== withoutSym) {
       setBreadCrumb((prev) => [...prev, withoutSym]);
       filterData(withoutSym);
