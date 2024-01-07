@@ -25,4 +25,14 @@ describe('Endpoint Component', () => {
 
     docTab.should('contain.text', 'ID');
   });
+
+  it('should handle button clicks and update the UI', () => {
+    const docButton = cy.get('[data-testid="doc-button"]');
+    docButton.click();
+
+    cy.get('[data-testid="0"]').within(() => {
+      cy.get('[data-testid="docs__query"]').click();
+      cy.get('[data-testid="docs__query"]').should('be.disabled');
+    });
+  });
 });

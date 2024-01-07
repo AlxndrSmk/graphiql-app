@@ -31,7 +31,7 @@ const BreadCrumbsMaker: React.FC<TBreadCrumbProps> = ({
   };
 
   return (
-    <>
+    <div data-testid="breadcrumbs">
       {breadCrumb.map((breadName, ind) => (
         <button
           className={styles.docs__breads__bread}
@@ -53,7 +53,7 @@ const BreadCrumbsMaker: React.FC<TBreadCrumbProps> = ({
           <span>{breadName}</span>
         </button>
       ))}
-    </>
+    </div>
   );
 };
 
