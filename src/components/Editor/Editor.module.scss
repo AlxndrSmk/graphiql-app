@@ -1,0 +1,92 @@
+@import '@/styles/colors.scss';
+
+.editor {
+  background-color: rgba(0, 0, 0, 0);
+  border-left: 1px solid $grey-color;
+  display: flex;
+  flex-direction: column;
+  max-width: 45%;
+  padding: 20px;
+  position: relative;
+  width: 100%;
+  overflow-x: visible;
+
+  @media (max-width: 800px) {
+    padding: 5px;
+    overflow-x: hidden;
+
+    .show_next {
+      position: absolute;
+      right: 20px;
+      top: 38%;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+
+      @media (max-width: 800px) {
+        right: 10px;
+      }
+    }
+
+    max-width: 86%;
+    transition: max-width 0.3s ease;
+
+    &:last-child,
+    &.open {
+      max-width: 0;
+      visibility: hidden;
+      opacity: 0;
+      max-height: 100vh;
+
+      .show_next {
+        transform: rotate(180deg);
+      }
+    }
+
+    &.open ~ & {
+      max-width: 86%;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &div,
+  span {
+    font-family: monospace;
+  }
+
+  &__text {
+    color: $white-color;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    padding-right: 80px;
+    width: 100%;
+
+    &:focus-visible {
+      border: none;
+      outline: none;
+    }
+
+    &:last-of-type {
+      padding-right: 10px;
+    }
+
+    @media (max-width: 800px) {
+      padding-right: 60px;
+    }
+  }
+
+  &__btns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    @media (max-width: 800px) {
+      padding: 20px 10px;
+    }
+  }
+}

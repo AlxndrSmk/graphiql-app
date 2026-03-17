@@ -1,0 +1,90 @@
+@keyframes openWnd {
+  from {
+    height: 0;
+  }
+
+  50% {
+    height: 25px;
+  }
+
+  to {
+    height: 50px;
+  }
+}
+
+@keyframes closeWnd {
+  from {
+    height: 50px;
+  }
+
+  50% {
+    height: 25px;
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+.endpoint {
+  display: flex;
+  box-sizing: border-box;
+  width: 90%;
+  gap: 10px;
+  min-width: 300px;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    min-width: 250px;
+  }
+
+  &_open {
+    animation: openWnd 1s forwards linear;
+  }
+
+  &_close {
+    animation: closeWnd 1s forwards linear;
+  }
+
+  &__input {
+    width: calc(100% - 120px);
+    height: 30px;
+    box-sizing: border-box;
+    padding: 3px;
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: transparent;
+  }
+
+  &__button {
+    width: 21%;
+    height: 30px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    @media (max-width: 800px) {
+      width: 18%;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 10px;
+      width: 45px;
+    }
+  }
+
+  &__button:hover {
+    transform: scale(1.05);
+  }
+
+  &__button:active {
+    transform: scale(1.05);
+  }
+}

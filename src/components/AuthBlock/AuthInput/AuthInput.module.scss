@@ -1,0 +1,108 @@
+@import '@/styles/colors.scss';
+
+.form {
+  &__item {
+    position: relative;
+
+    &-signup {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+  &__placeholder-container {
+    height: 80px;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+
+    @media screen and (max-width: 400px) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__input {
+    border: 1px solid $white-color;
+    color: $white-color;
+    font-family: 'Raleway', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.2em;
+    height: 50px;
+    outline: 0;
+    padding: 0 20px;
+    width: 100%;
+
+    @media screen and (max-width: 400px) {
+      font-size: 0.9em;
+      height: 40px;
+      padding: 0 10px;
+    }
+
+    &[type='password'] {
+      font: small-caption;
+    }
+  }
+
+  &__label {
+    background-color: transparent;
+    bottom: 1px;
+    color: #fff;
+    font-size: 1.2em;
+    left: 15px;
+    letter-spacing: 1px;
+    pointer-events: none;
+    position: absolute;
+    top: 14px;
+    transition: all 200ms;
+
+    @media screen and (max-width: 400px) {
+      font-size: 0.9em;
+      top: 11px;
+    }
+  }
+
+  &__error {
+    color: $error-color;
+    margin-left: 0.25rem;
+    margin-top: 0.25rem;
+
+    &-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media screen and (max-width: 400px) {
+      font-size: 0.9em;
+    }
+  }
+
+  &__eye {
+    border-radius: 50%;
+    filter: invert(1);
+    padding: 5px;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    transition: 0.3s ease;
+
+    &:hover {
+      background-color: rgba(128, 128, 128, 0.5);
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 400px) {
+      top: 2px;
+    }
+  }
+}
+
+.form__placeholder-container input:focus + label,
+.form__placeholder-container input:not(:placeholder-shown) + label {
+  font-size: 0.9em;
+  left: 4px;
+  top: -25px;
+
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
+}
