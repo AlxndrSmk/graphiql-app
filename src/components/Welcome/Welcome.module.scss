@@ -108,13 +108,13 @@
 }
 
 .big-image {
-  bottom: 0;
-  height: 980px;
-  left: 10%;
-  margin-top: 400px;
-  position: absolute;
+  align-self: center;
+  flex-shrink: 0;
+  height: 380px;
+  margin: 1.5rem 0;
+  position: relative;
   transform: scale(-1, 1);
-  width: 420px;
+  width: 200px;
 
   @media screen and (max-width: 820px) {
     display: none;

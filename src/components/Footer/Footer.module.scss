@@ -17,32 +17,6 @@
     gap: 15px;
   }
 
-  &__authors {
-    @include divDisplay(spaced);
-    gap: 10px;
-    width: 300px;
-
-    @media screen and (max-width: 675px) {
-      width: 80%;
-    }
-
-    &-names {
-      color: map.get($footerColors, 'names');
-      cursor: pointer;
-      font-weight: 100;
-      text-align: center;
-      text-decoration: none;
-
-      &:hover {
-        color: map.get($footerColors, 'names-hover');
-      }
-
-      &:active {
-        color: map.get($footerColors, 'names-active');
-      }
-    }
-  }
-
   &__created {
     @include divDisplay(centered);
 
@@ -62,21 +36,4 @@
     }
   }
 
-  &__logo {
-    @include divDisplay(centered);
-
-    &-school {
-      @include animating;
-      cursor: pointer;
-      &:hover {
-        animation: shakeImg 500ms ease-in-out forwards;
-      }
-
-      &:active {
-        animation: clickImg 250ms ease-in-out forwards;
-      }
-    }
-
-    filter: invert(1);
-  }
 }

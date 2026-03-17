@@ -26,20 +26,18 @@ const createGQLArgs = (
   const prettierQuery = (query: string): string => {
     if (!query) return 'Empty query';
     const prettyQuery = prettify(query);
+    let nameQuery: string | null;
 
     const indexFirstQuote = prettyQuery.indexOf('{');
     const indexOfFirstSpace = prettyQuery.indexOf(' ');
-    let nameQuery = prettyQuery.slice(
-      indexOfFirstSpace + 1,
-      indexFirstQuote - 1
-    );
+    nameQuery = prettyQuery.slice(indexOfFirstSpace + 1, indexFirstQuote - 1);
 
     if (nameQuery.includes('(')) {
       const indexOfBracket = nameQuery.indexOf('(');
-      nameQuery = nameQuery.slice(0, indexOfBracket);
+      nameQuery = indexFirstQuote ? nameQuery.slice(0, indexOfBracket) : null;
     }
 
-    argsGQL.body.operationName = nameQuery ? nameQuery : 'null';
+    argsGQL.body.operationName = nameQuery ? nameQuery : null;
     argsGQL.body.query = prettyQuery;
 
     return 'Done';

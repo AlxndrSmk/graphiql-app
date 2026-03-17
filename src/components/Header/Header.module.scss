@@ -16,7 +16,7 @@
 
   &_sticky {
     @include headerPosition;
-    @include headerStyle(90%, map.get($headerColors, sticky), 80px);
+    @include headerStyle(100%, map.get($headerColors, sticky), 80px);
     background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 1) 0%,

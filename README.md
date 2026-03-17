@@ -2,9 +2,7 @@
 
 <!-- DESCRIPTION -->
 
-_GraphiQL App is a playground and interactive development environment (IDE) for exploring and querying any open GraphQL API._
-
-Deployment Link: [GraphiQL by RSHeroes](https://rsheroes-graphiql.vercel.app/)
+_Interactive GraphQL IDE to help students learn query syntax and API exploration. The playground connects to the Rick and Morty API, letting users experiment with real data while learning GraphQL fundamentals._
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -13,7 +11,6 @@ Deployment Link: [GraphiQL by RSHeroes](https://rsheroes-graphiql.vercel.app/)
     <li><a href="#technology-stack">Technology Stack</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#contributors">Contributors</a></li>
   </ol>
 </details>
 
@@ -112,7 +109,7 @@ If you want to open the Cypress Test Runner for End-to-End Testing directly in C
    npm run cy:open
 ```
 
-:exclamation: Note, that before running ``` npm run test ``` or ```npm run cy:open``` you should start dev server using command ``` npm run dev ```
+:exclamation: Note, that before running `npm run test` or `npm run cy:open` you should start dev server using command `npm run dev`
 
 To see test coverage, use the following command:
 
@@ -143,11 +140,3 @@ In the GraphiQL application, there are also other commands available that can be
 
 - `npm run lint`: To check Prettier formatting for TypeScript, JSX, and JSON files.
 - `npm run prettier`: To check ESLint errors for TypeScript and JSX files.
-
-<!-- CONTRIBUTORS -->
-
-## Contributors
-
-- [Alexander Samak](https://github.com/alxndrsmk)
-- [Oksana Pozdnyak](https://github.com/pozdnyakoks)
-- [Henadzi Vasukovich](https://github.com/BrBrov)

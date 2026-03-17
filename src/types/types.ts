@@ -53,7 +53,6 @@ export interface AuthContextProps {
 
 export interface LangConstants {
   langButton: string;
-  altLogo: string;
   textCreated: string;
   welcomePageLink: string;
   mainPageLink: string;
@@ -74,9 +73,7 @@ export interface LangConstants {
   title: string;
   desc: string;
   descGrLink: string;
-  descRs: string;
-  linkRSS: string;
-  descEnd: string;
+  descGrLinkEnd: string;
   emailRequired: string;
   emailValid: string;
   emailDomain: string;
@@ -102,19 +99,6 @@ export interface LangContext {
   pageLang: string;
   setPageLang: (lang: string) => void;
   getConstants: () => LangConstants;
-}
-
-export interface TeamData {
-  en: Array<TeamMember>;
-  ru: Array<TeamMember>;
-}
-
-export interface TeamMember {
-  firstName: string;
-  lastName: string;
-  img: string;
-  desc: string;
-  github: string;
 }
 
 export type FirebaseConfig = {

@@ -16,8 +16,8 @@ export const schema = Yup.object().shape({
     )
     .test(
       'letter',
-      'Must include at least one letter',
-      (value) => value !== undefined && /[a-zA-Z]/.test(value)
+      'Must include at least one letter or Unicode character',
+      (value) => value !== undefined && /[a-zA-Z]/u.test(value)
     )
     .test(
       'specialCharacters',

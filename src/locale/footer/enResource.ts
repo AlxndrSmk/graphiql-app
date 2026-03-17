@@ -1,5 +1,4 @@
 const enFooter = {
-  altLogo: 'RSSchool logo',
   textCreated: 'All Rights Reserved.',
 };
 
